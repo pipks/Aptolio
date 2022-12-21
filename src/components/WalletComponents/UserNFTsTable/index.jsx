@@ -7,7 +7,7 @@ import { getNFTImage } from 'utils/Helpers'
 
 const index = ({ data }) => {
   return (
-    <div className='mt-2'>
+    <div>
       <Card title='NFTs' variant='collapsible'>
         {Object.keys(data).length > 0 ? (
           <div>
@@ -38,11 +38,11 @@ const index = ({ data }) => {
                             <th className='border-b border-darkBorder px-6 py-4'>
                               <div className='flex items-center gap-1'>
                                 <img src={getNFTImage(x.preview_uri)} alt={x.collection_name} className='w-12 rounded-lg' />
-                                <Typography className='font-light'>{x.token_name}</Typography>
+                                <Typography className='font-light whitespace-nowrap'>{x.token_name}</Typography>
                               </div>
                             </th>
                             <th className='border-b border-darkBorder px-6 py-4'>
-                              <Typography className='font-light'>{x.collection_name}</Typography>
+                              <Typography className='font-light whitespace-nowrap'>{x.collection_name}</Typography>
                             </th>
                           </tr>
                         ))}
