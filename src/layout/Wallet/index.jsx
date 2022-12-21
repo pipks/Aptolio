@@ -51,7 +51,7 @@ const Index = () => {
       </div>
       <div>
         <UserTxsTable data={userTxs} />
-        <div className='flex flex-col md:grid md:grid-cols1 md:grid-cols-2 gap-2'>
+        <div className='flex flex-col md:grid md:grid-cols1 md:grid-cols-2 gap-2 mt-2'>
           <UserTokensTable data={userTokens} />
           <UserNFTsTable data={userNFTs} />
         </div>
