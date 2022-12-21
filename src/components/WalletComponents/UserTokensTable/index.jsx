@@ -7,7 +7,7 @@ import { shortAddress } from 'utils/Helpers'
 
 const index = ({ data }) => {
   return (
-    <div className='mt-2'>
+    <div>
       <Card title='Tokens' variant='collapsible'>
         {Object.keys(data).length > 0 ? (
           <div>
@@ -41,14 +41,14 @@ const index = ({ data }) => {
                             <Typography className='font-light text-gray-500'>{index + 1}</Typography>
                           </th>
                           <th className='border-b border-darkBorder px-6 py-4'>
-                            <Typography className='font-light'>{x.coin_info.name}</Typography>
+                            <Typography className='font-light whitespace-nowrap'>{x.coin_info.name}</Typography>
                           </th>
                           <th className='border-b border-darkBorder px-6 py-4'>
-                            <Typography className='font-light'>{x.coin_info.symbol}</Typography>
+                            <Typography className='font-light whitespace-nowrap'>{x.coin_info.symbol}</Typography>
                           </th>
                           <th className='border-b border-darkBorder px-6 py-4'>
                             <Typography className='font-light'>
-                              {Number(x.amount / 10 ** x.coin_info.decimals)}
+                              {Number(x.amount / 10 ** x.coin_info.decimals).toLocaleString('en-US')}
                             </Typography>
                           </th>
                           <th className='border-b border-darkBorder px-6 py-4'>
