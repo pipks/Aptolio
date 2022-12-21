@@ -22,9 +22,9 @@ const Index = () => {
       <div className='flex flex-col items-center justify-center'>
         <Typography className='text-3xl md:text-5xl font-bold'>Aptos Wallet Tracker</Typography>
         <Typography className='text-xl md:text-3xl font-normal text-center mt-5'>Connect a wallet or simply search for a wallet address</Typography>
-        <div className='mt-5'>
-          <AddressSearchBar />
-        </div>
+      </div>
+      <div className='flex items-center justify-center mt-5'>
+        <AddressSearchBar />
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-5'>
         <BlockchainStatCard title='Total Supply' data={blockchainData} type='supply' />
