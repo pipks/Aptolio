@@ -36,7 +36,7 @@ const Index = () => {
   useEffect(() => {
     getWalletData()
     // eslint-disable-next-line
-  }, [])
+  }, [walletAddress])
 
   return (
     <div>
