@@ -1,12 +1,18 @@
 import React from 'react'
 import Input from 'components/Input'
 import { AiOutlineSearch } from 'react-icons/ai'
+import { useToast } from 'hooks/useToast'
 
 const Index = () => {
+  const toast = useToast()
 
   const checkAddress = () => {
     const address = document.getElementById('aptosAddress').value
-    window.location = `/wallet/${address}`
+    if (address !== '') {
+      window.location = `/wallet/${address}`
+    } else {
+      toast('error', 'Enter an APTOS wallet address or .apt name')
+    }
   }
 
   return (
