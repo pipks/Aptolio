@@ -27,7 +27,7 @@ const Index = ({ data }) => {
             {data.status === 200 ? (
               <div className='flex flex-row items-center gap-1 whitespace-nowrap'>
                 {data.data.data.current_coin_balances.length > 0 ? (
-                  <div className='flex items-center gap-2'>
+                  <div className='flex flex-col md:flex-row md:items-center md:gap-2'>
                     <Typography className='text-2xl font-light'>
                       {Number(data.data.data.current_coin_balances[0].amount / 10 ** 8).toLocaleString('en-US')} APT
                     </Typography>
