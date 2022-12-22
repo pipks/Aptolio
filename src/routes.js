@@ -1,4 +1,4 @@
-import { AiOutlineHome } from 'react-icons/ai'
+import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai'
 import { BiWallet } from 'react-icons/bi'
 
 export const menuItem = [
@@ -16,23 +16,15 @@ export const menuItem = [
     name: 'Wallet',
     icon: <BiWallet />
   },
-  /* {
-    type: 'collapsible',
-    path: '/res',
-    key: 'res',
-    name: 'Resolver',
-    icon: <AiOutlineSearch />,
-    collapse: [
-      {
-        name: 'ENS Name',
-        key: 'ens-name',
-        path: '/res/ens-name'
-      },
-      {
-        name: 'Unstoppable Domain',
-        key: 'ud-name',
-        path: '/res/ud-name'
-      },
-    ]
-  }, */
+  {
+    type: 'title',
+    name: 'Tools'
+  },
+  {
+    type: 'noncollapsible',
+    path: '/ans',
+    key: 'ans',
+    name: 'Aptos Names',
+    icon: <AiOutlineSearch />
+  },
 ]
