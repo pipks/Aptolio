@@ -12,7 +12,6 @@ const Index = () => {
     if (address !== '') {
       if (String(address).includes('.apt')) {
         const getAddress = await convertNameToAddress(address)
-        console.log(getAddress)
         if (getAddress.status === 200 && getAddress.data.hasOwnProperty('address')) {
           window.location = `/wallet/${getAddress.data.address}`
         } else {

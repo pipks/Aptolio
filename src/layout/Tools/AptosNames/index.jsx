@@ -21,9 +21,7 @@ const Index = () => {
       setWalletData([])
       if (String(data).includes('.apt')) {
         const getAddress = await convertNameToAddress(data)
-        console.log(getAddress)
         if (getAddress.status === 200 && getAddress.data.hasOwnProperty('address')) {
-          console.log(getAddress.data.address)
           setWalletData(getAddress)
           setIsLoading(false)
         } else {
@@ -31,9 +29,7 @@ const Index = () => {
         }
       } else if (String(data).length > 60) {
         const getName = await convertAddressToName(data)
-        console.log(getName)
         if (getName.status === 200 && getName.data.hasOwnProperty('name')) {
-          console.log(getName.data.name)
           setWalletData(getName)
           setIsLoading(false)
         } else {

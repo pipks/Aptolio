@@ -18,7 +18,6 @@ const Index = () => {
     setIsLoading(true)
     const getData = await searchTokensBySymbol(token)
     setData(getData)
-    console.log(getData)
     setIsLoading(false)
   }
 
