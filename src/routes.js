@@ -1,4 +1,5 @@
 import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai'
+import { MdOutlineGeneratingTokens } from 'react-icons/md'
 import { BiWallet } from 'react-icons/bi'
 
 export const menuItem = [
@@ -26,5 +27,12 @@ export const menuItem = [
     key: 'ans',
     name: 'Aptos Names',
     icon: <AiOutlineSearch />
+  },
+  {
+    type: 'noncollapsible',
+    path: '/token-search',
+    key: 'token-search',
+    name: 'Token Search',
+    icon: <MdOutlineGeneratingTokens />
   },
 ]

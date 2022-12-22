@@ -134,3 +134,28 @@ export const convertAddressToName = async (address) => {
     .catch((error) => error.response);
   return json;
 }
+
+export const searchTokensBySymbol = async (symbol) => {
+  const data = JSON.stringify({
+    query: `query SearchTokens($symbol: String) {
+      coin_infos(where: {symbol: {_ilike: $symbol}}) {
+        symbol
+        transaction_created_timestamp
+        transaction_version_created
+        supply_aggregator_table_key
+        supply_aggregator_table_handle
+        name
+        decimals
+        creator_address
+        coin_type_hash
+        coin_type
+      }
+    }
+    `,
+    variables: { 'symbol': symbol }
+  })
+
+  const json = await axios.post(INDEXER, data)
+    .catch((error) => error.response)
+  return json;
+};

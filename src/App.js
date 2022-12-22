@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from 'layout/Home'
 import Wallet from 'layout/Wallet'
 import AptosNames from 'layout/Tools/AptosNames'
+import TokenSearch from 'layout/Tools/TokenSearch'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/wallet/:id' element={<Wallet />} />
               <Route path='/ans' element={<AptosNames />} />
+              <Route path='/token-search' element={<TokenSearch />} />
             </Routes>
           </Sidenav>
         </BrowserRouter>
