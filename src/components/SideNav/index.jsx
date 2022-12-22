@@ -39,7 +39,6 @@ const Index = ({ children }) => {
 					</div>
 				</div>
 			</Transition>
-			
 			<div className='md:flex'>
 				<div className='hidden md:flex h-screen sticky overflow-y-auto top-0 flex-col p-4 duration-150 border-r border-darkCard min-h-screen w-[300px]'>
 					<a href='/'>
