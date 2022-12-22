@@ -7,7 +7,7 @@ export default function Toast({ type, title, message, txHash, id }) {
   const dispatch = useToastDispatchContext();
   return (
     <>
-      <div className='max-w-md w-full bg-white dark:bg-darkBorder shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 mt-2 border dark-lightBorder dark:border-darkBorder'>
+      <div className='max-w-md w-full bg-darkBorder shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 mt-2 border border-darkBorder'>
         <div className='flex-1 w-0 p-4'>
           <div className='flex items-start'>
             <div className='flex-shrink-0'>
@@ -16,7 +16,7 @@ export default function Toast({ type, title, message, txHash, id }) {
               {type === 'loading' ? (<AiFillClockCircle className='text-yellow-500 text-[20px]' />) : null}
             </div>
             <div className='ml-3 flex-1'>
-              <p className='text-sm font-medium text-gray-900 dark:text-darkText'>
+              <p className='text-sm font-medium text-darkText'>
                 {title}
               </p>
               {message && (
