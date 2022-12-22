@@ -122,14 +122,14 @@ export const getTransactionByVersion = async (version) => {
 }
 
 export const convertNameToAddress = async (name) => {
-  const json = await axios(`https://www.aptosnames.com/api/testnet/v1/address/${name}`)
+  const json = await axios(`https://www.aptosnames.com/api/mainnet/v1/address/${String(name).replace('.apt', '')}`)
     .then((response) => response)
     .catch((error) => error.response);
   return json;
 }
 
 export const convertAddressToName = async (address) => {
-  const json = await axios(`https://www.aptosnames.com/api/testnet/v1/name/${address}`)
+  const json = await axios(`https://www.aptosnames.com/api/mainnet/v1/name/${address}`)
     .then((response) => response)
     .catch((error) => error.response);
   return json;

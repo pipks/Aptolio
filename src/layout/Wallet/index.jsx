@@ -16,6 +16,7 @@ const Index = () => {
   const [userTxs, setUserTxs] = useState([])
 
   const getWalletData = async () => {
+    document.getElementById('aptosAddress').value = walletAddress
     setUserAPTBalance([])
     setUserTXsCount([])
     setUserTokens([])
