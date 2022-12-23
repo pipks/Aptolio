@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from 'components/Input'
+import Card from 'components/Cards/Card'
 import { useWallet } from '@aptos-labs/wallet-adapter-react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useToast } from 'hooks/useToast'
@@ -30,17 +31,19 @@ const Index = () => {
 
   return (
     <div className='w-full md:w-[450px]'>
-      <div className='flex items-center gap-1'>
-        <Input onKeyDown={e => e.key === 'Enter' && checkAddress(document.getElementById('aptosAddress').value)} id='aptosAddress' placeholder='APTOS Wallet Address or .apt name' />
-        <div onClick={() => checkAddress()} className='group border-[1px] border-darkBorder p-2 rounded-lg cursor-pointer duration-200 hover:bg-primary'>
-          <AiOutlineSearch className='duration-200 text-2xl text-primary  group-hover:text-darkBackground' />
-        </div>
-        {connected && (
-          <div onClick={() => checkAddress(account.address)} className='group border-[1px] border-darkBorder p-2 rounded-lg cursor-pointer duration-200 hover:bg-primary'>
-            <p className='duration-200 text-primary group-hover:text-darkBackground text-md whitespace-nowrap'>CHECK ME</p>
+      <Card>
+        <div className='flex items-center gap-1 p-1'>
+          <Input onKeyDown={e => e.key === 'Enter' && checkAddress(document.getElementById('aptosAddress').value)} id='aptosAddress' placeholder='APTOS Wallet Address or .apt name' />
+          <div onClick={() => checkAddress()} className='group border-[1px] border-darkBorder p-2 rounded-lg cursor-pointer duration-200 hover:bg-primary'>
+            <AiOutlineSearch className='duration-200 text-2xl text-primary  group-hover:text-darkBackground' />
           </div>
-        )}
-      </div>
+          {connected && (
+            <div onClick={() => checkAddress(account.address)} className='group border-[1px] border-darkBorder p-2 rounded-lg cursor-pointer duration-200 hover:bg-primary'>
+              <p className='duration-200 text-primary group-hover:text-darkBackground text-md whitespace-nowrap'>CHECK ME</p>
+            </div>
+          )}
+        </div>
+      </Card>
     </div>
   )
 }

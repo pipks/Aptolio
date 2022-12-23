@@ -18,6 +18,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/address/:id' element={<CheckWallet />} />
+              <Route path='/address' element={<CheckWallet />} />
               <Route path='/ans' element={<AptosNames />} />
               <Route path='/token-search' element={<TokenSearch />} />
             </Routes>
