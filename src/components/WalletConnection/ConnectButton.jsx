@@ -10,8 +10,6 @@ const Index = ({ text }) => {
 	const { connect, wallets } = useWallet();
 	const toast = useToast()
 
-	console.log(wallets)
-
 	const connectWallet = (wallet) => {
 		try {
 			connect(wallet)

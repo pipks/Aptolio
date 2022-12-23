@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AddressSearchBar from 'components/AddressSearchBar'
 import Alert from 'components/Alerts'
-import Card from 'components/Cards/Card'
 import { useLocation } from 'react-router-dom';
 import { APTBalanceCard, UserTXsCount, UserTokensCount, UserNFTsCount, UserTokensTable, UserNFTsTable, UserTxsTable } from 'components/WalletComponents';
 import { getWalletAPTBalance, getWalletTransactionsCount, getWalletTokensBalance, getWalletNFTsBalance, getWalletTransactions } from 'utils/APIs/AptosAPI';

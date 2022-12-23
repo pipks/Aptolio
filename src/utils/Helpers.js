@@ -9,7 +9,6 @@ export const shortAddress = (address, length) => {
 export const shortCoinType = (type) => {
   const getAddress = String(type).split('::')
   const result = `${shortAddress(getAddress[0], 5)}::${getAddress[1]}::${getAddress[2]}`
-  console.log(result)
   return result
 }
 
