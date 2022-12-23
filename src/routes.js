@@ -12,9 +12,9 @@ export const menuItem = [
   },
   {
     type: 'noncollapsible',
-    path: '/wallet',
-    key: 'wallet',
-    name: 'Wallet',
+    path: '/address',
+    key: 'address',
+    name: 'Check Wallet',
     icon: <BiWallet />
   },
   {

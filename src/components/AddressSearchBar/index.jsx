@@ -14,12 +14,12 @@ const Index = () => {
       if (String(walletAddress).includes('.apt')) {
         const getAddress = await convertNameToAddress(walletAddress)
         if (getAddress.status === 200 && getAddress.data.hasOwnProperty('address')) {
-          window.location = `/wallet/${getAddress.data.address}`
+          window.location = `/address/${getAddress.data.address}`
         } else {
           toast('error', 'Not Found', 'Invalid or not registered')
         }
       } else if (String(walletAddress).length > 60) {
-        window.location = `/wallet/${walletAddress}`
+        window.location = `/address/${walletAddress}`
       } else {
         toast('error', 'Wallet address or .apt name is incorrect')
       }
@@ -41,7 +41,6 @@ const Index = () => {
           </div>
         )}
       </div>
-
     </div>
   )
 }
