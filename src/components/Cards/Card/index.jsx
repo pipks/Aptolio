@@ -5,7 +5,7 @@ const Index = ({ title, variant, children, ...rest }) => {
   const [cardOpen, setCardOpen] = useState(true)
 
   return (
-    <div className='duration-150 bg-darkCard rounded-lg shadow-[#101011] border dark-lightBorder border-darkBorder'>
+    <div className='duration-150 bg-darkCard rounded-lg shadow-[#101011] border border-darkBorder'>
       <div {...rest}>
         <div>
           {title && (

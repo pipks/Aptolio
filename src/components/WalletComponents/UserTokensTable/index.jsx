@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from 'components/Cards/Card'
 import Typography from 'components/Typography'
-import Alerts from 'components/Alerts'
+import Alert from 'components/Alerts'
 import LoadingPulse from 'components/LoadingPulse'
 import { shortAddress } from 'utils/Helpers'
 
@@ -66,13 +66,13 @@ const index = ({ data }) => {
                   </table>
                 ) : (
                   <div className='p-3'>
-                    <Alerts variant='warning' text='User has no tokens' />
+                    <Alert variant='warning' text='User has no tokens' />
                   </div>
                 )}
               </div>
             ) : (
               <div className='p-3'>
-                <Alerts variant='error' text='API connection failed! try again!' />
+                <Alert variant='error' text='API connection failed! try again!' />
               </div>
             )}
           </div>

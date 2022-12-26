@@ -12,7 +12,6 @@ export default function DisconnectButton() {
 	const { account, disconnect } = useWallet();
 	const toast = useToast()
 	const connectedWallet = localStorage.getItem('connectedWallet')
-
 	const walletDisconnect = () => {
 		try {
 			disconnect();

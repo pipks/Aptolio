@@ -4,7 +4,7 @@ import { MdOutlineOpenInNew } from 'react-icons/md'
 import { BiCopy } from 'react-icons/bi'
 import { useToast } from 'hooks/useToast'
 
-const AddressComponent = ({ address, type, }) => {
+const AddressComponent = ({ address, type, showCopy, showOpen, short }) => {
 
   const toast = useToast()
 
@@ -31,12 +31,20 @@ const AddressComponent = ({ address, type, }) => {
   return (
     <div className='flex items-center gap-1'>
       <a href={getExplorerURL(type, address)} target='_blank' rel='noreferrer' className='flex items-center gap-1'>
-        <p className='text-md text-primary font-light hover:underline'>{shortAddress(address, 4)}</p>
-        <MdOutlineOpenInNew className='text-md text-primary' />
+        {short === true ? (
+          <p className='text-md text-white font-light hover:underline'>{shortAddress(address, 6)}</p>
+        ) : (
+          <p className='text-md text-white font-light hover:underline'>{address}</p>
+        )}
+        {showOpen && (
+          <MdOutlineOpenInNew className='text-md text-primary' />
+        )}
       </a>
-      <div onClick={() => copyData()} className='flex'>
-        <BiCopy className='text-md text-primary cursor-pointer' />
-      </div>
+      {showCopy && (
+        <div onClick={() => copyData()} className='flex'>
+          <BiCopy className='text-md text-primary cursor-pointer' />
+        </div>
+      )}
     </div>
   )
 }

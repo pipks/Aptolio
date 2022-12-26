@@ -1,6 +1,7 @@
 import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai'
 import { MdOutlineGeneratingTokens } from 'react-icons/md'
 import { BiWallet } from 'react-icons/bi'
+import { HiOutlineViewGrid } from 'react-icons/hi'
 
 export const menuItem = [
   {
@@ -9,6 +10,13 @@ export const menuItem = [
     key: 'home',
     name: 'Home',
     icon: <AiOutlineHome />
+  },
+  {
+    type: 'noncollapsible',
+    path: '/portfolio',
+    key: 'portfolio',
+    name: 'Portfolio',
+    icon: <HiOutlineViewGrid />
   },
   {
     type: 'noncollapsible',

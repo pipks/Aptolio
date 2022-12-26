@@ -25,7 +25,7 @@ export default function Toast({ type, title, message, txHash, id }) {
                 </p>
               )}
               {txHash && (
-                <a href={`${getExplorerURL('tx', txHash)}`} target='_blank' rel="noreferrer" className='mt-1 text-sm text-gray-500'>ნახე: {shortAddress(txHash, 5)}</a>
+                <a href={`${getExplorerURL('txn', txHash)}`} target='_blank' rel="noreferrer" className='mt-1 text-sm text-gray-500'>View: {shortAddress(txHash, 6)}</a>
               )}
             </div>
           </div>

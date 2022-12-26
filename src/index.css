@@ -30,4 +30,32 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+  .pagination a {
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #272b2a;
+    color: #00bea4;
+  }
+
+  .pagination a:hover {
+    background-color: #00BEA4;
+    color: #ffffff  
+  }
+
+  .pagination__link {
+    font-weight: bold;
+  }
+
+  .pagination__link--active a {
+    color: #131715;
+    background: #06f6f6;
+  }
+
+  .pagination__link--disabled a {
+    color: rgb(65, 65, 65);
+    border: 1px solid #272b2a;
+  }
+
+
 }

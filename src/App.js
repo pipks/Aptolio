@@ -4,6 +4,7 @@ import { ToastProvider } from 'context/ToastContext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from 'layout/Home'
+import Portfolio from 'layout/Portfolio'
 import CheckWallet from 'layout/CheckWallet'
 import AptosNames from 'layout/Tools/AptosNames'
 import TokenSearch from 'layout/Tools/TokenSearch'
@@ -17,6 +18,7 @@ function App() {
           <Sidenav>
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/portfolio' element={<Portfolio />} />
               <Route path='/address/:id' element={<CheckWallet />} />
               <Route path='/address' element={<CheckWallet />} />
               <Route path='/ans' element={<AptosNames />} />

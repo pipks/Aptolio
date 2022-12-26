@@ -1,9 +1,9 @@
 import React from 'react'
 import Card from 'components/Cards/Card'
 import Typography from 'components/Typography'
-import Alerts from 'components/Alerts'
+import Alert from 'components/Alerts'
 import LoadingPulse from 'components/LoadingPulse'
-import { getNFTImage } from 'utils/Helpers'
+import { getNFTImage } from 'utils/Helpers/NFTHelpers'
 
 const index = ({ data }) => {
   return (
@@ -51,13 +51,13 @@ const index = ({ data }) => {
                   </div>
                 ) : (
                   <div className='p-3'>
-                    <Alerts variant='warning' text='User has no NFTs' />
+                    <Alert variant='warning' text='User has no NFTs' />
                   </div>
                 )}
               </div>
             ) : (
               <div className='p-3'>
-                <Alerts variant='error' text='API connection failed! try again!' />
+                <Alert variant='error' text='API connection failed! try again!' />
               </div>
             )}
           </div>

@@ -3,7 +3,8 @@ import Card from 'components/Cards/Card'
 import Typography from 'components/Typography'
 import Alert from 'components/Alerts'
 import LoadingPulse from 'components/LoadingPulse'
-import { formatTimestamp, getAddressFromFunctionId, getFunctionFromFunctionId, shortAddress } from 'utils/Helpers'
+import { getAddressFromFunctionId, getFunctionFromFunctionId } from 'utils/Helpers/TransactionHelpers'
+import { formatTimestamp, shortAddress } from 'utils/Helpers'
 
 const Index = ({ data }) => {
   return (
