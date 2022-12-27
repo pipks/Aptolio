@@ -10,9 +10,11 @@ const Index = () => {
   const toast = useToast()
   const { account, connected } = useWallet()
 
-  const checkAddress = async (walletAddress) => {
+  const checkAddress = async () => {
+    const walletAddress = document.getElementById('aptosAddress').value
+    console.log(walletAddress)
     if (walletAddress !== '') {
-      if (String(walletAddress).includes('.apt')) {
+      if (String(walletAddress).endsWith('.apt')) {
         const getAddress = await convertNameToAddress(walletAddress)
         if (getAddress.status === 200 && getAddress.data.hasOwnProperty('address')) {
           window.location = `/address/${getAddress.data.address}`
@@ -22,9 +24,11 @@ const Index = () => {
       } else if (String(walletAddress).length > 60) {
         window.location = `/address/${walletAddress}`
       } else {
+        console.log('2')
         toast('error', 'Wallet address or .apt name is incorrect')
       }
     } else {
+      console.log('1')
       toast('error', 'Enter an APTOS wallet address or .apt name')
     }
   }
@@ -33,7 +37,7 @@ const Index = () => {
     <div className='w-full md:w-[450px]'>
       <Card>
         <div className='flex items-center gap-1 p-1'>
-          <Input onKeyDown={e => e.key === 'Enter' && checkAddress(document.getElementById('aptosAddress').value)} id='aptosAddress' placeholder='APTOS Wallet Address or .apt name' />
+          <Input onKeyDown={e => e.key === 'Enter' && checkAddress()} id='aptosAddress' placeholder='APTOS Wallet Address or .apt name' />
           <div onClick={() => checkAddress()} className='group border-[1px] border-darkBorder p-2 rounded-lg cursor-pointer duration-200 hover:bg-primary'>
             <AiOutlineSearch className='duration-200 text-2xl text-primary  group-hover:text-darkBackground' />
           </div>
