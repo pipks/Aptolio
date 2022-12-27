@@ -20,7 +20,7 @@ const Index = ({ children }) => {
 				leave='transition ease-in-out duration-300 transform'
 				leaveFrom='translate-x-0'
 				leaveTo='-translate-x-full'>
-				<div className='z-10 inset-0 w-[250px] h-screen overflow-y-auto p-3 mt-[-50px] bg-darkModal rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-70 shadow'>
+				<div className='z-10 inset-0 w-[250px] h-screen overflow-y-auto p-3 mt-[-50px] bg-darkCard rounded-md shadow'>
 					<div className='flex items-center justify-between'>
 						<a href='/'>
 							<div className='flex items-center space-x-3 cursor-pointer'>
