@@ -3,13 +3,12 @@ import Card from 'components/Cards/Card'
 import Input from 'components/Input'
 import Button from 'components/Button'
 import Alert from 'components/Alerts'
-import LoadingPulse from 'components/LoadingPulse'
 import Typography from 'components/Typography'
 import { shortCoinType } from 'utils/Helpers'
 import { searchTokensBySymbol } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(Boolean)
   const [data, setData] = useState([])
 
   const checkData = async () => {
@@ -28,14 +27,14 @@ const Index = () => {
           <Card title='Search Tokens'>
             <div className='p-2'>
               <Input onKeyDown={e => e.key === 'Enter' && checkData()} id='tokenName' placeholder='Search by symbols (e.g: cake)' />
-              <Button onClick={() => checkData()} className='mt-2'>Search</Button>
+              <Button onClick={() => checkData()} loading={isLoading} className='mt-2'>Search</Button>
             </div>
           </Card>
         </div>
       </div>
-      {!isLoading ? (
+      {!isLoading && (
         <div className='mt-3'>
-          {Object.keys(data).length > 0 ? (
+          {Object.keys(data).length > 0 && (
             <div>
               {data.status === 200 ? (
                 <div>
@@ -105,13 +104,9 @@ const Index = () => {
                 </div>
               )}
             </div>
-          ) : (
-            <div>
-              <LoadingPulse />
-            </div>
           )}
         </div>
-      ) : null}
+      )}
     </div>
   )
 }
