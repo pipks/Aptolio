@@ -3,7 +3,7 @@ import Typography from 'components/Typography'
 import PriceWidget from 'components/PriceWidget'
 import AddressSearchBar from 'components/AddressSearchBar'
 import BlockchainStatCard from 'components/BlockchainStatsComponents'
-import { getBlockchainStats, getUserSpentInFees } from 'utils/APIs/AptosAPI'
+import { getBlockchainStats } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
   const [blockchainData, setBlockchainData] = useState([])
@@ -11,8 +11,6 @@ const Index = () => {
   const getAptosData = async () => {
     const data = await getBlockchainStats()
     setBlockchainData(data)
-    const test = await getUserSpentInFees()
-    console.log(test)
   }
 
   useEffect(() => {
