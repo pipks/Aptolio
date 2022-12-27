@@ -2,6 +2,7 @@ import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai'
 import { MdOutlineGeneratingTokens } from 'react-icons/md'
 import { BiWallet } from 'react-icons/bi'
 import { HiOutlineViewGrid } from 'react-icons/hi'
+import { TbAddressBook } from 'react-icons/tb'
 
 export const menuItem = [
   {
@@ -42,5 +43,12 @@ export const menuItem = [
     key: 'token-search',
     name: 'Token Search',
     icon: <MdOutlineGeneratingTokens />
+  },
+  {
+    type: 'noncollapsible',
+    path: '/addressbook',
+    key: 'addressbook',
+    name: 'Address Book',
+    icon: <TbAddressBook />
   },
 ]

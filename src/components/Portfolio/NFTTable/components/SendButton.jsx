@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import Button from 'components/Button'
 import Modal from 'components/Modal'
-import { AptosClient } from 'aptos'
+import AddressResult from 'components/Portfolio/TokensTable/components/AddressResult'
 import Input from 'components/Input'
+import Typography from 'components/Typography'
+import AddressBookButton from 'components/AddresBookButton'
+import { AptosClient } from 'aptos'
 import { shortAddress } from 'utils/Helpers'
 import { getNFTImage } from 'utils/Helpers/NFTHelpers'
 import { checkAddress } from 'components/Portfolio/TokensTable/Helper'
-import AddressResult from 'components/Portfolio/TokensTable/components/AddressResult'
 import { useToast } from 'hooks/useToast'
 import { useWallet } from '@aptos-labs/wallet-adapter-react'
 import { MAINNET_NODE_URL } from 'config'
-import Typography from 'components/Typography'
 
 const SendButton = ({ data, ...rest }) => {
   const { signAndSubmitTransaction } = useWallet()
@@ -40,7 +41,8 @@ const SendButton = ({ data, ...rest }) => {
         data.property_version,
         addressData.address,
         1
-      ]};
+      ]
+    };
     try {
       const response = await signAndSubmitTransaction(payload);
       const txResult = await aptosClient.waitForTransactionWithResult(response.hash);
@@ -76,7 +78,10 @@ const SendButton = ({ data, ...rest }) => {
             </div>
           </div>
           <div className='flex flex-col gap-2'>
-            <Input onChange={() => handleCheckAddress()} id='receiverAddress' placeholder='Receiver or .apt name' />
+            <div className='flex items-center gap-1'>
+              <Input onChange={() => handleCheckAddress()} id='receiverAddress' placeholder='Receiver or .apt name' />
+              <AddressBookButton inputId='receiverAddress' />
+            </div>
             {Object.keys(addressData).length > 0 && (
               <div>
                 {addressData.status === 'error' && (

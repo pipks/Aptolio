@@ -6,6 +6,7 @@ import Typography from 'components/Typography'
 import AddressResult from './AddressResult'
 import BigNumber from 'bignumber.js'
 import Alert from 'components/Alerts'
+import AddressBookButton from 'components/AddresBookButton'
 import { AptosClient } from 'aptos'
 import { useToast } from 'hooks/useToast'
 import { checkAddress, getTokenLogo } from '../Helper'
@@ -102,7 +103,10 @@ const SendButton = ({ data, ...rest }) => {
             {Object.keys(sendingTokenData).length > 0 && sendingTokenData.status === 'error' && (
               <Alert variant={sendingTokenData.status} text={sendingTokenData.text} />
             )}
-            <Input onChange={() => handleCheckAddress()} id='receiverAddress' placeholder='Receiver or .apt name' />
+            <div className='flex items-center gap-1'>
+              <Input onChange={() => handleCheckAddress()} onPaste={() => handleCheckAddress()} id='receiverAddress' placeholder='Receiver or .apt name' />
+              <AddressBookButton inputId='receiverAddress' />
+            </div>
             {Object.keys(addressData).length > 0 && (
               <div>
                 {addressData.status === 'error' && (

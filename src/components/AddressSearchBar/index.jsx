@@ -12,7 +12,6 @@ const Index = () => {
 
   const checkAddress = async () => {
     const walletAddress = document.getElementById('aptosAddress').value
-    console.log(walletAddress)
     if (walletAddress !== '') {
       if (String(walletAddress).endsWith('.apt')) {
         const getAddress = await convertNameToAddress(walletAddress)
@@ -24,11 +23,9 @@ const Index = () => {
       } else if (String(walletAddress).length > 60) {
         window.location = `/address/${walletAddress}`
       } else {
-        console.log('2')
         toast('error', 'Wallet address or .apt name is incorrect')
       }
     } else {
-      console.log('1')
       toast('error', 'Enter an APTOS wallet address or .apt name')
     }
   }

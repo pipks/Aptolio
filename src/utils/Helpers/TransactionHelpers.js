@@ -1,6 +1,5 @@
 import BigNumber from 'bignumber.js';
 import Typography from 'components/Typography'
-import { shortAddress } from 'utils/Helpers';
 
 export const getAddressFromFunctionId = (id) => {
   const result = String(id).split('::')[0]
@@ -30,13 +29,13 @@ export const getFunctionFromFunctionId = (id) => {
 export const getAddressFromPayload = (data) => {
   if (data.payload.function === '0x1::coin::transfer') {
     if (String(data.payload.arguments[0]).length > 60) {
-      return shortAddress(data.payload.arguments[0], 6)
+      return data.payload.arguments[0]
     } else {
       return data.payload.arguments[0]
     }
   } else if (data.payload.function === '0x1::aptos_account::transfer') {
     if (String(data.payload.arguments[0]).length > 60) {
-      return shortAddress(data.payload.arguments[0], 6)
+      return data.payload.arguments[0]
     } else {
       return data.payload.arguments[0]
     }

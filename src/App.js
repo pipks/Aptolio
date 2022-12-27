@@ -8,6 +8,7 @@ import Portfolio from 'layout/Portfolio'
 import CheckWallet from 'layout/CheckWallet'
 import AptosNames from 'layout/Tools/AptosNames'
 import TokenSearch from 'layout/Tools/TokenSearch'
+import AddressBook from 'layout/Tools/AddressBook'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path='/address' element={<CheckWallet />} />
               <Route path='/ans' element={<AptosNames />} />
               <Route path='/token-search' element={<TokenSearch />} />
+              <Route path='/addressbook' element={<AddressBook />} />
             </Routes>
           </Sidenav>
         </BrowserRouter>

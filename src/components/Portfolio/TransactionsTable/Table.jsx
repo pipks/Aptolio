@@ -71,9 +71,7 @@ const Index = ({ walletAddress, data, isLoading }) => {
                                   <div className='bg-[#363A39] px-3 py-1 rounded-lg'>
                                     {/* <AddressComponent address={getAddressFromPayload(x)} type='account' /> */}
                                     {/* <Typography className='font-light whitespace-nowrap'>{getAddressFromPayload(x)}</Typography> */}
-                                    <AddressComponent address={getAddressFromPayload(x)}
-                                      type='account'
-                                      short={String(getAddressFromPayload(x)).length > 20 ? true : false} />
+                                    <AddressComponent address={getAddressFromPayload(x)} type='account' short={String(getAddressFromPayload(x)).length > 20 ? true : false} />
                                   </div>
                                 </div>
                               </th>
