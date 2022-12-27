@@ -61,7 +61,7 @@ const Index = () => {
                         {walletData.data.hasOwnProperty('address') && (
                           <div className='flex items-center gap-1'>
                             <Typography>Wallet Address:</Typography>
-                            <AddressComponent address={walletData.data.address} type='account' />
+                            <AddressComponent address={walletData.data.address} type='account' showCopy={true} showOpen={true} short={true} />
                           </div>
                         )}
                         {walletData.data.hasOwnProperty('name') && (
