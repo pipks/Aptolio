@@ -9,7 +9,6 @@ import { getAddressFromPayload, getFunctionFromFunctionId, calculateFee, getAPTT
 import { convertTimestampToDate, getExplorerURL } from 'utils/Helpers'
 
 const Index = ({ walletAddress, data, isLoading }) => {
-  console.log(data)
   return (
     <div>
       <Card title='Transactions'>

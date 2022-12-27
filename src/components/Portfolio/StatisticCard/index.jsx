@@ -8,7 +8,6 @@ import { RxTokens } from 'react-icons/rx'
 import { BsImages, BsReceiptCutoff } from 'react-icons/bs'
 
 const index = ({ title, data, isLoading }) => {
-  console.log(data)
   return (
     <div>
       <Card>

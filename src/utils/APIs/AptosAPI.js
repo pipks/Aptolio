@@ -265,7 +265,6 @@ export const getUserSpentInFees = async (walletAddress, totalTransactions) => {
   var txs = []
   var offset = 0
   do {
-    console.log({ limit: 100, offset: offset })
     const data = await getUserTransactions(walletAddress, 100, offset)
     if (data.length > 0) {
       data.forEach((x) => {
