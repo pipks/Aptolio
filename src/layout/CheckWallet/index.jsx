@@ -46,7 +46,7 @@ const Index = () => {
       <div className='flex items-center justify-center mb-3'>
         <AddressSearchBar />
       </div>
-      {walletAddress !== undefined ? (
+      {walletAddress !== undefined && (
         <div>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols3 lg:grid-cols-4 gap-2'>
             <APTBalanceCard data={userAPTBalance} />
@@ -60,12 +60,6 @@ const Index = () => {
               <UserNFTsTable data={userNFTs} />
             </div>
             <UserTxsTable data={userTxs} />
-          </div>
-        </div>
-      ) : (
-        <div className='flex items-center justify-center'>
-          <div className='w-full md:w-[450px]'>
-            <Alert variant='info' text='Search for a wallet address or .apt name' />
           </div>
         </div>
       )}
