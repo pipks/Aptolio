@@ -50,16 +50,16 @@ const Index = () => {
         <div>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols3 lg:grid-cols-4 gap-2'>
             <APTBalanceCard data={userAPTBalance} />
-            <UserTXsCount data={userTXsCount} />
             <UserTokensCount data={userTokens} />
             <UserNFTsCount data={userNFTs} />
+            <UserTXsCount data={userTXsCount} />
           </div>
           <div>
-            <UserTxsTable data={userTxs} />
-            <div className='flex flex-col md:grid md:grid-cols1 md:grid-cols-2 gap-2 mt-2'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-2'>
               <UserTokensTable data={userTokens} />
               <UserNFTsTable data={userNFTs} />
             </div>
+            <UserTxsTable data={userTxs} />
           </div>
         </div>
       ) : (

@@ -3,9 +3,11 @@ import Card from 'components/Cards/Card'
 import Typography from 'components/Typography'
 import Alert from 'components/Alerts'
 import LoadingPulse from 'components/LoadingPulse'
+import { getTokenLogo } from 'components/Portfolio/TokensTable/Helper'
 import { shortAddress } from 'utils/Helpers'
 
 const index = ({ data }) => {
+  console.log(data)
   return (
     <div>
       <Card title='Tokens' variant='collapsible'>
@@ -24,9 +26,6 @@ const index = ({ data }) => {
                           Name
                         </th>
                         <th scope='col' className='border-b border-darkBorder px-6 py-3'>
-                          Symbol
-                        </th>
-                        <th scope='col' className='border-b border-darkBorder px-6 py-3'>
                           Balance
                         </th>
                         <th scope='col' className='border-b border-darkBorder px-6 py-3'>
@@ -41,10 +40,16 @@ const index = ({ data }) => {
                             <Typography className='font-light text-gray-500'>{index + 1}</Typography>
                           </th>
                           <th className='border-b border-darkBorder px-6 py-4'>
-                            <Typography className='font-light whitespace-nowrap'>{x.coin_info !== null ? x.coin_info.name : '-'}</Typography>
-                          </th>
-                          <th className='border-b border-darkBorder px-6 py-4'>
-                            <Typography className='font-light whitespace-nowrap'>{x.coin_info !== null ? x.coin_info.symbol : '-'}</Typography>
+                            <div className='flex items-center gap-2'>
+                              <img
+                                src={getTokenLogo(x.coin_info.coin_type)}
+                                alt='Logo'
+                                className='rounded-full w-[36px] h-[36px] ' />
+                              <div className='flex flex-col'>
+                                <Typography className='font-light whitespace-nowrap'>{x.coin_info !== null ? x.coin_info.name : '-'}</Typography>
+                                <Typography className='font-light whitespace-nowrap text-sm ' color='text-gray-500'>{x.coin_info !== null ? x.coin_info.symbol : '-'}</Typography>
+                              </div>
+                            </div>
                           </th>
                           <th className='border-b border-darkBorder px-6 py-4'>
                             {x.coin_info !== null ? (
@@ -58,7 +63,11 @@ const index = ({ data }) => {
                             )}
                           </th>
                           <th className='border-b border-darkBorder px-6 py-4'>
-                            <Typography className='font-light'>{x.coin_info !== null ? shortAddress(x.coin_info.coin_type, 6) : '-'}</Typography>
+                            <div className='flex'>
+                              <div className='bg-[#192C32] px-3 py-1 rounded-lg'>
+                                <Typography className='font-light'>{x.coin_info !== null ? shortAddress(x.coin_info.coin_type, 6) : '-'}</Typography>
+                              </div>
+                            </div>
                           </th>
                         </tr>
                       ))}
