@@ -1,14 +1,12 @@
 import React from 'react'
 import Input from 'components/Input'
 import Card from 'components/Cards/Card'
-import { useWallet } from '@aptos-labs/wallet-adapter-react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useToast } from 'hooks/useToast'
 import { convertNameToAddress } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
   const toast = useToast()
-  const { account, connected } = useWallet()
 
   const checkAddress = async () => {
     const walletAddress = document.getElementById('aptosAddress').value
@@ -38,11 +36,6 @@ const Index = () => {
           <div onClick={() => checkAddress()} className='group border-[1px] border-darkBorder p-2 rounded-lg cursor-pointer duration-200 hover:bg-primary'>
             <AiOutlineSearch className='duration-200 text-2xl text-primary  group-hover:text-darkBackground' />
           </div>
-          {connected && (
-            <div onClick={() => checkAddress(account.address)} className='group border-[1px] border-darkBorder p-2 rounded-lg cursor-pointer duration-200 hover:bg-primary'>
-              <p className='duration-200 text-primary group-hover:text-darkBackground text-md whitespace-nowrap'>CHECK ME</p>
-            </div>
-          )}
         </div>
       </Card>
     </div>
