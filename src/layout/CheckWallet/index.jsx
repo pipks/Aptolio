@@ -1,38 +1,38 @@
 import React, { useState, useEffect } from 'react'
 import AddressSearchBar from 'components/AddressSearchBar'
-import Alert from 'components/Alerts'
 import { useLocation } from 'react-router-dom';
-import { APTBalanceCard, UserTXsCount, UserTokensCount, UserNFTsCount, UserTokensTable, UserNFTsTable, UserTxsTable } from 'components/WalletComponents';
-import { getWalletAPTBalance, getWalletTransactionsCount, getWalletTokensBalance, getWalletNFTsBalance, getWalletTransactions } from 'utils/APIs/AptosAPI';
+import { TokenTable, Transactions, StatisticCard, NFTTable } from 'components/Portfolio';
+import { getWalletAPTBalance, getWalletTransactionsCount, getWalletTokensBalance, getWalletNFTsBalance } from 'utils/APIs/AptosAPI';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
 
 const Index = () => {
+  const { account, connected } = useWallet()
   const location = useLocation();
   const { pathname } = location;
   const walletAddress = pathname.split('/').slice(1)[1];
+  const [isLoading, setIsLoading] = useState(true)
   const [userAPTBalance, setUserAPTBalance] = useState([])
   const [userTXsCount, setUserTXsCount] = useState([])
   const [userTokens, setUserTokens] = useState([])
   const [userNFTs, setUserNFTs] = useState([])
-  const [userTxs, setUserTxs] = useState([])
 
   const getWalletData = async () => {
     if (walletAddress !== undefined) {
+      setIsLoading(true)
       document.getElementById('aptosAddress').value = walletAddress
       setUserAPTBalance([])
       setUserTXsCount([])
       setUserTokens([])
       setUserNFTs([])
-      setUserTxs([])
       const getWalletAPT = await getWalletAPTBalance(walletAddress)
       const getTxsCount = await getWalletTransactionsCount(walletAddress)
       const getTokens = await getWalletTokensBalance(walletAddress)
       const getNFTs = await getWalletNFTsBalance(walletAddress)
-      const getTxs = await getWalletTransactions(walletAddress)
       setUserAPTBalance(getWalletAPT)
       setUserTXsCount(getTxsCount)
       setUserTokens(getTokens)
       setUserNFTs(getNFTs)
-      setUserTxs(getTxs)
+      setIsLoading(false)
     }
   }
 
@@ -49,17 +49,19 @@ const Index = () => {
       {walletAddress !== undefined && (
         <div>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols3 lg:grid-cols-4 gap-2'>
-            <APTBalanceCard data={userAPTBalance} />
-            <UserTokensCount data={userTokens} />
-            <UserNFTsCount data={userNFTs} />
-            <UserTXsCount data={userTXsCount} />
+            <StatisticCard title='APT Balance' data={userAPTBalance} isLoading={isLoading} />
+            <StatisticCard title='Tokens' data={userTokens} isLoading={isLoading} />
+            <StatisticCard title='NFTs' data={userNFTs} isLoading={isLoading} />
+            <StatisticCard title='Transactions' data={userTXsCount} isLoading={isLoading} />
           </div>
           <div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-2'>
-              <UserTokensTable data={userTokens} />
-              <UserNFTsTable data={userNFTs} />
+              <TokenTable tokensBalance={userTokens} isChecking={true} isConnectedWallet={connected ? walletAddress === account.address ? true : false : false} />
+              <NFTTable isChecking={true} data={userNFTs} />
             </div>
-            <UserTxsTable data={userTxs} />
+            <div className='mt-2'>
+              <Transactions walletAddress={walletAddress} />
+            </div>
           </div>
         </div>
       )}

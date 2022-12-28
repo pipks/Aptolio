@@ -4,7 +4,7 @@ import SendButton from './SendButton'
 import { getNFTImage } from 'utils/Helpers/NFTHelpers'
 import Avatar from 'components/Avatar'
 
-const NFTCard = ({ data }) => {
+const NFTCard = ({ data, isChecking }) => {
   return (
     <div>
       <div className='flex'>
@@ -18,7 +18,9 @@ const NFTCard = ({ data }) => {
               <p className='text-gray-100 text-md'>{data.token_name}</p>
             </div>
             <p className='text-gray-400 text-sm'>{data.is_listed ? 'Listed' : 'Unlisted'}</p>
-            <SendButton disabled={data.is_listed ? true : false} data={data} />
+            {isChecking && (
+              <SendButton disabled={data.is_listed ? true : false} data={data} />
+            )}
           </div>
         </Card>
       </div>

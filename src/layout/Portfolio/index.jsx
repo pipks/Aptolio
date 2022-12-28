@@ -75,7 +75,7 @@ const Index = () => {
                     <NFTTable data={nftBalances} />
                   </Tab.Panel>
                   <Tab.Panel>
-                    <Transactions />
+                    <Transactions walletAddress={account.address} />
                   </Tab.Panel>
                 </Tab.Panels>
               </Tab.Group>

@@ -9,7 +9,7 @@ import MobileView from './MobileView'
 import { shortAddress } from 'utils/Helpers'
 import { getTokenLogo } from './Helper'
 
-const Index = ({ tokensBalance }) => {
+const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
   const [zeroBalanceTokens, setZeroBalanceTokens] = useState(false)
   const [newTokenBalance, setNewTokenBalnace] = useState([])
 
@@ -40,18 +40,22 @@ const Index = ({ tokensBalance }) => {
 
   return (
     <div>
-      {Object.keys(newTokenBalance).length > 0 && (
+      {!isChecking && (
         <div>
-          {newTokenBalance.status === 200 && (
-            <div className='flex items-center gap-1 mb-2 px-2'>
-              <Typography>Hide Zero Balances</Typography>
-              <div className='flex items-center'>
-                <input
-                  checked={zeroBalanceTokens}
-                  onChange={() => setZeroBalanceTokens(!zeroBalanceTokens)}
-                  type='checkbox'
-                  className='w-4 h-4' />
-              </div>
+          {Object.keys(newTokenBalance).length > 0 && (
+            <div>
+              {newTokenBalance.status === 200 && (
+                <div className='flex items-center gap-1 mb-2 px-2'>
+                  <Typography>Hide Zero Balances</Typography>
+                  <div className='flex items-center'>
+                    <input
+                      checked={zeroBalanceTokens}
+                      onChange={() => setZeroBalanceTokens(!zeroBalanceTokens)}
+                      type='checkbox'
+                      className='w-4 h-4' />
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -61,7 +65,7 @@ const Index = ({ tokensBalance }) => {
           {Object.keys(newTokenBalance).length > 0 ? (
             <div>
               {newTokenBalance.status === 200 ? (
-                <div>
+                <div className={`${isChecking ? 'max-h-[500px] overflow-y-auto rounded-lg' : ''}`}>
                   {newTokenBalance.data.data.current_coin_balances.length > 0 ? (
                     <div>
                       <table className='border-collapse table-auto w-full text-sm text-left bg-darkCard'>
@@ -79,9 +83,11 @@ const Index = ({ tokensBalance }) => {
                             <th scope='col' className='border-b border-darkBorder px-6 py-3'>
                               Coin Type
                             </th>
-                            <th scope='col' className='border-b border-darkBorder px-6 py-3'>
+                            {!isChecking && (
+                              <th scope='col' className='border-b border-darkBorder px-6 py-3'>
 
-                            </th>
+                              </th>
+                            )}
                           </tr>
                         </thead>
                         <tbody>
@@ -93,7 +99,7 @@ const Index = ({ tokensBalance }) => {
                               <th className='border-b border-darkBorder px-6 py-4'>
                                 <div className='flex items-center gap-2'>
                                   <img
-                                    src={getTokenLogo(x.coin_info.coin_type)}
+                                    src={getTokenLogo(x.coin_info !== null ? x.coin_info.coin_type : '')}
                                     alt='Logo'
                                     className='rounded-full w-[36px] h-[36px] ' />
                                   <div className='flex flex-col'>
@@ -120,12 +126,14 @@ const Index = ({ tokensBalance }) => {
                                   </div>
                                 </div>
                               </th>
-                              <th className='border-b border-darkBorder px-6 py-4'>
-                                <div className='flex flex-row gap-2'>
-                                  <SendButton data={x} disabled={x.amount === 0 ? true : false} />
-                                  <ReceiveButton data={x} />
-                                </div>
-                              </th>
+                              {!isChecking && (
+                                <th className='border-b border-darkBorder px-6 py-4'>
+                                  <div className='flex flex-row gap-2'>
+                                    <SendButton data={x} disabled={x.amount === 0 ? true : false} />
+                                    <ReceiveButton data={x} />
+                                  </div>
+                                </th>
+                              )}
                             </tr>
                           ))}
                         </tbody>
@@ -150,7 +158,7 @@ const Index = ({ tokensBalance }) => {
           )}
         </div>
         <div className='flex md:hidden'>
-          <MobileView data={newTokenBalance} />
+          <MobileView data={newTokenBalance} isChecking={isChecking} />
         </div>
       </Card>
     </div>

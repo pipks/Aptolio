@@ -6,7 +6,7 @@ import ReceiveButton from './components/ReceiveButton'
 import SendButton from './components/SendButton'
 import { getTokenLogo } from './Helper'
 
-const Index = ({ data }) => {
+const Index = ({ data, isChecking }) => {
 
   return (
     <div className='w-full'>
@@ -33,7 +33,7 @@ const Index = ({ data }) => {
                           <th className='border-b border-darkBorder px-6 py-4'>
                             <div className='flex items-center gap-2'>
                               <img
-                                src={getTokenLogo(x.coin_info.coin_type)}
+                                src={getTokenLogo(x.coin_info !== null ? x.coin_info.coin_type : '')}
                                 alt='Logo'
                                 className='rounded-full w-[36px] h-[36px] ' />
                               <div className='flex flex-col'>
@@ -50,10 +50,12 @@ const Index = ({ data }) => {
                                 -
                               </Typography>
                             )}
-                            <div className='flex flex-row gap-2'>
-                              <SendButton data={x} disabled={x.amount === 0 ? true : false} />
-                              <ReceiveButton data={x} />
-                            </div>
+                            {!isChecking && (
+                              <div className='flex flex-row gap-2'>
+                                <SendButton data={x} disabled={x.amount === 0 ? true : false} />
+                                <ReceiveButton data={x} />
+                              </div>
+                            )}
                           </th>
                         </tr>
                       ))}

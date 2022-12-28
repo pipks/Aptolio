@@ -11,7 +11,7 @@ import { convertTimestampToDate, getExplorerURL } from 'utils/Helpers'
 const Index = ({ walletAddress, data, isLoading }) => {
   return (
     <div>
-      <Card title='Transactions'>
+      <Card title='Transactions' variant='collapsible'>
         <div>
           {!isLoading ? (
             <div>

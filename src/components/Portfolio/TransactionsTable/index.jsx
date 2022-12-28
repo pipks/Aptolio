@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
 import TransctionsTable from './Table'
 import { getWalletTransactionsCount, getUserTransactions } from 'utils/APIs/AptosAPI';
-import { useWallet } from '@aptos-labs/wallet-adapter-react';
 
-const Index = () => {
-  const { account } = useWallet()
+const Index = ({ walletAddress }) => {
   const [walletTxs, setWalletTxs] = useState([])
   const [pageCount, setPageCount] = useState(0)
   const [offset, setOffset] = useState(0)
@@ -14,7 +12,7 @@ const Index = () => {
   const getTransactions = async (limit) => {
     setIsLoading(true)
     setWalletTxs([])
-    const getWalletTransactions = await getUserTransactions(account.address, limit, offset)
+    const getWalletTransactions = await getUserTransactions(walletAddress, limit, offset)
     setWalletTxs(getWalletTransactions)
     setIsLoading(false)
   }
@@ -24,7 +22,7 @@ const Index = () => {
   };
 
   const txCount = async () => {
-    const getTxsCount = await getWalletTransactionsCount(account.address)
+    const getTxsCount = await getWalletTransactionsCount(walletAddress)
     if (Object.keys(getTxsCount).length > 0 && getTxsCount.status === 200) {
       if (getTxsCount.data.data.move_resources_aggregate.aggregate.hasOwnProperty('count')) {
         setPageCount(Math.ceil(getTxsCount.data.data.move_resources_aggregate.aggregate.count / 25))
@@ -44,7 +42,7 @@ const Index = () => {
 
   return (
     <div>
-      <TransctionsTable walletAddress={account.address} data={walletTxs} isLoading={isLoading} />
+      <TransctionsTable walletAddress={walletAddress} data={walletTxs} isLoading={isLoading} />
       <div className='flex items-center justify-center mt-3 mb-3'>
         <div>
           <ReactPaginate
