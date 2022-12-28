@@ -14,7 +14,13 @@ export const getFunctionFromFunctionId = (id) => {
     const result = 'Coin Transfer'
     return result
   } else if (String(id).includes('domains::register_domain_with_signature')) {
-    const result = 'Domain Register'
+    const result = 'ANS: Domain Register'
+    return result
+  } else if (String(id).includes('domains::set_domain_address')) {
+    const result = 'ANS: Set Domain Address'
+    return result
+  } else if (String(id).includes('domains::clear_domain_address')) {
+    const result = 'ANS: Clear Domain Address'
     return result
   } else if (String(id) === '0x1::managed_coin::register') {
     const result = 'Coin Register'
