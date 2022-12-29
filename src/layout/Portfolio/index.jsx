@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ConnectButton from 'components/WalletConnection/ConnectButton'
 import Alert from 'components/Alerts'
 import { Tab } from '@headlessui/react'
+import BruhBearsTaverns from 'components/EcosystemProjects/BruhBears'
 import { StatisticCard, TokenTable, NFTTable, Transactions } from 'components/Portfolio'
 import { getWalletAPTBalance, getWalletTokensBalance, getWalletNFTsBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
 import { useWallet } from '@aptos-labs/wallet-adapter-react'
@@ -57,6 +58,9 @@ const Index = () => {
                 <div className='flex items-center justify-start'>
                   <Tab.List className="flex p-1 gap-1 rounded-lg bg-darkCard w-full md:w-[450px] border border-darkBorder">
                     <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>
+                      INFO
+                    </Tab>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>
                       Tokens
                     </Tab>
                     <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>
@@ -68,6 +72,11 @@ const Index = () => {
                   </Tab.List>
                 </div>
                 <Tab.Panels className='mt-2'>
+                  <Tab.Panel>
+                    <div className=''>
+                      <BruhBearsTaverns walletAddress={account.address} />
+                    </div>
+                  </Tab.Panel>
                   <Tab.Panel>
                     <TokenTable tokensBalance={coinBalances} />
                   </Tab.Panel>
