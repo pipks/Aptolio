@@ -12,7 +12,6 @@ const Index = ({ walletAddress }) => {
 
   const getTavernData = async () => {
     const getData = await checkTavern(walletAddress)
-    console.log(getData)
     setData(getData)
   }
 

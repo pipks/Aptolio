@@ -25,7 +25,6 @@ export const checkTavern = async (address) => {
   };
 
   const stakedBruhs = await axios.request(options).catch((error) => error.response)
-  console.log(stakedBruhs)
   if (Object.keys(stakedBruhs).length > 0) {
     if (stakedBruhs.status === 200) {
       if (!stakedBruhs.data.hasOwnProperty('error_code')) {
