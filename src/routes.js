@@ -20,15 +20,15 @@ export const menuItem = [
     icon: <HiOutlineViewGrid />
   },
   {
+    type: 'title',
+    name: 'Tools'
+  },
+  {
     type: 'noncollapsible',
     path: '/address',
     key: 'address',
     name: 'Check Wallet',
     icon: <BiWallet />
-  },
-  {
-    type: 'title',
-    name: 'Tools'
   },
   {
     type: 'noncollapsible',

@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from 'layout/Home'
 import Portfolio from 'layout/Portfolio'
-import CheckWallet from 'layout/CheckWallet'
+import CheckWallet from 'layout/Tools/CheckWallet'
 import AptosNames from 'layout/Tools/AptosNames'
 import TokenSearch from 'layout/Tools/TokenSearch'
 import AddressBook from 'layout/Tools/AddressBook'
