@@ -49,7 +49,7 @@ const Index = ({ walletAddress }) => {
                               <div>
                                 <div className='flex items-center justify-between'>
                                   <Typography className='text-sm'>SEEDZ EARNED:</Typography>
-                                  <Typography className='text-sm'>{Number(calculateStakedTime(x.start_time) * 0.04)}</Typography>
+                                  <Typography className='text-sm'>{Number(calculateStakedTime(x.start_time) * 0.04).toFixed(2)}</Typography>
                                 </div>
                                 <div className='flex items-center justify-between'>
                                   <Typography className='text-sm'>TIME STAKED:</Typography>
