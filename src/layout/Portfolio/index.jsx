@@ -3,6 +3,7 @@ import ConnectButton from 'components/WalletConnection/ConnectButton'
 import Alert from 'components/Alerts'
 import { Tab } from '@headlessui/react'
 import BruhBearsTaverns from 'components/EcosystemProjects/BruhBears'
+import AptosMonkeysJungle from 'components/EcosystemProjects/AptosMonkeys'
 import { StatisticCard, TokenTable, NFTTable, Transactions } from 'components/Portfolio'
 import { getWalletAPTBalance, getWalletTokensBalance, getWalletNFTsBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
 import { useWallet } from '@aptos-labs/wallet-adapter-react'
@@ -56,7 +57,7 @@ const Index = () => {
             <div>
               <Tab.Group>
                 <div className='flex items-center justify-start'>
-                  <Tab.List className="flex p-1 gap-1 rounded-lg bg-darkCard w-full md:w-[450px] border border-darkBorder">
+                  <Tab.List className="flex p-1 gap-1 rounded-lg bg-darkCard w-full md:w-[450px] border border-darkBorder overflow-y-auto">
                     <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>
                       INFO
                     </Tab>
@@ -73,7 +74,8 @@ const Index = () => {
                 </div>
                 <Tab.Panels className='mt-2'>
                   <Tab.Panel>
-                    <div className=''>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
+                      <AptosMonkeysJungle walletAddress={account.address} />
                       <BruhBearsTaverns walletAddress={account.address} />
                     </div>
                   </Tab.Panel>

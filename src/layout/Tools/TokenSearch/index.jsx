@@ -13,7 +13,6 @@ const Index = () => {
 
   const checkData = async () => {
     const token = document.getElementById('tokenName').value
-
     setIsLoading(true)
     const getData = await searchTokensBySymbol(token)
     setData(getData)

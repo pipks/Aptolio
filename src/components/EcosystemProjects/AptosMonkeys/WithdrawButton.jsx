@@ -10,29 +10,33 @@ const WithdrawButton = ({ data }) => {
   const [isLoading, setIsLoading] = useState(Boolean)
   const toast = useToast()
 
+  console.log(data)
+
   const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false, })
 
   const withdrawBruh = async () => {
     setIsLoading(true)
     const payload = {
       type: 'entry_function_payload',
-      function: '0xcfe80c7cfae84f1b66cd2dc65db923360acaaaa6042d9ac7c389c09e033be60e::levels::withdraw_bb',
-      type_arguments: [],
-      arguments: [data.name, data.property]
+      function: '0xde220d873e4f5eab5859f368b86fca00fa6fd395279cf54a7d7a5020cb527391::safari::end_adventure',
+      type_arguments: [
+        "0x5d410456c28307fd31439c1658b5e6b41f4ba868d63e03598c1ddb4a7b29449::asset::SeedzCoin"
+      ],
+      arguments: ['0xde220d873e4f5eab5859f368b86fca00fa6fd395279cf54a7d7a5020cb527391', data.adventure_id.creation_num]
     };
     try {
       const response = await signAndSubmitTransaction(payload);
       const txResult = await aptosClient.waitForTransactionWithResult(response.hash);
       if (txResult.success === true) {
-        toast('success', 'Transaction Confirmd Bruh', '', response.hash)
+        toast('success', 'Transaction Confirmd', '', response.hash)
       } else {
-        toast('error', 'bruh', txResult.success, response.hash)
+        toast('error', 'oh no', txResult.success, response.hash)
       }
     } catch (error) {
       if (error === 'The user rejected the request') {
-        toast('error', 'bruh', 'yeah thats rights')
+        toast('error', 'oh no', 'The user rejected the request')
       } else {
-        toast('error', 'bruh', error)
+        toast('error', 'oh no', error)
       }
     }
     setIsLoading(false)

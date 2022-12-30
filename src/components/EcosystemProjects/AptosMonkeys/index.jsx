@@ -1,34 +1,37 @@
 import React, { useState, useEffect } from 'react'
+import { checkJungle } from 'utils/Ecosystem/AptosMonkeys'
+import moment from 'moment'
 import Card from 'components/Cards/Card'
-import Typography from 'components/Typography'
 import Alert from 'components/Alerts'
+import Typography from 'components/Typography'
 import LoadingPulse from 'components/LoadingPulse'
 import WithdrawButton from './WithdrawButton'
-import { checkTavern } from 'utils/Ecosystem/BruhTavern'
-
 
 const Index = ({ walletAddress }) => {
   const [data, setData] = useState([])
+  console.log(data)
 
-  const getTavernData = async () => {
-    const getData = await checkTavern(walletAddress)
+  const calculateStakedTime = (timestamp) => {
+    const currentDate = moment()
+    const stakedTime = moment(timestamp / 1000)
+    var a = moment(String(currentDate.toString()))
+    var b = moment(String(stakedTime.toString()))
+    return a.diff(b, 'hours')
+  }
+
+  const getJungleData = async () => {
+    const getData = await checkJungle(walletAddress)
     setData(getData)
   }
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      getTavernData()
-    }, 5000)
-
-    return () => {
-      clearTimeout(timer);
-    };
+    getJungleData()
     // eslint-disable-next-line
   }, [walletAddress])
 
   return (
-    <div>
-      <Card title='Bruh Bears - Taverns' variant='collapsible'>
+    <div className=''>
+      <Card title='Aptos Monkeys - Jungle' variant='collapsible'>
         <div className='p-2'>
           {Object.keys(data).length > 0 ? (
             <div>
@@ -41,20 +44,20 @@ const Index = ({ walletAddress }) => {
                         {data.data.map((x, index) => (
                           <Card key={index}>
                             <div className='p-2'>
-                              <img src={`https://bafybeih6hezn7yyabgunclxhi5xa2sbfd6gnnc6un3lilcufq5yyywlpqm.ipfs.nftstorage.link/${String(x.tokens.name).split('#')[1]}.png`} alt={x.tokens.name} className='w-full rounded-lg' />
-                              <Typography className='text-sm py-1' color='text-gray-400'>{x.tokens.name}</Typography>
+                              <img src={`https://ipfs.io/ipfs/bafybeig6bepf5ci5fyysxlfefpjzwkfp7sarj6ed2f5a34kowgc6qenjfa/${String(x.token_id.token_data_id.name).split('#')[1]}.png`} alt={x.token_id.token_data_id.name} className='w-full rounded-lg' />
+                              <Typography className='text-sm py-1' color='text-gray-400'>{x.token_id.token_data_id.name}</Typography>
                               <div>
                                 <div className='flex items-center justify-between'>
-                                  <Typography className='text-sm'>PROGRESS:</Typography>
-                                  <Typography className='text-sm'>{x.progress}%</Typography>
+                                  <Typography className='text-sm'>SEEDZ EARNED:</Typography>
+                                  <Typography className='text-sm'>{Number(calculateStakedTime(x.start_time) * 0.04)}</Typography>
                                 </div>
                                 <div className='flex items-center justify-between'>
-                                  <Typography className='text-sm'>LEVEL:</Typography>
-                                  <Typography className='text-sm'>{x.level}</Typography>
+                                  <Typography className='text-sm'>TIME STAKED:</Typography>
+                                  <Typography className='text-sm'>{calculateStakedTime(x.start_time)}h</Typography>
                                 </div>
-                                <Typography className='text-xs mt-1' color='text-gray-400'>STAKED AT {x.tokens.stakedAt}</Typography>
+                                <Typography className='text-xs mt-1' color='text-gray-400'>STAKED AT {moment(x.start_time / 1000).format('DD/MM/YYYY HH:mm')}</Typography>
                               </div>
-                              <WithdrawButton data={x.tokens} />
+                              <WithdrawButton data={x} />
                             </div>
                           </Card>
                         ))}
@@ -62,7 +65,7 @@ const Index = ({ walletAddress }) => {
                     </div>
                   ) : (
                     <div>
-                      <Alert variant='info' text='User has no staked Bruh Bears' />
+                      <Alert variant={data.statusCode} text={data.statusText} />
                     </div>
                   )}
                 </div>
