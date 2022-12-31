@@ -1,4 +1,3 @@
-import React from 'react'
 import QuestionMark from 'assets/images/questionMark.svg'
 
 const index = ({ src, alt, className = '', ...rest }) => {

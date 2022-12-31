@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import Logo from 'assets/images/logo.svg'
-import SidenavItem from './SidenavItem'
-import Navbar from 'components/WalletConnection'
+import { useState } from 'react'
 import { Transition } from '@headlessui/react'
-import { GiHamburgerMenu } from 'react-icons/gi'
+import Logo from 'assets/images/logo.svg'
+import Navbar from 'components/WalletConnection'
 import { AiOutlineClose } from 'react-icons/ai'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import { menuItem } from '../../routes'
+import SidenavItem from './SidenavItem'
 
 const Index = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false)

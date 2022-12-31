@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { checkJungle } from 'utils/Ecosystem/AptosMonkeys'
-import moment from 'moment'
-import Card from 'components/Cards/Card'
 import Alert from 'components/Alerts'
-import Typography from 'components/Typography'
+import Card from 'components/Cards/Card'
 import LoadingPulse from 'components/LoadingPulse'
+import Typography from 'components/Typography'
+import moment from 'moment'
+import { useEffect, useState } from 'react'
+import { checkJungle } from 'utils/Ecosystem/AptosMonkeys'
 import WithdrawButton from './WithdrawButton'
 
 const Index = ({ walletAddress }) => {

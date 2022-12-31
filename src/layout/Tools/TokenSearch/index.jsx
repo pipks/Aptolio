@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import Alert from 'components/Alerts'
+import Button from 'components/Button'
 import Card from 'components/Cards/Card'
 import Input from 'components/Input'
-import Button from 'components/Button'
-import Alert from 'components/Alerts'
 import Typography from 'components/Typography'
-import { shortCoinType } from 'utils/Helpers'
 import { searchTokensBySymbol } from 'utils/APIs/AptosAPI'
+import { shortCoinType } from 'utils/Helpers'
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(Boolean)

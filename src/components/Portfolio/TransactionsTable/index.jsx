@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-import TransctionsTable from './Table'
-import { getWalletTransactionsCount, getUserTransactions } from 'utils/APIs/AptosAPI';
+import { getUserTransactions, getWalletTransactionsCount } from 'utils/APIs/AptosAPI';
+import TransctionsTable from './Table';
 
 const Index = ({ walletAddress }) => {
   const [walletTxs, setWalletTxs] = useState([])

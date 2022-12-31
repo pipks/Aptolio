@@ -1,7 +1,7 @@
 import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai'
-import { MdOutlineGeneratingTokens } from 'react-icons/md'
 import { BiWallet } from 'react-icons/bi'
 import { HiOutlineViewGrid } from 'react-icons/hi'
+import { MdOutlineGeneratingTokens } from 'react-icons/md'
 import { TbAddressBook } from 'react-icons/tb'
 
 export const menuItem = [

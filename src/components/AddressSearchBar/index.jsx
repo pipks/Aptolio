@@ -1,8 +1,7 @@
-import React from 'react'
-import Input from 'components/Input'
 import Card from 'components/Cards/Card'
-import { AiOutlineSearch } from 'react-icons/ai'
+import Input from 'components/Input'
 import { useToast } from 'hooks/useToast'
+import { AiOutlineSearch } from 'react-icons/ai'
 import { convertNameToAddress } from 'utils/APIs/AptosAPI'
 
 const Index = () => {

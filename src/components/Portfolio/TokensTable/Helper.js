@@ -1,7 +1,7 @@
-import { checkIfAddressExists, checkWalletSpecificTokenBalance, convertNameToAddress, check0x3Resource } from 'utils/APIs/AptosAPI'
-import { mainnetTokens } from 'config/mainnetTokens'
 import questionMark from 'assets/images/questionMark.svg'
 import BigNumber from 'bignumber.js'
+import { mainnetTokens } from 'config/mainnetTokens'
+import { check0x3Resource, checkIfAddressExists, checkWalletSpecificTokenBalance, convertNameToAddress } from 'utils/APIs/AptosAPI'
 
 export const checkAddress = async (walletAddress, data) => {
   if (String(walletAddress).length > 60 && String(walletAddress).startsWith('0x', 0)) {

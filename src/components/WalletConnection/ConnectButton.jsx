@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import WalletItem from './WalletItem';
-import Modal from 'components/Modal'
-import Button from 'components/Button'
+import { useState } from 'react';
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
+import Button from 'components/Button';
+import Modal from 'components/Modal';
 import { useToast } from 'hooks/useToast';
+import WalletItem from './WalletItem';
 
 const Index = ({ text }) => {
 	const [open, setOpen] = useState(false)

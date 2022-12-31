@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import Card from 'components/Cards/Card'
-import Typography from 'components/Typography'
 import Alert from 'components/Alerts'
+import Card from 'components/Cards/Card'
 import LoadingPulse from 'components/LoadingPulse'
+import Typography from 'components/Typography'
+import { useEffect, useState } from 'react'
+import { shortAddress } from 'utils/Helpers'
 import ReceiveButton from './components/ReceiveButton'
 import SendButton from './components/SendButton'
-import MobileView from './MobileView'
-import { shortAddress } from 'utils/Helpers'
 import { getTokenLogo } from './Helper'
+import MobileView from './MobileView'
 
 const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
   const [zeroBalanceTokens, setZeroBalanceTokens] = useState(false)

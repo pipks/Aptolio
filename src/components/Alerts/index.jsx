@@ -1,5 +1,4 @@
-import React from 'react'
-import { AiFillCheckCircle, AiFillWarning, AiFillCloseCircle } from 'react-icons/ai'
+import { AiFillCheckCircle, AiFillCloseCircle, AiFillWarning } from 'react-icons/ai'
 import { MdInfo } from 'react-icons/md'
 
 const index = ({ variant, text, children }) => {

@@ -1,8 +1,7 @@
-import React from 'react'
-import Card from 'components/Cards/Card'
-import SendButton from './SendButton'
-import { getNFTImage } from 'utils/Helpers/NFTHelpers'
 import Avatar from 'components/Avatar'
+import Card from 'components/Cards/Card'
+import { getNFTImage } from 'utils/Helpers/NFTHelpers'
+import SendButton from './SendButton'
 
 const NFTCard = ({ data, isChecking }) => {
   return (

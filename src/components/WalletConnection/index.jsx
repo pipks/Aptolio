@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react'
-import DisconnectButton from './DisconnectButton'
-import ConnectButton from './ConnectButton'
-import { useToast } from 'hooks/useToast';
+import { useEffect, useRef } from 'react';
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
+import { useToast } from 'hooks/useToast';
+import ConnectButton from './ConnectButton';
+import DisconnectButton from './DisconnectButton';
 
 
 export default function Modal() {

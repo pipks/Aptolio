@@ -1,8 +1,7 @@
-import React from 'react'
-import Card from 'components/Cards/Card'
-import Typography from 'components/Typography'
-import LoadingPulse from 'components/LoadingPulse'
 import Alert from 'components/Alerts'
+import Card from 'components/Cards/Card'
+import LoadingPulse from 'components/LoadingPulse'
+import Typography from 'components/Typography'
 
 export const index = ({ title, data, type }) => {
   return (

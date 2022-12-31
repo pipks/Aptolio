@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import Card from 'components/Cards/Card'
+import { useState } from 'react'
 import Button from 'components/Button'
+import Card from 'components/Cards/Card'
 import Input from 'components/Input'
-import AddressesTable from './AddressesTable'
 import { useToast } from 'hooks/useToast'
+import AddressesTable from './AddressesTable'
 
 const Index = () => {
   const [isUpdated, setIsUpdated] = useState(0)

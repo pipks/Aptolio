@@ -1,7 +1,6 @@
 import { useToastDispatchContext } from 'context/ToastContext';
-import { AiFillCheckCircle, AiFillCloseCircle, AiFillClockCircle } from 'react-icons/ai'
-import { getExplorerURL } from 'utils/Helpers';
-import { shortAddress } from 'utils/Helpers';
+import { AiFillCheckCircle, AiFillClockCircle, AiFillCloseCircle } from 'react-icons/ai';
+import { getExplorerURL, shortAddress } from 'utils/Helpers';
 
 export default function Toast({ type, title, message, txHash, id }) {
   const dispatch = useToastDispatchContext();

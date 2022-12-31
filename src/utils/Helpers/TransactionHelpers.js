@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import Typography from 'components/Typography'
+import Typography from 'components/Typography';
 
 export const getAddressFromFunctionId = (id) => {
   const result = String(id).split('::')[0]

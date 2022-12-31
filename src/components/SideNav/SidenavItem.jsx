@@ -1,5 +1,4 @@
-import React from 'react'
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import SidenavItemCollapse from './SidenavItemCollapse';
 
 const SidenavItem = ({ menuItem }) => {

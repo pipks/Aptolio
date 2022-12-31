@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import Typography from 'components/Typography'
-import PriceWidget from 'components/PriceWidget'
+import { useEffect, useState } from 'react'
 import AddressSearchBar from 'components/AddressSearchBar'
 import BlockchainStatCard from 'components/BlockchainStatsComponents'
+import PriceWidget from 'components/PriceWidget'
+import Typography from 'components/Typography'
 import { getBlockchainStats } from 'utils/APIs/AptosAPI'
 
 const Index = () => {

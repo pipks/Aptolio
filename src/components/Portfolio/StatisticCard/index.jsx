@@ -1,11 +1,10 @@
-import React from 'react'
-import Card from 'components/Cards/Card'
-import Typography from 'components/Typography'
 import APTLogo from 'assets/images/aptlogo.svg'
 import Alert from 'components/Alerts'
+import Card from 'components/Cards/Card'
 import LoadingPulse from 'components/LoadingPulse'
-import { RxTokens } from 'react-icons/rx'
+import Typography from 'components/Typography'
 import { BsImages, BsReceiptCutoff } from 'react-icons/bs'
+import { RxTokens } from 'react-icons/rx'
 
 const index = ({ title, data, isLoading }) => {
   return (

@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { Transition } from '@headlessui/react'
+import { useState } from 'react';
+import { Transition } from '@headlessui/react';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
-import { IoIosArrowDown } from 'react-icons/io'
-import { IoIosArrowUp } from 'react-icons/io'
 
 //ჩამოსაშლელი მენიუს კომპონენტი
 const SidenavItemCollapse = ({ icon, name, path, pathname, collapse }) => {

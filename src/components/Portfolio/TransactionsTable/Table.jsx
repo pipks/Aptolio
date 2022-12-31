@@ -1,12 +1,11 @@
-import React from 'react'
-import Card from 'components/Cards/Card'
-import Typography from 'components/Typography'
-import LoadingPulse from 'components/LoadingPulse'
 import AddressComponent from 'components/AddressComponent'
 import Alert from 'components/Alerts'
-import Status from './components/Status'
-import { getAddressFromPayload, getFunctionFromFunctionId, calculateFee, getAPTTransferAmount } from 'utils/Helpers/TransactionHelpers'
+import Card from 'components/Cards/Card'
+import LoadingPulse from 'components/LoadingPulse'
+import Typography from 'components/Typography'
 import { convertTimestampToDate, getExplorerURL } from 'utils/Helpers'
+import { calculateFee, getAddressFromPayload, getAPTTransferAmount, getFunctionFromFunctionId } from 'utils/Helpers/TransactionHelpers'
+import Status from './components/Status'
 
 const Index = ({ walletAddress, data, isLoading }) => {
   return (

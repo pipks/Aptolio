@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import Card from 'components/Cards/Card'
-import Typography from 'components/Typography'
 import Alert from 'components/Alerts'
+import Card from 'components/Cards/Card'
 import LoadingPulse from 'components/LoadingPulse'
-import WithdrawButton from './WithdrawButton'
+import Typography from 'components/Typography'
+import { useEffect, useState } from 'react'
 import { checkTavern } from 'utils/Ecosystem/BruhTavern'
+import WithdrawButton from './WithdrawButton'
 
 
 const Index = ({ walletAddress }) => {

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import Button from 'components/Button'
-import Typography from 'components/Typography'
-import Modal from 'components/Modal'
-import QRCode from 'react-qr-code'
 import { useWallet } from '@aptos-labs/wallet-adapter-react'
-import { shortAddress } from 'utils/Helpers'
+import Button from 'components/Button'
+import Modal from 'components/Modal'
+import Typography from 'components/Typography'
 import { useToast } from 'hooks/useToast'
+import { useState } from 'react'
+import QRCode from 'react-qr-code'
+import { shortAddress } from 'utils/Helpers'
 
 const SendButton = ({ data }) => {
   const { account } = useWallet()

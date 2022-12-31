@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import ConnectButton from 'components/WalletConnection/ConnectButton'
-import Alert from 'components/Alerts'
-import { Tab } from '@headlessui/react'
-import BruhBearsTaverns from 'components/EcosystemProjects/BruhBears'
-import AptosMonkeysJungle from 'components/EcosystemProjects/AptosMonkeys'
-import { StatisticCard, TokenTable, NFTTable, Transactions } from 'components/Portfolio'
-import { getWalletAPTBalance, getWalletTokensBalance, getWalletNFTsBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
+import { useEffect, useState } from 'react'
 import { useWallet } from '@aptos-labs/wallet-adapter-react'
+import { Tab } from '@headlessui/react'
+import Alert from 'components/Alerts'
+import AptosMonkeysJungle from 'components/EcosystemProjects/AptosMonkeys'
+import BruhBearsTaverns from 'components/EcosystemProjects/BruhBears'
+import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Portfolio'
+import ConnectButton from 'components/WalletConnection/ConnectButton'
+import { getWalletAPTBalance, getWalletNFTsBalance, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
   const { account, connected } = useWallet()

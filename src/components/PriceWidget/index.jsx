@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import Card from 'components/Cards/Card'
-import Typography from 'components/Typography'
+import { useEffect, useState } from 'react'
 import Alert from 'components/Alerts'
+import Card from 'components/Cards/Card'
 import LoadingPulse from 'components/LoadingPulse'
+import Typography from 'components/Typography'
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 import { BsArrowUpRight } from 'react-icons/bs'
 import { getCoinData } from 'utils/APIs/CoinGeckoAPI'
-import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'
 
 const Index = ({ coin }) => {
   const [data, setData] = useState([])

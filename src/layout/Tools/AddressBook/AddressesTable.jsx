@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import Card from 'components/Cards/Card'
-import Typography from 'components/Typography'
-import Input from 'components/Input'
-import Button from 'components/Button'
-import Modal from 'components/Modal'
+import { useEffect, useState } from 'react'
 import AddressComponent from 'components/AddressComponent'
-import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
+import Button from 'components/Button'
+import Card from 'components/Cards/Card'
+import Input from 'components/Input'
+import Modal from 'components/Modal'
+import Typography from 'components/Typography'
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 
 const AddressesTable = ({ updated }) => {
   const [open, setOpen] = useState(false)

@@ -1,7 +1,6 @@
-import React from 'react'
-import Typography from 'components/Typography'
 import Alert from 'components/Alerts'
 import LoadingPulse from 'components/LoadingPulse'
+import Typography from 'components/Typography'
 import ReceiveButton from './components/ReceiveButton'
 import SendButton from './components/SendButton'
 import { getTokenLogo } from './Helper'

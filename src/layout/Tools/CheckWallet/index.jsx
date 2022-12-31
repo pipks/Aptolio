@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import AddressSearchBar from 'components/AddressSearchBar'
-import { useLocation } from 'react-router-dom';
-import { TokenTable, Transactions, StatisticCard, NFTTable } from 'components/Portfolio';
-import { getWalletAPTBalance, getWalletTransactionsCount, getWalletTokensBalance, getWalletNFTsBalance } from 'utils/APIs/AptosAPI';
+import { useEffect, useState } from 'react';
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
+import AddressSearchBar from 'components/AddressSearchBar';
+import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Portfolio';
+import { useLocation } from 'react-router-dom';
+import { getWalletAPTBalance, getWalletNFTsBalance, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI';
 
 const Index = () => {
   const { account, connected } = useWallet()

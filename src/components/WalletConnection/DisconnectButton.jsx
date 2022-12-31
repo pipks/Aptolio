@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useWallet } from "@aptos-labs/wallet-adapter-react"
+import Button from 'components/Button'
 import Modal from 'components/Modal'
 import Typtography from 'components/Typography'
-import Button from 'components/Button'
 import { useToast } from 'hooks/useToast'
-import { useWallet } from "@aptos-labs/wallet-adapter-react";
-import { FiExternalLink, FiCopy } from 'react-icons/fi'
+import { useState } from 'react'
+import { FiCopy, FiExternalLink } from 'react-icons/fi'
 import { getExplorerURL, shortAddress } from 'utils/Helpers'
 
 export default function DisconnectButton() {

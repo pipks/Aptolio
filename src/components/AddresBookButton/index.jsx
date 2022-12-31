@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
 import Card from 'components/Cards/Card'
-import { TbAddressBook } from 'react-icons/tb'
 import Modal from 'components/Modal'
 import Typography from 'components/Typography'
-import { shortAddress } from 'utils/Helpers'
+import { useEffect, useState } from 'react'
 import { HiUserAdd } from 'react-icons/hi'
+import { TbAddressBook } from 'react-icons/tb'
+import { shortAddress } from 'utils/Helpers'
 
 const Index = ({ inputId }) => {
   const [open, setOpen] = useState(false)
@@ -76,7 +76,7 @@ const Index = ({ inputId }) => {
             </div>
           ) : (
             <div className='p-3 py-6 flex items-center justify-center'>
-              <a href='/addressbook' target='_blank' rel='noreferrer' >
+              <a href='/addressbook' target='_blank' rel='noreferrer'>
                 <Typography className='text-primary flex items-center gap-3'>
                   <HiUserAdd className='text-xl' />
                   ADD ADDRESS

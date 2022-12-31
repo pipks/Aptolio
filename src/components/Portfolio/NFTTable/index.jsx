@@ -1,8 +1,7 @@
-import React from 'react'
-import Card from 'components/Cards/Card'
-import NFTCard from './components/NFTCard'
-import LoadingPulse from 'components/LoadingPulse'
 import Alert from 'components/Alerts'
+import Card from 'components/Cards/Card'
+import LoadingPulse from 'components/LoadingPulse'
+import NFTCard from './components/NFTCard'
 
 const index = ({ data, isChecking }) => {
   return (
