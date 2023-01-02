@@ -29,7 +29,7 @@ const Index = ({ coin }) => {
               {data.status === 200 ? (
                 <div>
                   <div className='flex gap-2'>
-                    <div className='flex items-center justify-center duration-150 flex-shrink-0 bg-darkBorder p-2 rounded-lg' >
+                    <div className='flex items-center justify-center duration-150 flex-shrink-0 bg-darkBorder p-2 rounded-lg'>
                       <img src={data.data.image.large} alt={coin} className='w-6 rounded-full' />
                     </div>
                     <div className='w-full flex justify-between'>
@@ -49,8 +49,7 @@ const Index = ({ coin }) => {
                     <p className={`text-white text-sm ${Number(data.data.market_data.price_change_percentage_24h) > 0 ? 'bg-green-500' : 'bg-red-500'} px-2 py-1 rounded-lg w-full flex justify-center`}>
                       {Number(data.data.market_data.price_change_percentage_24h) > 0 ? (
                         <span className='flex items-center gap-1'>
-                          <AiOutlineArrowUp className='text-white font-bold' />
-                          +{Number(data.data.market_data.price_change_percentage_24h).toFixed(2)}%
+                          <AiOutlineArrowUp className='text-white font-bold' />+{Number(data.data.market_data.price_change_percentage_24h).toFixed(2)}%
                         </span>
                       ) : (
                         <span className='flex items-center gap-1'>

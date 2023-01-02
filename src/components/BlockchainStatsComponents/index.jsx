@@ -12,26 +12,10 @@ export const index = ({ title, data, type }) => {
             <div>
               {data.status === 200 ? (
                 <div>
-                  {type === 'supply' && (
-                    <Typography className='text-xl'>
-                      {Number(Number(data.data[0].total_supply) / 10 ** 8).toLocaleString('en-US')} APT
-                    </Typography>
-                  )}
-                  {type === 'staked' && (
-                    <Typography className='text-xl'>
-                      {Number(Number(data.data[0].actively_staked) / 10 ** 8).toLocaleString('en-US')} APT
-                    </Typography>
-                  )}
-                  {type === 'tps' && (
-                    <Typography className='text-xl'>
-                      {data.data[0].tps}
-                    </Typography>
-                  )}
-                  {type === 'validators' && (
-                    <Typography className='text-xl'>
-                      {data.data[0].active_validators_count}
-                    </Typography>
-                  )}
+                  {type === 'supply' && <Typography className='text-xl'>{Number(Number(data.data[0].total_supply) / 10 ** 8).toLocaleString('en-US')} APT</Typography>}
+                  {type === 'staked' && <Typography className='text-xl'>{Number(Number(data.data[0].actively_staked) / 10 ** 8).toLocaleString('en-US')} APT</Typography>}
+                  {type === 'tps' && <Typography className='text-xl'>{data.data[0].tps}</Typography>}
+                  {type === 'validators' && <Typography className='text-xl'>{data.data[0].active_validators_count}</Typography>}
                 </div>
               ) : (
                 <Alert variant='error' text='API connection failed! try again!' />

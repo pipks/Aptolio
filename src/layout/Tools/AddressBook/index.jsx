@@ -29,7 +29,6 @@ const Index = () => {
     } else {
       toast('error', 'Enter name')
     }
-
   }
 
   return (

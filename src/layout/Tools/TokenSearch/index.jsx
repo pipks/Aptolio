@@ -25,8 +25,10 @@ const Index = () => {
         <div className='w-full md:w-[450px]'>
           <Card title='Search Tokens'>
             <div className='p-2'>
-              <Input onKeyDown={e => e.key === 'Enter' && checkData()} id='tokenName' placeholder='Search by symbols (e.g: cake)' />
-              <Button onClick={() => checkData()} loading={isLoading} className='mt-2'>Search</Button>
+              <Input onKeyDown={(e) => e.key === 'Enter' && checkData()} id='tokenName' placeholder='Search by symbols (e.g: cake)' />
+              <Button onClick={() => checkData()} loading={isLoading} className='mt-2'>
+                Search
+              </Button>
             </div>
           </Card>
         </div>

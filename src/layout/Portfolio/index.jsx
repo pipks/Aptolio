@@ -57,19 +57,11 @@ const Index = () => {
             <div>
               <Tab.Group>
                 <div className='flex items-center justify-start'>
-                  <Tab.List className="flex p-1 gap-1 rounded-lg bg-darkCard w-full md:w-[450px] border border-darkBorder overflow-y-auto">
-                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>
-                      STAKED NFTs
-                    </Tab>
-                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>
-                      Tokens
-                    </Tab>
-                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>
-                      NFTs
-                    </Tab>
-                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>
-                      Transactions
-                    </Tab>
+                  <Tab.List className='flex p-1 gap-1 rounded-lg bg-darkCard w-full md:w-[450px] border border-darkBorder overflow-y-auto'>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>STAKED NFTs</Tab>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>Tokens</Tab>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>NFTs</Tab>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>Transactions</Tab>
                   </Tab.List>
                 </div>
                 <Tab.Panels className='mt-2'>

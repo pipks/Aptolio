@@ -15,34 +15,14 @@ const Index = ({ title, variant, children, ...rest }) => {
               </div>
               <div className={`${variant === undefined ? '' : 'px-3 py-2'}`}>
                 {variant === 'collapsible' ? (
-                  <div>
-                    {cardOpen ? <IoIosArrowUp onClick={() => setCardOpen(!cardOpen)} className='cursor-pointer text-darkText' /> : <IoIosArrowDown onClick={() => setCardOpen(!cardOpen)} className='cursor-pointer text-darkText' />}
-                  </div>
+                  <div>{cardOpen ? <IoIosArrowUp onClick={() => setCardOpen(!cardOpen)} className='cursor-pointer text-darkText' /> : <IoIosArrowDown onClick={() => setCardOpen(!cardOpen)} className='cursor-pointer text-darkText' />}</div>
                 ) : null}
               </div>
             </div>
           )}
         </div>
-        {variant === 'collapsible' ? (
-          <div>
-            {cardOpen ? (
-              <div className='border duration-150 border-darkText opacity-10 mb-1'></div>
-            ) : null}
-          </div>
-        ) : null}
-        {variant === 'collapsible' ? (
-          <div>
-            {cardOpen ? (
-              <div>
-                {children}
-              </div>
-            ) : null}
-          </div>
-        ) : (
-          <div>
-            {children}
-          </div>
-        )}
+        {variant === 'collapsible' ? <div>{cardOpen ? <div className='border duration-150 border-darkText opacity-10 mb-1'></div> : null}</div> : null}
+        {variant === 'collapsible' ? <div>{cardOpen ? <div>{children}</div> : null}</div> : <div>{children}</div>}
       </div>
     </div>
   )

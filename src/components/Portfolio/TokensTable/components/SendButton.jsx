@@ -21,7 +21,7 @@ const SendButton = ({ data, ...rest }) => {
   const [sendTokenAmount, setTokenAmount] = useState(0)
   const [sendingTokenData, setSendingTokenData] = useState([])
   const toast = useToast()
-  const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false, })
+  const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false })
 
   const setMaxAmount = () => {
     document.getElementById('tokenAmount').value = data.amount / 10 ** data.coin_info.decimals
@@ -58,11 +58,11 @@ const SendButton = ({ data, ...rest }) => {
       type: 'entry_function_payload',
       function: '0x1::coin::transfer',
       type_arguments: [data.coin_info.coin_type],
-      arguments: [addressData.address, result.c[0]]
-    };
+      arguments: [addressData.address, result.c[0]],
+    }
     try {
-      const response = await signAndSubmitTransaction(payload);
-      const txResult = await aptosClient.waitForTransactionWithResult(response.hash);
+      const response = await signAndSubmitTransaction(payload)
+      const txResult = await aptosClient.waitForTransactionWithResult(response.hash)
       if (txResult.success === true) {
         toast('success', 'Transaction Confirmd', `Sent ${getAmount} ${data.coin_info.symbol} to ${shortAddress(addressData.address, 4)}`, response.hash)
       } else {
@@ -75,7 +75,6 @@ const SendButton = ({ data, ...rest }) => {
         toast('error', 'oh no', error)
       }
     }
-
   }
 
   return (
@@ -100,9 +99,7 @@ const SendButton = ({ data, ...rest }) => {
               <Input id='tokenAmount' onChange={() => handleTokenAmount()} placeholder='Amount' />
               <Button onClick={() => setMaxAmount()}>MAX</Button>
             </div>
-            {Object.keys(sendingTokenData).length > 0 && sendingTokenData.status === 'error' && (
-              <Alert variant={sendingTokenData.status} text={sendingTokenData.text} />
-            )}
+            {Object.keys(sendingTokenData).length > 0 && sendingTokenData.status === 'error' && <Alert variant={sendingTokenData.status} text={sendingTokenData.text} />}
             <div className='flex items-center gap-1'>
               <Input onChange={() => handleCheckAddress()} onPaste={() => handleCheckAddress()} id='receiverAddress' placeholder='Receiver or .apt name' />
               <AddressBookButton inputId='receiverAddress' />
@@ -111,11 +108,7 @@ const SendButton = ({ data, ...rest }) => {
               <div>
                 {addressData.status === 'error' && (
                   <div>
-                    {addressData.hasOwnProperty('tokenBalance') ? (
-                      <AddressResult variant={addressData.status} text={addressData.error} balance={addressData.tokenBalance} />
-                    ) : (
-                      <AddressResult variant={addressData.status} text={addressData.error} />
-                    )}
+                    {addressData.hasOwnProperty('tokenBalance') ? <AddressResult variant={addressData.status} text={addressData.error} balance={addressData.tokenBalance} /> : <AddressResult variant={addressData.status} text={addressData.error} />}
                   </div>
                 )}
                 {addressData.status === 'success' && (
@@ -129,11 +122,13 @@ const SendButton = ({ data, ...rest }) => {
                 )}
               </div>
             )}
-            <Button disabled={addressData.status === 'success' && Number(sendTokenAmount) > 0 ? false : true} onClick={() => sendTransactions()}>SEND</Button>
+            <Button disabled={addressData.status === 'success' && Number(sendTokenAmount) > 0 ? false : true} onClick={() => sendTransactions()}>
+              SEND
+            </Button>
           </div>
         </div>
-      </Modal >
-    </div >
+      </Modal>
+    </div>
   )
 }
 

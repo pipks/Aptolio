@@ -13,9 +13,7 @@ const index = ({ variant, text, children }) => {
               <p className='text-lightText text-sm w-full font-light text-teal-400'>{text}</p>
             </div>
           ) : (
-            <div>
-              {children}
-            </div>
+            <div>{children}</div>
           )}
         </div>
       ) : null}

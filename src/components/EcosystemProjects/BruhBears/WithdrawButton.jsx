@@ -10,7 +10,7 @@ const WithdrawButton = ({ data }) => {
   const [isLoading, setIsLoading] = useState(Boolean)
   const toast = useToast()
 
-  const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false, })
+  const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false })
 
   const withdrawBruh = async () => {
     setIsLoading(true)
@@ -18,11 +18,11 @@ const WithdrawButton = ({ data }) => {
       type: 'entry_function_payload',
       function: '0xcfe80c7cfae84f1b66cd2dc65db923360acaaaa6042d9ac7c389c09e033be60e::levels::withdraw_bb',
       type_arguments: [],
-      arguments: [data.name, data.property]
-    };
+      arguments: [data.name, data.property],
+    }
     try {
-      const response = await signAndSubmitTransaction(payload);
-      const txResult = await aptosClient.waitForTransactionWithResult(response.hash);
+      const response = await signAndSubmitTransaction(payload)
+      const txResult = await aptosClient.waitForTransactionWithResult(response.hash)
       if (txResult.success === true) {
         toast('success', 'Transaction Confirmd Bruh', '', response.hash)
       } else {
@@ -40,7 +40,9 @@ const WithdrawButton = ({ data }) => {
 
   return (
     <div className='mt-2'>
-      <Button onClick={() => withdrawBruh()} loading={isLoading}>WITHDRAW</Button>
+      <Button onClick={() => withdrawBruh()} loading={isLoading}>
+        WITHDRAW
+      </Button>
     </div>
   )
 }

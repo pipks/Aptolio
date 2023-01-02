@@ -12,15 +12,7 @@ const index = ({ variant, text, balance }) => {
             <div>
               <p className='text-lightText text-sm w-full font-light text-teal-400'>{text}</p>
             </div>
-            {balance && (
-              <div>
-                {balance > 0 ? (
-                  <p className='text-lightText text-sm w-full font-light text-teal-400'>Balance: {balance}</p>
-                ) : (
-                  <p className='text-lightText text-sm w-full font-light text-teal-400'>Balance: 0</p>
-                )}
-              </div>
-            )}
+            {balance && <div>{balance > 0 ? <p className='text-lightText text-sm w-full font-light text-teal-400'>Balance: {balance}</p> : <p className='text-lightText text-sm w-full font-light text-teal-400'>Balance: 0</p>}</div>}
           </div>
         </div>
       ) : null}
@@ -32,15 +24,7 @@ const index = ({ variant, text, balance }) => {
             <div>
               <p className='text-lightText text-sm w-full font-light text-green-400'>{text}</p>
             </div>
-            {balance && (
-              <div>
-                {balance > 0 ? (
-                  <p className='text-lightText text-sm w-full font-light text-green-400'>Balance: {balance}</p>
-                ) : (
-                  <p className='text-lightText text-sm w-full font-light text-green-400'>Balance: 0</p>
-                )}
-              </div>
-            )}
+            {balance && <div>{balance > 0 ? <p className='text-lightText text-sm w-full font-light text-green-400'>Balance: {balance}</p> : <p className='text-lightText text-sm w-full font-light text-green-400'>Balance: 0</p>}</div>}
           </div>
         </div>
       ) : null}
@@ -52,15 +36,7 @@ const index = ({ variant, text, balance }) => {
             <div>
               <p className='text-lightText text-sm w-full font-light text-yellow-400'>{text}</p>
             </div>
-            {balance && (
-              <div>
-                {balance > 0 ? (
-                  <p className='text-lightText text-sm w-full font-light text-yellow-400'>Balance: {balance}</p>
-                ) : (
-                  <p className='text-lightText text-sm w-full font-light text-yellow-400'>Balance: 0</p>
-                )}
-              </div>
-            )}
+            {balance && <div>{balance > 0 ? <p className='text-lightText text-sm w-full font-light text-yellow-400'>Balance: {balance}</p> : <p className='text-lightText text-sm w-full font-light text-yellow-400'>Balance: 0</p>}</div>}
           </div>
         </div>
       ) : null}
@@ -72,15 +48,7 @@ const index = ({ variant, text, balance }) => {
             <div>
               <p className='text-lightText text-sm w-full font-light text-red-400'>{text}</p>
             </div>
-            {balance && (
-              <div>
-                {balance > 0 ? (
-                  <p className='text-lightText text-sm w-full font-light text-red-400'>Balance: {balance}</p>
-                ) : (
-                  <p className='text-lightText text-sm w-full font-light text-red-400'>Balance: 0</p>
-                )}
-              </div>
-            )}
+            {balance && <div>{balance > 0 ? <p className='text-lightText text-sm w-full font-light text-red-400'>Balance: {balance}</p> : <p className='text-lightText text-sm w-full font-light text-red-400'>Balance: 0</p>}</div>}
           </div>
         </div>
       ) : null}

@@ -1,8 +1,8 @@
-import moment from 'moment';
+import moment from 'moment'
 
 export const shortAddress = (address, length) => {
   try {
-    return `${address.substring(0, length)}...${address.substring(address.length - length)}`;
+    return `${address.substring(0, length)}...${address.substring(address.length - length)}`
   } catch (error) {
     console.log(error)
   }
@@ -35,6 +35,6 @@ export const getExplorerURL = (type, data) => {
 }
 
 export const convertTimestampToDate = (timestamp) => {
-  const date = moment(Number(timestamp) / 1000);
-  return date.format("DD/MM/YYYY hh:mm")
+  const date = moment(Number(timestamp) / 1000)
+  return date.format('DD/MM/YYYY hh:mm')
 }

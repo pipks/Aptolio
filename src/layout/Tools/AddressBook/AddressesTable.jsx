@@ -66,9 +66,7 @@ const AddressesTable = ({ updated }) => {
                   <th scope='col' className='duration-150 border-b border-darkBorder px-6 py-3'>
                     ADDRESS
                   </th>
-                  <th scope='col' className='duration-150 border-b border-darkBorder px-6 py-3'>
-
-                  </th>
+                  <th scope='col' className='duration-150 border-b border-darkBorder px-6 py-3'></th>
                 </tr>
               </thead>
               <tbody>

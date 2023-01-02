@@ -12,9 +12,9 @@ export const checkAddress = async (walletAddress, data) => {
           if (data.hasOwnProperty('collection_name')) {
             const checkTokenStore = await check0x3Resource(walletAddress)
             if (checkTokenStore.status === 200 && !checkTokenStore.data.hasOwnProperty('error_code')) {
-              return ({ status: 'success', type: 'address', error: '', address: walletAddress })
+              return { status: 'success', type: 'address', error: '', address: walletAddress }
             } else {
-              return ({ status: 'error', type: 'address', error: 'The recipient did not initialize an 0x3::token::TokenStore account in his wallet.', address: walletAddress })
+              return { status: 'error', type: 'address', error: 'The recipient did not initialize an 0x3::token::TokenStore account in his wallet.', address: walletAddress }
             }
           } else {
             const getSendingTokenBalance = await checkWalletSpecificTokenBalance(walletAddress, data.coin_info.coin_type)
@@ -22,39 +22,39 @@ export const checkAddress = async (walletAddress, data) => {
               if (getSendingTokenBalance.status === 200) {
                 if (Object.keys(getSendingTokenBalance.data.data.current_coin_balances).length > 0) {
                   if (getSendingTokenBalance.data.data.current_coin_balances[0].amount !== 0) {
-                    return ({ status: 'success', type: 'address', error: '', address: walletAddress, tokenBalance: Number(getSendingTokenBalance.data.data.current_coin_balances[0].amount) / 10 ** data.coin_info.decimals })
+                    return { status: 'success', type: 'address', error: '', address: walletAddress, tokenBalance: Number(getSendingTokenBalance.data.data.current_coin_balances[0].amount) / 10 ** data.coin_info.decimals }
                   } else {
                     if (data.coin_info.coin_type !== '0x1::aptos_coin::AptosCoin') {
-                      return ({ status: 'success', type: 'address', error: '', address: walletAddress, tokenBalance: "0" })
+                      return { status: 'success', type: 'address', error: '', address: walletAddress, tokenBalance: '0' }
                     } else {
-                      return ({ status: 'success', type: 'address', error: `Account not found but will be created` })
+                      return { status: 'success', type: 'address', error: `Account not found but will be created` }
                     }
                   }
                 } else {
                   if (data.coin_info.coin_type !== '0x1::aptos_coin::AptosCoin') {
-                    return ({ status: 'error', type: 'address', error: `The recipient needs to have a ${String(data.coin_info.symbol).toUpperCase()} account to be able to receive this transaction.` })
+                    return { status: 'error', type: 'address', error: `The recipient needs to have a ${String(data.coin_info.symbol).toUpperCase()} account to be able to receive this transaction.` }
                   } else {
-                    return ({ status: 'success', type: 'address', error: `Account not found but will be created` })
+                    return { status: 'success', type: 'address', error: `Account not found but will be created` }
                   }
                 }
               } else {
-                return ({ status: 'error', type: 'address', error: 'Failed to check token balance' })
+                return { status: 'error', type: 'address', error: 'Failed to check token balance' }
               }
             } else {
-              return ({ status: 'warning', type: 'address', error: 'Checking token balanace' })
+              return { status: 'warning', type: 'address', error: 'Checking token balanace' }
             }
           }
         } else {
-          return ({ status: 'error', type: 'address', error: 'Account not found' })
+          return { status: 'error', type: 'address', error: 'Account not found' }
         }
       } else {
         if (data.hasOwnProperty('collection_name')) {
-          return ({ status: 'error', type: 'address', error: 'The recipient did not initialize an 0x3::token::TokenStore account in his wallet.', address: walletAddress })
+          return { status: 'error', type: 'address', error: 'The recipient did not initialize an 0x3::token::TokenStore account in his wallet.', address: walletAddress }
         } else {
           if (data.coin_info.coin !== '0x1::aptos_coin::AptosCoin') {
-            return ({ status: 'error', type: 'address', error: `The recipient needs to have a ${String(data.coin_info.symbol).toUpperCase()} account to be able to receive this transaction.` })
+            return { status: 'error', type: 'address', error: `The recipient needs to have a ${String(data.coin_info.symbol).toUpperCase()} account to be able to receive this transaction.` }
           } else {
-            return ({ status: 'success', type: 'address', error: 'Account not found but will be created' })
+            return { status: 'success', type: 'address', error: 'Account not found but will be created' }
           }
         }
       }
@@ -67,9 +67,9 @@ export const checkAddress = async (walletAddress, data) => {
           if (data.hasOwnProperty('collection_name')) {
             const checkTokenStore = await check0x3Resource(nameToAddress.data.address)
             if (checkTokenStore.status === 200 && !checkTokenStore.data.hasOwnProperty('error_code')) {
-              return ({ status: 'success', type: 'address', error: '', address: nameToAddress.data.address })
+              return { status: 'success', type: 'address', error: '', address: nameToAddress.data.address }
             } else {
-              return ({ status: 'error', type: 'address', error: 'The recipient did not initialize an 0x3::token::TokenStore account in his wallet.', address: walletAddress })
+              return { status: 'error', type: 'address', error: 'The recipient did not initialize an 0x3::token::TokenStore account in his wallet.', address: walletAddress }
             }
           } else {
             const getSendingTokenBalance = await checkWalletSpecificTokenBalance(nameToAddress.data.address, data.coin_info.coin_type)
@@ -77,37 +77,37 @@ export const checkAddress = async (walletAddress, data) => {
               if (getSendingTokenBalance.status === 200) {
                 if (Object.keys(getSendingTokenBalance.data.data.current_coin_balances).length > 0) {
                   if (getSendingTokenBalance.data.data.current_coin_balances[0].amount !== 0) {
-                    return ({ status: 'success', type: 'ans', error: '', address: nameToAddress.data.address, tokenBalance: Number(getSendingTokenBalance.data.data.current_coin_balances[0].amount) / 10 ** data.coin_info.decimals })
+                    return { status: 'success', type: 'ans', error: '', address: nameToAddress.data.address, tokenBalance: Number(getSendingTokenBalance.data.data.current_coin_balances[0].amount) / 10 ** data.coin_info.decimals }
                   } else {
                     if (data.coin_info.coin_type !== '0x1::aptos_coin::AptosCoin') {
-                      return ({ status: 'success', type: 'ans', error: '', address: nameToAddress.data.address, tokenBalance: "0" })
+                      return { status: 'success', type: 'ans', error: '', address: nameToAddress.data.address, tokenBalance: '0' }
                     } else {
-                      return ({ status: 'success', type: 'ans', error: `Account not found but will be created` })
+                      return { status: 'success', type: 'ans', error: `Account not found but will be created` }
                     }
                   }
                 } else {
                   if (data.coin_info.coin_type !== '0x1::aptos_coin::AptosCoin') {
-                    return ({ status: 'error', type: 'ans', error: `The recipient needs to have a ${String(data.coin_info.symbol).toUpperCase()} account to be able to receive this transaction.` })
+                    return { status: 'error', type: 'ans', error: `The recipient needs to have a ${String(data.coin_info.symbol).toUpperCase()} account to be able to receive this transaction.` }
                   } else {
-                    return ({ status: 'success', type: 'ans', error: `Account not found but will be created` })
+                    return { status: 'success', type: 'ans', error: `Account not found but will be created` }
                   }
                 }
               } else {
-                return ({ status: 'error', type: 'address', error: 'Failed to check token balance' })
+                return { status: 'error', type: 'address', error: 'Failed to check token balance' }
               }
             } else {
-              return ({ status: 'warning', type: 'address', error: 'Checking token balanace' })
+              return { status: 'warning', type: 'address', error: 'Checking token balanace' }
             }
           }
         } else {
-          return ({ status: 'error', type: 'ans', error: `Address not found for ${walletAddress}` })
+          return { status: 'error', type: 'ans', error: `Address not found for ${walletAddress}` }
         }
       } else {
-        return ({ status: 'error', type: 'ans', error: 'Failed to check address' })
+        return { status: 'error', type: 'ans', error: 'Failed to check address' }
       }
     }
   } else {
-    return ({ status: 'error', type: 'address', error: 'Invalid Address' })
+    return { status: 'error', type: 'address', error: 'Invalid Address' }
   }
 }
 
@@ -125,15 +125,15 @@ export const sendCoin = async (sender, receiver, token, amount, decimals) => {
   const format = new BigNumber(amount).multipliedBy(new BigNumber(10).pow(decimals))
   const result = new BigNumber(format)
   const payload = {
-    type: "entry_function_payload",
-    function: "0x1::coin::transfer",
+    type: 'entry_function_payload',
+    function: '0x1::coin::transfer',
     type_arguments: [token],
-    arguments: [receiver, result.c[0]]
-  };
+    arguments: [receiver, result.c[0]],
+  }
   try {
     const transaction = await window.rise.generateTransaction(sender, payload)
-    const response = await window.rise.signAndSubmitTransaction(transaction);
-    const data = await window.rise.getTransaction(response);
+    const response = await window.rise.signAndSubmitTransaction(transaction)
+    const data = await window.rise.getTransaction(response)
     return data
   } catch (error) {
     return error

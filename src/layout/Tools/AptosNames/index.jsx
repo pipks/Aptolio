@@ -48,8 +48,10 @@ const Index = () => {
       <div className='w-full md:w-[450px]'>
         <Card title='Search wallet address or .apt name'>
           <div className='p-2'>
-            <Input onKeyDown={e => e.key === 'Enter' && checkData()} id='addressOrName' placeholder='APTOS wallet address or .apt name' />
-            <Button onClick={() => checkData()} loading={isLoading} className='mt-2'>Search</Button>
+            <Input onKeyDown={(e) => e.key === 'Enter' && checkData()} id='addressOrName' placeholder='APTOS wallet address or .apt name' />
+            <Button onClick={() => checkData()} loading={isLoading} className='mt-2'>
+              Search
+            </Button>
             {isLoading === false && (
               <div>
                 {Object.keys(walletData).length > 0 && (

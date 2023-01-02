@@ -26,18 +26,11 @@ const SendButton = ({ data }) => {
       <Button onClick={() => setOpen(!open)} className='font-light'>
         RECEIVE
       </Button>
-      <Modal title={`RECEIVE ${String(data.coin_info.symbol).toUpperCase()}`} open={open} close={() => setOpen(!open)} >
+      <Modal title={`RECEIVE ${String(data.coin_info.symbol).toUpperCase()}`} open={open} close={() => setOpen(!open)}>
         <div className='p-2'>
           <div className='flex items-center justify-center '>
             <div className='mb-2 bg-darkBorder p-2 rounded-lg'>
-              <QRCode
-                size={256}
-                style={{ maxWidth: "100%", width: "100%", borderRadius: '5px' }}
-                value={account.address}
-                viewBox={`0 0 256 256`}
-                bgColor='#00BEA4'
-                fgColor='#131715'
-              />
+              <QRCode size={256} style={{ maxWidth: '100%', width: '100%', borderRadius: '5px' }} value={account.address} viewBox={`0 0 256 256`} bgColor='#00BEA4' fgColor='#131715' />
             </div>
           </div>
           <p className='text-gray-600 text-center'>Your Address</p>
@@ -51,9 +44,7 @@ const SendButton = ({ data }) => {
               <Button onClick={() => setOpen(!open)} className='duration-200 bg-red-600 hover:bg-red-800'>
                 CLOSE
               </Button>
-              <Button onClick={() => copyData()}>
-                COPY ADDRESS
-              </Button>
+              <Button onClick={() => copyData()}>COPY ADDRESS</Button>
             </div>
           </div>
         </div>

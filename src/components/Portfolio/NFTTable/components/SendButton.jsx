@@ -18,7 +18,7 @@ const SendButton = ({ data, ...rest }) => {
   const [open, setOpen] = useState(false)
   const [addressData, setAddressData] = useState([])
   const toast = useToast()
-  const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false, })
+  const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false })
 
   const handleCheckAddress = async () => {
     setAddressData([])
@@ -34,18 +34,11 @@ const SendButton = ({ data, ...rest }) => {
       type: 'entry_function_payload',
       function: '0x424abce72523e9c02898d3c8eaf9a632f22b7c92ccce2568c4ea47a5c43dfce7::token::transfer_with_opt_in',
       type_arguments: [],
-      arguments: [
-        data.creator,
-        data.collection_name,
-        data.token_name,
-        data.property_version,
-        addressData.address,
-        1
-      ]
-    };
+      arguments: [data.creator, data.collection_name, data.token_name, data.property_version, addressData.address, 1],
+    }
     try {
-      const response = await signAndSubmitTransaction(payload);
-      const txResult = await aptosClient.waitForTransactionWithResult(response.hash);
+      const response = await signAndSubmitTransaction(payload)
+      const txResult = await aptosClient.waitForTransactionWithResult(response.hash)
       if (txResult.success === true) {
         setOpen(!open)
         setAddressData([])
@@ -64,7 +57,7 @@ const SendButton = ({ data, ...rest }) => {
 
   return (
     <div className='mt-1'>
-      <Button {...rest} className='font-light' onClick={() => setOpen(!open)} >
+      <Button {...rest} className='font-light' onClick={() => setOpen(!open)}>
         SEND
       </Button>
       <Modal title={`SEND ${String(data.token_name).toUpperCase()}`} open={open} close={() => setOpen(!open)}>
@@ -86,11 +79,7 @@ const SendButton = ({ data, ...rest }) => {
               <div>
                 {addressData.status === 'error' && (
                   <div>
-                    {addressData.hasOwnProperty('tokenBalance') ? (
-                      <AddressResult variant={addressData.status} text={addressData.error} balance={addressData.tokenBalance} />
-                    ) : (
-                      <AddressResult variant={addressData.status} text={addressData.error} />
-                    )}
+                    {addressData.hasOwnProperty('tokenBalance') ? <AddressResult variant={addressData.status} text={addressData.error} balance={addressData.tokenBalance} /> : <AddressResult variant={addressData.status} text={addressData.error} />}
                   </div>
                 )}
                 {addressData.status === 'success' && (
@@ -104,11 +93,13 @@ const SendButton = ({ data, ...rest }) => {
                 )}
               </div>
             )}
-            <Button onClick={() => sendTransaction()} disabled={addressData.status === 'success' ? false : true}>SEND</Button>
+            <Button onClick={() => sendTransaction()} disabled={addressData.status === 'success' ? false : true}>
+              SEND
+            </Button>
           </div>
         </div>
       </Modal>
-    </div >
+    </div>
   )
 }
 

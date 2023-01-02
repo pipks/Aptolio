@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
-import { getUserTransactions, getWalletTransactionsCount } from 'utils/APIs/AptosAPI';
-import TransctionsTable from './Table';
+import { useEffect, useState } from 'react'
+import ReactPaginate from 'react-paginate'
+import { getUserTransactions, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
+import TransctionsTable from './Table'
 
 const Index = ({ walletAddress }) => {
   const [walletTxs, setWalletTxs] = useState([])
@@ -19,7 +19,7 @@ const Index = ({ walletAddress }) => {
 
   const changePage = (e) => {
     setOffset(e.selected * 25)
-  };
+  }
 
   const txCount = async () => {
     const getTxsCount = await getWalletTransactionsCount(walletAddress)
@@ -46,15 +46,15 @@ const Index = ({ walletAddress }) => {
       <div className='flex items-center justify-center mt-3 mb-3'>
         <div>
           <ReactPaginate
-            previousLabel={"←"}
-            nextLabel={"→"}
+            previousLabel={'←'}
+            nextLabel={'→'}
             pageCount={pageCount}
             onPageChange={(e) => changePage(e)}
-            containerClassName={"pagination flex flex-row gap-2 text-white"}
-            previousLinkClassName={"pagination__link"}
-            nextLinkClassName={"pagination__link"}
-            disabledClassName={"pagination__link--disabled"}
-            activeClassName={"pagination__link--active"}
+            containerClassName={'pagination flex flex-row gap-2 text-white'}
+            previousLinkClassName={'pagination__link'}
+            nextLinkClassName={'pagination__link'}
+            disabledClassName={'pagination__link--disabled'}
+            activeClassName={'pagination__link--active'}
           />
         </div>
       </div>

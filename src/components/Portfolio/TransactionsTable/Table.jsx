@@ -49,7 +49,9 @@ const Index = ({ walletAddress, data, isLoading }) => {
                             <tr key={index} className='w-full cursor-pointer hover:bg-darkBorder'>
                               <th className='border-b border-darkBorder px-6 py-4'>
                                 <a href={getExplorerURL('txn', x.version)} target='_blank' rel='noreferrer'>
-                                  <Typography className='font-light whitespace-nowrap hover:underline' color='text-primary'>{x.version}</Typography>
+                                  <Typography className='font-light whitespace-nowrap hover:underline' color='text-primary'>
+                                    {x.version}
+                                  </Typography>
                                 </a>
                               </th>
                               <th className='border-b border-darkBorder px-6 py-4'>
@@ -77,9 +79,7 @@ const Index = ({ walletAddress, data, isLoading }) => {
                               <th className='border-b border-darkBorder px-6 py-4'>
                                 <div className='flex'>
                                   <div className='bg-[#192C32] px-3 py-1 rounded-lg'>
-                                    <Typography className='font-light whitespace-nowrap'>
-                                      {getFunctionFromFunctionId(x.payload.function)}
-                                    </Typography>
+                                    <Typography className='font-light whitespace-nowrap'>{getFunctionFromFunctionId(x.payload.function)}</Typography>
                                   </div>
                                 </div>
                               </th>
@@ -114,8 +114,8 @@ const Index = ({ walletAddress, data, isLoading }) => {
             </div>
           )}
         </div>
-      </Card >
-    </div >
+      </Card>
+    </div>
   )
 }
 

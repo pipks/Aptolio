@@ -31,7 +31,7 @@ const Index = () => {
     <div className='w-full md:w-[450px]'>
       <Card>
         <div className='flex items-center gap-1 p-1'>
-          <Input onKeyDown={e => e.key === 'Enter' && checkAddress()} id='aptosAddress' placeholder='APTOS Wallet Address or .apt name' />
+          <Input onKeyDown={(e) => e.key === 'Enter' && checkAddress()} id='aptosAddress' placeholder='APTOS Wallet Address or .apt name' />
           <div onClick={() => checkAddress()} className='group border-[1px] border-darkBorder p-2 rounded-lg cursor-pointer duration-200 hover:bg-primary'>
             <AiOutlineSearch className='duration-200 text-2xl text-primary  group-hover:text-darkBackground' />
           </div>

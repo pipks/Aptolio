@@ -4,9 +4,7 @@ const index = ({ src, alt, className = '', ...rest }) => {
   const addDefaultSrc = (ev) => {
     ev.target.src = QuestionMark
   }
-  return (
-    <img onError={addDefaultSrc} src={src} alt={alt} {...rest} className={`${className}`} />
-  )
+  return <img onError={addDefaultSrc} src={src} alt={alt} {...rest} className={`${className}`} />
 }
 
 export default index

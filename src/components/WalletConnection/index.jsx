@@ -1,16 +1,15 @@
-import { useEffect, useRef } from 'react';
-import { useWallet } from "@aptos-labs/wallet-adapter-react";
-import { useToast } from 'hooks/useToast';
-import ConnectButton from './ConnectButton';
-import DisconnectButton from './DisconnectButton';
-
+import { useEffect, useRef } from 'react'
+import { useWallet } from '@aptos-labs/wallet-adapter-react'
+import { useToast } from 'hooks/useToast'
+import ConnectButton from './ConnectButton'
+import DisconnectButton from './DisconnectButton'
 
 export default function Modal() {
-  const mountedRef = useRef(true);
+  const mountedRef = useRef(true)
   const toast = useToast()
-  const { connect, connected, wallets } = useWallet();
+  const { connect, connected, wallets } = useWallet()
 
-  const isConnected = localStorage.getItem('isWalletConnected');
+  const isConnected = localStorage.getItem('isWalletConnected')
 
   const connectWalletOnPageLoad = () => {
     if (connected === false && isConnected === 'true') {
@@ -27,15 +26,15 @@ export default function Modal() {
         toast('error', 'oh no', ex)
       }
     }
-  };
+  }
 
   useEffect(() => {
     connectWalletOnPageLoad()
     return () => {
-      mountedRef.current = false;
-    };
+      mountedRef.current = false
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   return (
     <div className='p-3 flex items-center gap-2'>
@@ -43,7 +42,9 @@ export default function Modal() {
         <div>
           <DisconnectButton />
         </div>
-      ) : <ConnectButton />}
+      ) : (
+        <ConnectButton />
+      )}
     </div>
-  );
+  )
 }

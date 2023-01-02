@@ -18,7 +18,7 @@ const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
   useEffect(() => {
     if (zeroBalanceTokens === true) {
       setNewTokenBalnace([])
-      setNewTokenBalnace(a => [...a, tokensBalance])
+      setNewTokenBalnace((a) => [...a, tokensBalance])
       if (Object.keys(tokens[0]).length > 0) {
         if (tokens[0].status === 200) {
           if (tokens[0].data.data.current_coin_balances.length > 0) {
@@ -48,11 +48,7 @@ const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
                 <div className='flex items-center gap-1 mb-2 px-2'>
                   <Typography>Hide Zero Balances</Typography>
                   <div className='flex items-center'>
-                    <input
-                      checked={zeroBalanceTokens}
-                      onChange={() => setZeroBalanceTokens(!zeroBalanceTokens)}
-                      type='checkbox'
-                      className='w-4 h-4' />
+                    <input checked={zeroBalanceTokens} onChange={() => setZeroBalanceTokens(!zeroBalanceTokens)} type='checkbox' className='w-4 h-4' />
                   </div>
                 </div>
               )}
@@ -83,11 +79,7 @@ const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
                             <th scope='col' className='border-b border-darkBorder px-6 py-3'>
                               Coin Type
                             </th>
-                            {!isChecking && (
-                              <th scope='col' className='border-b border-darkBorder px-6 py-3'>
-
-                              </th>
-                            )}
+                            {!isChecking && <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>}
                           </tr>
                         </thead>
                         <tbody>
@@ -98,26 +90,17 @@ const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
                               </th>
                               <th className='border-b border-darkBorder px-6 py-4'>
                                 <div className='flex items-center gap-2'>
-                                  <img
-                                    src={getTokenLogo(x.coin_info !== null ? x.coin_info.coin_type : '')}
-                                    alt='Logo'
-                                    className='rounded-full w-[36px] h-[36px] ' />
+                                  <img src={getTokenLogo(x.coin_info !== null ? x.coin_info.coin_type : '')} alt='Logo' className='rounded-full w-[36px] h-[36px] ' />
                                   <div className='flex flex-col'>
                                     <Typography className='font-light whitespace-nowrap'>{x.coin_info !== null ? x.coin_info.name : '-'}</Typography>
-                                    <Typography className='font-light whitespace-nowrap text-sm ' color='text-gray-500'>{x.coin_info !== null ? x.coin_info.symbol : '-'}</Typography>
+                                    <Typography className='font-light whitespace-nowrap text-sm ' color='text-gray-500'>
+                                      {x.coin_info !== null ? x.coin_info.symbol : '-'}
+                                    </Typography>
                                   </div>
                                 </div>
                               </th>
                               <th className='border-b border-darkBorder px-6 py-4'>
-                                {x.coin_info !== null ? (
-                                  <Typography className='font-light'>
-                                    {Number(Number(x.amount) / 10 ** x.coin_info.decimals).toFixed(8)}
-                                  </Typography>
-                                ) : (
-                                  <Typography className='font-light'>
-                                    -
-                                  </Typography>
-                                )}
+                                {x.coin_info !== null ? <Typography className='font-light'>{Number(Number(x.amount) / 10 ** x.coin_info.decimals).toFixed(8)}</Typography> : <Typography className='font-light'>-</Typography>}
                               </th>
                               <th className='border-b border-darkBorder px-6 py-4'>
                                 <div className='flex'>

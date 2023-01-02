@@ -1,9 +1,9 @@
-import { MAINNET_NODE_URL } from "config"
-import { AptosClient } from "aptos"
-import axios from "axios"
-import moment from 'moment';
+import { MAINNET_NODE_URL } from 'config'
+import { AptosClient } from 'aptos'
+import axios from 'axios'
+import moment from 'moment'
 
-const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false, })
+const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false })
 
 const TAVERN_CONTRACT_ADDRESS = '0xcfe80c7cfae84f1b66cd2dc65db923360acaaaa6042d9ac7c389c09e033be60e'
 const TOKENS_HANDLE = '0xbb2d726882ca4baddf55a5c90f3c4d6a7cd2b6ba48366f2a8d5855c1ba03211'
@@ -20,9 +20,9 @@ export const checkTavern = async (address) => {
     data: {
       key_type: 'address',
       value_type: 'vector<0x3::token::TokenId>',
-      key: address
-    }
-  };
+      key: address,
+    },
+  }
 
   const stakedBruhs = await axios.request(options).catch((error) => error.response)
   if (Object.keys(stakedBruhs).length > 0) {
@@ -36,24 +36,24 @@ export const checkTavern = async (address) => {
               key_type: '0x3::token::TokenId',
               value_type: 'u64',
             }),
-          ]),
-        );
+          ])
+        )
 
         const startTimesMap = getTimestamps.reduce((prev, curr) => {
           try {
-            prev[curr[0]] = new Date(parseInt(curr[1]) * 1000);
+            prev[curr[0]] = new Date(parseInt(curr[1]) * 1000)
           } catch {
-            prev[curr[0]] = null;
+            prev[curr[0]] = null
           }
-          return prev;
-        }, {});
+          return prev
+        }, {})
 
         var stakedData = []
 
         stakedBruhs.data.forEach((token) => {
-          const secondsPassed = (new Date() - new Date(startTimesMap[token.token_data_id.name])) / 1000;
-          const numLevels = (secondsPassed / secondsToLevel).toFixed(0);
-          const progress = (((secondsPassed % secondsToLevel) / secondsToLevel) * 100).toFixed(3);
+          const secondsPassed = (new Date() - new Date(startTimesMap[token.token_data_id.name])) / 1000
+          const numLevels = (secondsPassed / secondsToLevel).toFixed(0)
+          const progress = (((secondsPassed % secondsToLevel) / secondsToLevel) * 100).toFixed(3)
           stakedData.push({ progress: progress, level: numLevels, tokens: { name: token.token_data_id.name, property: token.property_version, stakedAt: moment(startTimesMap[token.token_data_id.name]).format('DD/MM/YYYY HH:mm') } })
         })
         return { status: 200, staked: true, statusText: '', data: stakedData }

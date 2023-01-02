@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import { checkTavern } from 'utils/Ecosystem/BruhTavern'
 import WithdrawButton from './WithdrawButton'
 
-
 const Index = ({ walletAddress }) => {
   const [data, setData] = useState([])
 
@@ -21,8 +20,8 @@ const Index = ({ walletAddress }) => {
     }, 5000)
 
     return () => {
-      clearTimeout(timer);
-    };
+      clearTimeout(timer)
+    }
     // eslint-disable-next-line
   }, [walletAddress])
 
@@ -42,7 +41,9 @@ const Index = ({ walletAddress }) => {
                           <Card key={index}>
                             <div className='p-2'>
                               <img src={`https://bafybeih6hezn7yyabgunclxhi5xa2sbfd6gnnc6un3lilcufq5yyywlpqm.ipfs.nftstorage.link/${String(x.tokens.name).split('#')[1]}.png`} alt={x.tokens.name} className='w-full rounded-lg' />
-                              <Typography className='text-sm py-1' color='text-gray-400'>{x.tokens.name}</Typography>
+                              <Typography className='text-sm py-1' color='text-gray-400'>
+                                {x.tokens.name}
+                              </Typography>
                               <div>
                                 <div className='flex items-center justify-between'>
                                   <Typography className='text-sm'>PROGRESS:</Typography>
@@ -52,7 +53,9 @@ const Index = ({ walletAddress }) => {
                                   <Typography className='text-sm'>LEVEL:</Typography>
                                   <Typography className='text-sm'>{x.level}</Typography>
                                 </div>
-                                <Typography className='text-xs mt-1' color='text-gray-400'>STAKED AT {x.tokens.stakedAt}</Typography>
+                                <Typography className='text-xs mt-1' color='text-gray-400'>
+                                  STAKED AT {x.tokens.stakedAt}
+                                </Typography>
                               </div>
                               <WithdrawButton data={x.tokens} />
                             </div>

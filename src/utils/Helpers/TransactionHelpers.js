@@ -1,5 +1,5 @@
-import BigNumber from 'bignumber.js';
-import Typography from 'components/Typography';
+import BigNumber from 'bignumber.js'
+import Typography from 'components/Typography'
 
 export const getAddressFromFunctionId = (id) => {
   const result = String(id).split('::')[0]
@@ -62,34 +62,40 @@ export const getAPTTransferAmount = (walletAddress, data) => {
     const fromMe = String(data.payload.arguments[0]).toLocaleLowerCase() === String(walletAddress).toLowerCase() ? true : false
     const amount = data.payload.arguments[1]
     if (!fromMe) {
-      const result = <Typography className='font-light whitespace-nowrap text-md' color='text-red-500'>
-        - {new BigNumber(amount).div(new BigNumber(10).pow(8)).toString()} APT
-      </Typography>
+      const result = (
+        <Typography className='font-light whitespace-nowrap text-md' color='text-red-500'>
+          - {new BigNumber(amount).div(new BigNumber(10).pow(8)).toString()} APT
+        </Typography>
+      )
       return result
     } else {
-      const result = <Typography className='font-light whitespace-nowrap text-md' color='text-green-500'>
-        + {new BigNumber(amount).div(new BigNumber(10).pow(8)).toString()} APT
-      </Typography>
+      const result = (
+        <Typography className='font-light whitespace-nowrap text-md' color='text-green-500'>
+          + {new BigNumber(amount).div(new BigNumber(10).pow(8)).toString()} APT
+        </Typography>
+      )
       return result
     }
   } else if (data.payload.function === '0x1::coin::transfer' && data.payload.type_arguments[0] === '0x1::aptos_coin::AptosCoin') {
     const fromMe = String(data.payload.arguments[0]).toLocaleLowerCase() === String(walletAddress).toLowerCase() ? true : false
     const amount = data.payload.arguments[1]
     if (!fromMe) {
-      const result = <Typography className='font-light whitespace-nowrap text-md' color='text-red-500'>
-        - {new BigNumber(amount).div(new BigNumber(10).pow(8)).toString()} APT
-      </Typography>
+      const result = (
+        <Typography className='font-light whitespace-nowrap text-md' color='text-red-500'>
+          - {new BigNumber(amount).div(new BigNumber(10).pow(8)).toString()} APT
+        </Typography>
+      )
       return result
     } else {
-      const result = <Typography className='font-light whitespace-nowrap text-md' color='text-green-500'>
-        + {new BigNumber(amount).div(new BigNumber(10).pow(8)).toString()} APT
-      </Typography>
+      const result = (
+        <Typography className='font-light whitespace-nowrap text-md' color='text-green-500'>
+          + {new BigNumber(amount).div(new BigNumber(10).pow(8)).toString()} APT
+        </Typography>
+      )
       return result
     }
   } else {
-    const result = <Typography className='font-light whitespace-nowrap text-md'>
-      0 APT
-    </Typography>
+    const result = <Typography className='font-light whitespace-nowrap text-md'>0 APT</Typography>
     return result
   }
 }

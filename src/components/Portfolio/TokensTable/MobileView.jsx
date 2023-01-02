@@ -6,7 +6,6 @@ import SendButton from './components/SendButton'
 import { getTokenLogo } from './Helper'
 
 const Index = ({ data, isChecking }) => {
-
   return (
     <div className='w-full'>
       {Object.keys(data).length > 0 ? (
@@ -31,24 +30,14 @@ const Index = ({ data, isChecking }) => {
                         <tr key={Index} className='w-full cursor-pointer hover:bg-darkBorder'>
                           <th className='border-b border-darkBorder px-6 py-4'>
                             <div className='flex items-center gap-2'>
-                              <img
-                                src={getTokenLogo(x.coin_info !== null ? x.coin_info.coin_type : '')}
-                                alt='Logo'
-                                className='rounded-full w-[36px] h-[36px] ' />
+                              <img src={getTokenLogo(x.coin_info !== null ? x.coin_info.coin_type : '')} alt='Logo' className='rounded-full w-[36px] h-[36px] ' />
                               <div className='flex flex-col'>
-                                <Typography className='uppercase'>{x.coin_info !== null ? x.coin_info.symbol : '-'}</Typography> </div>
+                                <Typography className='uppercase'>{x.coin_info !== null ? x.coin_info.symbol : '-'}</Typography>{' '}
+                              </div>
                             </div>
                           </th>
                           <th className='border-b border-darkBorder px-6 py-4'>
-                            {x.coin_info !== null ? (
-                              <Typography className='font-light'>
-                                {Number(Number(x.amount) / 10 ** x.coin_info.decimals).toFixed(8)}
-                              </Typography>
-                            ) : (
-                              <Typography className='font-light'>
-                                -
-                              </Typography>
-                            )}
+                            {x.coin_info !== null ? <Typography className='font-light'>{Number(Number(x.amount) / 10 ** x.coin_info.decimals).toFixed(8)}</Typography> : <Typography className='font-light'>-</Typography>}
                             {!isChecking && (
                               <div className='flex flex-row gap-2'>
                                 <SendButton data={x} disabled={x.amount === 0 ? true : false} />

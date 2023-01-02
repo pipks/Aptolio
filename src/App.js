@@ -1,14 +1,14 @@
-import Sidenav from 'components/SideNav';
-import ToastContainer from 'components/Toast/ToastContainer';
-import { ToastProvider } from 'context/ToastContext';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Sidenav from 'components/SideNav'
+import ToastContainer from 'components/Toast/ToastContainer'
+import { ToastProvider } from 'context/ToastContext'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import Home from 'layout/Home';
-import Portfolio from 'layout/Portfolio';
-import AddressBook from 'layout/Tools/AddressBook';
-import AptosNames from 'layout/Tools/AptosNames';
-import CheckWallet from 'layout/Tools/CheckWallet';
-import TokenSearch from 'layout/Tools/TokenSearch';
+import Home from 'layout/Home'
+import Portfolio from 'layout/Portfolio'
+import AddressBook from 'layout/Tools/AddressBook'
+import AptosNames from 'layout/Tools/AptosNames'
+import CheckWallet from 'layout/Tools/CheckWallet'
+import TokenSearch from 'layout/Tools/TokenSearch'
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         </BrowserRouter>
       </ToastProvider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

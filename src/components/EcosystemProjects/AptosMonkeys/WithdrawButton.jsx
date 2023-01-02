@@ -12,21 +12,19 @@ const WithdrawButton = ({ data }) => {
 
   console.log(data)
 
-  const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false, })
+  const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false })
 
   const withdrawBruh = async () => {
     setIsLoading(true)
     const payload = {
       type: 'entry_function_payload',
       function: '0xde220d873e4f5eab5859f368b86fca00fa6fd395279cf54a7d7a5020cb527391::safari::end_adventure',
-      type_arguments: [
-        "0x5d410456c28307fd31439c1658b5e6b41f4ba868d63e03598c1ddb4a7b29449::asset::SeedzCoin"
-      ],
-      arguments: ['0xde220d873e4f5eab5859f368b86fca00fa6fd395279cf54a7d7a5020cb527391', data.adventure_id.creation_num]
-    };
+      type_arguments: ['0x5d410456c28307fd31439c1658b5e6b41f4ba868d63e03598c1ddb4a7b29449::asset::SeedzCoin'],
+      arguments: ['0xde220d873e4f5eab5859f368b86fca00fa6fd395279cf54a7d7a5020cb527391', data.adventure_id.creation_num],
+    }
     try {
-      const response = await signAndSubmitTransaction(payload);
-      const txResult = await aptosClient.waitForTransactionWithResult(response.hash);
+      const response = await signAndSubmitTransaction(payload)
+      const txResult = await aptosClient.waitForTransactionWithResult(response.hash)
       if (txResult.success === true) {
         toast('success', 'Transaction Confirmd', '', response.hash)
       } else {
@@ -44,7 +42,9 @@ const WithdrawButton = ({ data }) => {
 
   return (
     <div className='mt-2'>
-      <Button onClick={() => withdrawBruh()} loading={isLoading}>WITHDRAW</Button>
+      <Button onClick={() => withdrawBruh()} loading={isLoading}>
+        WITHDRAW
+      </Button>
     </div>
   )
 }
