@@ -4,7 +4,6 @@ import { getNFTImage } from 'utils/Helpers/NFTHelpers'
 import SendButton from './components/SendButton'
 
 const TableView = ({ data }) => {
-  console.log(data)
   return (
     <div>
       <div className='overflow-y-auto'>

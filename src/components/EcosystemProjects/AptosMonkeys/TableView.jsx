@@ -4,8 +4,6 @@ import moment from 'moment'
 import WithdrawButton from './WithdrawButton'
 
 const TableView = ({ data }) => {
-  console.log(data)
-
   const calculateStakedTime = (timestamp) => {
     const currentDate = moment()
     const stakedTime = moment(timestamp / 1000)

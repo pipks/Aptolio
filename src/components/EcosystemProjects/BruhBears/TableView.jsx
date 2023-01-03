@@ -3,7 +3,6 @@ import Typography from 'components/Typography'
 import WithdrawButton from './WithdrawButton'
 
 const TableView = ({ data }) => {
-  console.log(data)
   return (
     <div>
       <div className='overflow-y-auto'>
