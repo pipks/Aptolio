@@ -4,6 +4,7 @@ import { Tab } from '@headlessui/react'
 import Alert from 'components/Alerts'
 import AptosMonkeysJungle from 'components/EcosystemProjects/AptosMonkeys'
 import BruhBearsTaverns from 'components/EcosystemProjects/BruhBears'
+import TotalBalance from 'components/Portfolio/TotalBalance'
 import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Portfolio'
 import ConnectButton from 'components/WalletConnection/ConnectButton'
 import { getWalletAPTBalance, getWalletNFTsBalance, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
@@ -47,7 +48,8 @@ const Index = () => {
     <div>
       {connected === true ? (
         <div>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2'>
+          <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2'>
+            <TotalBalance nftBalances={nftBalances} tokensBalance={coinBalances} />
             <StatisticCard title='APT Balance' data={aptBalance} isLoading={isLoading} />
             <StatisticCard title='Tokens' data={coinBalances} isLoading={isLoading} />
             <StatisticCard title='NFTs' data={nftBalances} isLoading={isLoading} />

@@ -465,7 +465,7 @@ export const mainnetTokens = [
     name: 'Ditto Staked Aptos',
     symbol: 'stAPT',
     official_symbol: 'stAPT',
-    coingecko_id: 'ditto-staked-aptos',
+    coingecko_id: 'aptos',
     decimals: 8,
     logo_url: 'https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/DittoStakedAptos.svg',
     project_url: 'https://www.dittofinance.io/',
