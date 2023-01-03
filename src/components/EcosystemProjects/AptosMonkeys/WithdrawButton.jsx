@@ -10,8 +10,6 @@ const WithdrawButton = ({ data }) => {
   const [isLoading, setIsLoading] = useState(Boolean)
   const toast = useToast()
 
-  console.log(data)
-
   const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false })
 
   const withdrawBruh = async () => {

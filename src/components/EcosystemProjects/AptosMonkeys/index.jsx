@@ -9,7 +9,6 @@ import WithdrawButton from './WithdrawButton'
 
 const Index = ({ walletAddress }) => {
   const [data, setData] = useState([])
-  console.log(data)
 
   const calculateStakedTime = (timestamp) => {
     const currentDate = moment()
