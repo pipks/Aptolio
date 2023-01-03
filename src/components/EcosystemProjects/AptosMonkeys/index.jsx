@@ -6,9 +6,13 @@ import moment from 'moment'
 import { useEffect, useState } from 'react'
 import { checkJungle } from 'utils/Ecosystem/AptosMonkeys'
 import WithdrawButton from './WithdrawButton'
+import { BiListUl } from 'react-icons/bi'
+import { HiOutlineViewGrid } from 'react-icons/hi'
+import TableView from './TableView'
 
 const Index = ({ walletAddress }) => {
   const [data, setData] = useState([])
+  const [gridView, setGridView] = useState(true)
 
   const calculateStakedTime = (timestamp) => {
     const currentDate = moment()
@@ -37,38 +41,53 @@ const Index = ({ walletAddress }) => {
               {data.status === 200 ? (
                 <div>
                   {data.staked ? (
-                    <div className='max-h-[400px] overflow-y-auto rounded-lg'>
-                      <Typography>Total Staked: {data.data.length}</Typography>
-                      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2'>
-                        {data.data.map((x, index) => (
-                          <Card key={index}>
-                            <div className='p-2'>
-                              <img
-                                src={`https://ipfs.io/ipfs/bafybeig6bepf5ci5fyysxlfefpjzwkfp7sarj6ed2f5a34kowgc6qenjfa/${String(x.token_id.token_data_id.name).split('#')[1]}.png`}
-                                alt={x.token_id.token_data_id.name}
-                                className='w-full rounded-lg'
-                              />
-                              <Typography className='text-sm py-1' color='text-gray-400'>
-                                {x.token_id.token_data_id.name}
-                              </Typography>
-                              <div>
-                                <div className='flex items-center justify-between'>
-                                  <Typography className='text-sm'>SEEDZ EARNED:</Typography>
-                                  <Typography className='text-sm'>{Number(calculateStakedTime(x.start_time) * 0.04).toFixed(2)}</Typography>
-                                </div>
-                                <div className='flex items-center justify-between'>
-                                  <Typography className='text-sm'>TIME STAKED:</Typography>
-                                  <Typography className='text-sm'>{calculateStakedTime(x.start_time)}h</Typography>
-                                </div>
-                                <Typography className='text-xs mt-1' color='text-gray-400'>
-                                  STAKED AT {moment(x.start_time / 1000).format('DD/MM/YYYY HH:mm')}
-                                </Typography>
-                              </div>
-                              <WithdrawButton data={x} />
-                            </div>
-                          </Card>
-                        ))}
+                    <div>
+                      <div className='flex items-center justify-between'>
+                        <Typography>Total Staked: {data.data.length}</Typography>
+                        <div className='flex items-center gap-1'>
+                          <BiListUl onClick={() => setGridView(false)} className='text-white text-2xl cursor-pointer' />
+                          <HiOutlineViewGrid onClick={() => setGridView(true)} className='text-white text-xl cursor-pointer' />
+                        </div>
                       </div>
+                      <div className='border-[1px] border-darkBorder mt-2 mb-2'></div>
+                      {gridView ? (
+                        <div className='max-h-[400px] overflow-y-auto rounded-lg'>
+                          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2'>
+                            {data.data.map((x, index) => (
+                              <Card key={index}>
+                                <div className='p-2'>
+                                  <img
+                                    src={`https://ipfs.io/ipfs/bafybeig6bepf5ci5fyysxlfefpjzwkfp7sarj6ed2f5a34kowgc6qenjfa/${String(x.token_id.token_data_id.name).split('#')[1]}.png`}
+                                    alt={x.token_id.token_data_id.name}
+                                    className='w-full rounded-lg'
+                                  />
+                                  <Typography className='text-sm py-1' color='text-gray-400'>
+                                    {x.token_id.token_data_id.name}
+                                  </Typography>
+                                  <div>
+                                    <div className='flex items-center justify-between'>
+                                      <Typography className='text-sm'>SEEDZ EARNED:</Typography>
+                                      <Typography className='text-sm'>{Number(calculateStakedTime(x.start_time) * 0.04).toFixed(2)}</Typography>
+                                    </div>
+                                    <div className='flex items-center justify-between'>
+                                      <Typography className='text-sm'>TIME STAKED:</Typography>
+                                      <Typography className='text-sm'>{calculateStakedTime(x.start_time)}h</Typography>
+                                    </div>
+                                    <Typography className='text-xs mt-1' color='text-gray-400'>
+                                      STAKED AT {moment(x.start_time / 1000).format('DD/MM/YYYY HH:mm')}
+                                    </Typography>
+                                  </div>
+                                  <WithdrawButton data={x} />
+                                </div>
+                              </Card>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <TableView data={data} />
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div>

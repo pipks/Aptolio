@@ -40,7 +40,7 @@ const WithdrawButton = ({ data }) => {
 
   return (
     <div className='mt-2'>
-      <Button onClick={() => withdrawBruh()} loading={isLoading}>
+      <Button onClick={() => withdrawBruh()} loading={isLoading} className='font-light'>
         WITHDRAW
       </Button>
     </div>

@@ -5,9 +5,13 @@ import Typography from 'components/Typography'
 import { useEffect, useState } from 'react'
 import { checkTavern } from 'utils/Ecosystem/BruhTavern'
 import WithdrawButton from './WithdrawButton'
+import TableView from './TableView'
+import { BiListUl } from 'react-icons/bi'
+import { HiOutlineViewGrid } from 'react-icons/hi'
 
 const Index = ({ walletAddress }) => {
   const [data, setData] = useState([])
+  const [gridView, setGridView] = useState(true)
 
   const getTavernData = async () => {
     const getData = await checkTavern(walletAddress)
@@ -34,34 +38,49 @@ const Index = ({ walletAddress }) => {
               {data.status === 200 ? (
                 <div>
                   {data.staked ? (
-                    <div className='max-h-[400px] overflow-y-auto rounded-lg'>
-                      <Typography>Total Staked: {data.data.length}</Typography>
-                      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2'>
-                        {data.data.map((x, index) => (
-                          <Card key={index}>
-                            <div className='p-2'>
-                              <img src={`https://bafybeih6hezn7yyabgunclxhi5xa2sbfd6gnnc6un3lilcufq5yyywlpqm.ipfs.nftstorage.link/${String(x.tokens.name).split('#')[1]}.png`} alt={x.tokens.name} className='w-full rounded-lg' />
-                              <Typography className='text-sm py-1' color='text-gray-400'>
-                                {x.tokens.name}
-                              </Typography>
-                              <div>
-                                <div className='flex items-center justify-between'>
-                                  <Typography className='text-sm'>PROGRESS:</Typography>
-                                  <Typography className='text-sm'>{x.progress}%</Typography>
-                                </div>
-                                <div className='flex items-center justify-between'>
-                                  <Typography className='text-sm'>LEVEL:</Typography>
-                                  <Typography className='text-sm'>{x.level}</Typography>
-                                </div>
-                                <Typography className='text-xs mt-1' color='text-gray-400'>
-                                  STAKED AT {x.tokens.stakedAt}
-                                </Typography>
-                              </div>
-                              <WithdrawButton data={x.tokens} />
-                            </div>
-                          </Card>
-                        ))}
+                    <div>
+                      <div className='flex items-center justify-between'>
+                        <Typography>Total Staked: {data.data.length}</Typography>
+                        <div className='flex items-center gap-1'>
+                          <BiListUl onClick={() => setGridView(false)} className='text-white text-2xl cursor-pointer' />
+                          <HiOutlineViewGrid onClick={() => setGridView(true)} className='text-white text-xl cursor-pointer' />
+                        </div>
                       </div>
+                      <div className='border-[1px] border-darkBorder mt-2 mb-2'></div>
+                      {gridView ? (
+                        <div className='max-h-[400px] overflow-y-auto rounded-lg'>
+                          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2'>
+                            {data.data.map((x, index) => (
+                              <Card key={index}>
+                                <div className='p-2'>
+                                  <img src={`https://bafybeih6hezn7yyabgunclxhi5xa2sbfd6gnnc6un3lilcufq5yyywlpqm.ipfs.nftstorage.link/${String(x.tokens.name).split('#')[1]}.png`} alt={x.tokens.name} className='w-full rounded-lg' />
+                                  <Typography className='text-sm py-1' color='text-gray-400'>
+                                    {x.tokens.name}
+                                  </Typography>
+                                  <div>
+                                    <div className='flex items-center justify-between'>
+                                      <Typography className='text-sm'>PROGRESS:</Typography>
+                                      <Typography className='text-sm'>{x.progress}%</Typography>
+                                    </div>
+                                    <div className='flex items-center justify-between'>
+                                      <Typography className='text-sm'>LEVEL:</Typography>
+                                      <Typography className='text-sm'>{x.level}</Typography>
+                                    </div>
+                                    <Typography className='text-xs mt-1' color='text-gray-400'>
+                                      STAKED AT {x.tokens.stakedAt}
+                                    </Typography>
+                                  </div>
+                                  <WithdrawButton data={x.tokens} />
+                                </div>
+                              </Card>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <TableView data={data} />
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div>

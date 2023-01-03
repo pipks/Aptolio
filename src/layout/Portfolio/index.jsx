@@ -77,7 +77,7 @@ const Index = () => {
                     <TokenTable tokensBalance={coinBalances} />
                   </Tab.Panel>
                   <Tab.Panel>
-                    <NFTTable data={nftBalances} />
+                    <NFTTable data={nftBalances}/>
                   </Tab.Panel>
                   <Tab.Panel>
                     <Transactions walletAddress={account.address} />
