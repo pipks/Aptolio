@@ -17,7 +17,7 @@ const NFTCard = ({ data, isChecking }) => {
               <p className='text-gray-100 text-md'>{data.token_name}</p>
             </div>
             <p className='text-gray-400 text-sm'>{data.is_listed ? 'Listed' : 'Unlisted'}</p>
-            {isChecking && <SendButton disabled={data.is_listed ? true : false} data={data} />}
+            {isChecking === undefined && <SendButton disabled={data.is_listed ? true : false} data={data} />}
           </div>
         </Card>
       </div>

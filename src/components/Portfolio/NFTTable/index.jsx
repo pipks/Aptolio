@@ -9,6 +9,7 @@ import { HiOutlineViewGrid } from 'react-icons/hi'
 import TableView from './TableView'
 
 const Index = ({ data, isChecking }) => {
+  console.log(isChecking)
   const [gridView, setGridView] = useState(true)
   return (
     <div>
@@ -32,7 +33,7 @@ const Index = ({ data, isChecking }) => {
                         <div className={`${isChecking ? 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-2' : 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2'}`}>
                           {data.data.data.map((x, index) => (
                             <div key={index}>
-                              <NFTCard data={x} />
+                              <NFTCard data={x} isChecking={isChecking} />
                             </div>
                           ))}
                         </div>
