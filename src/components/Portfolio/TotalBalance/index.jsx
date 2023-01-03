@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react'
 import Card from 'components/Cards/Card'
 import LoadingPulse from 'components/LoadingPulse'
 import Typography from 'components/Typography'
-import { getTokensPrice } from 'utils/APIs/CoinGeckoAPI'
-import { getNFTsUsdValue } from 'utils/APIs/TopazAPI'
 import { BiDollar } from 'react-icons/bi'
+import { convertAptToUSD, getTokensPrice } from 'utils/APIs/CoinGeckoAPI'
+import { getNFTsUsdValue } from 'utils/APIs/TopazAPI'
 
-const Index = ({ nftBalances, tokensBalance }) => {
-  const [isLoading, setIsLoading] = useState(Boolean)
+const Index = ({ aptBalance, nftBalances, tokensBalance }) => {
+  const [isLoading, setIsLoading] = useState(true)
   const [totalUsd, setTotalUsd] = useState(0)
 
   const getPrices = async () => {
     setIsLoading(true)
 
+    const aptUSD = await convertAptToUSD(aptBalance)
     const nftsUSD = await getNFTsUsdValue(nftBalances)
     const tokensUSD = await getTokensPrice(tokensBalance)
-    const usdValue = nftsUSD + tokensUSD
+    const usdValue = nftsUSD + tokensUSD + aptUSD
     setTotalUsd(usdValue)
 
     setIsLoading(false)

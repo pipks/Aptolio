@@ -79,3 +79,20 @@ export const getTokensPrice = async (tokens) => {
 
   return value
 }
+
+export const convertAptToUSD = async (balance) => {
+  const getAptPrice = await getCoinData('aptos')
+  const aptPrice = getAptPrice.data.market_data.current_price.usd
+  if (Object.keys(balance).length > 0) {
+    if (balance.status === 200) {
+      if (Object.keys(balance.data.data.current_coin_balances).length > 0) {
+        const result = Number(aptPrice) > 0 ? (Number(balance.data.data.current_coin_balances[0].amount) / 10 ** 8) * Number(aptPrice) : 0
+        return result
+      } else {
+        return 0
+      }
+    } else {
+      return 0
+    }
+  }
+}

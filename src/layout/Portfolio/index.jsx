@@ -49,7 +49,7 @@ const Index = () => {
       {connected === true ? (
         <div>
           <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2'>
-            <TotalBalance nftBalances={nftBalances} tokensBalance={coinBalances} />
+            <TotalBalance aptBalance={aptBalance} nftBalances={nftBalances} tokensBalance={coinBalances} />
             <StatisticCard title='APT Balance' data={aptBalance} isLoading={isLoading} />
             <StatisticCard title='Tokens' data={coinBalances} isLoading={isLoading} />
             <StatisticCard title='NFTs' data={nftBalances} isLoading={isLoading} />
@@ -59,11 +59,11 @@ const Index = () => {
             <div>
               <Tab.Group>
                 <div className='flex items-center justify-start'>
-                  <Tab.List className='flex p-1 gap-1 rounded-lg bg-darkCard w-full md:w-[450px] border border-darkBorder overflow-y-auto'>
-                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>STAKED NFTs</Tab>
-                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white ', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>Tokens</Tab>
-                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>NFTs</Tab>
-                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>Transactions</Tab>
+                  <Tab.List className='flex items-center p-1 gap-3 rounded-lg bg-darkCard w-full md:w-[450px] border border-darkBorder overflow-y-auto '>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white whitespace-nowrap', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>STAKED NFTs</Tab>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white whitespace-nowrap', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>Tokens</Tab>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white whitespace-nowrap', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>NFTs</Tab>
+                    <Tab className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium text-white whitespace-nowrap', selected ? 'bg-primary shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white')}>Transactions</Tab>
                   </Tab.List>
                 </div>
                 <Tab.Panels className='mt-2'>
