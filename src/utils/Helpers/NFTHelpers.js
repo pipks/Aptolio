@@ -24,6 +24,8 @@ export const getNFTImage = (url) => {
     return url
   } else if (String(url).includes('.ipfs.dweb.link')) {
     return url
+  } else if (String(url).includes('https://arweave.net/')) {
+    return url
   } else if (String(url).endsWith('.json')) {
     return QuestionMark
   } else {

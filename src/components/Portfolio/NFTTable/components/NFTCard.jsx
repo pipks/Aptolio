@@ -10,7 +10,7 @@ const NFTCard = ({ data, isChecking }) => {
         <Card>
           <div className='p-2 duration-200 hover:bg-darkBorder rounded-lg'>
             <div className='w-full'>
-              <Avatar src={getNFTImage(data.preview_uri)} alt='test' className='rounded-lg object-cover' />
+              <Avatar src={data.preview_uri !== null ? getNFTImage(data.preview_uri) : getNFTImage(data.token_uri)} alt='test' className='rounded-lg object-cover' />
             </div>
             <div className='mt-2'>
               <p className='text-gray-400 text-sm'>{data.collection_name}</p>

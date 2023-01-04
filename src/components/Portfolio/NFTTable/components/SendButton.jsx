@@ -64,7 +64,7 @@ const SendButton = ({ data, ...rest }) => {
         <div className='p-2'>
           <div className='flex flex-col gap-2 mb-2'>
             <div className='flex items-center justify-center'>
-              <img src={getNFTImage(data.preview_uri)} alt={data.token_name} className='rounded-lg w-full sm:w-[250px]' />
+              <img src={data.preview_uri !== null ? getNFTImage(data.preview_uri) : getNFTImage(data.token_uri)} alt={data.token_name} className='rounded-lg w-full sm:w-[250px]' />
             </div>
             <div className='text-center'>
               <Typography className='uppercase'>{data.token_name}</Typography>
