@@ -23,7 +23,7 @@ export default function Modal() {
           connect(wallets[2].name)
         }
       } catch (ex) {
-        toast('error', 'oh no', ex)
+        toast('error', '', ex)
       }
     }
   }

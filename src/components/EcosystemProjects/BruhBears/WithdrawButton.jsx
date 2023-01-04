@@ -30,9 +30,9 @@ const WithdrawButton = ({ data }) => {
       }
     } catch (error) {
       if (error === 'The user rejected the request') {
-        toast('error', 'bruh', 'yeah thats rights')
+        toast('error', 'The user rejected the request', '')
       } else {
-        toast('error', 'bruh', error)
+        toast('error', error, '')
       }
     }
     setIsLoading(false)

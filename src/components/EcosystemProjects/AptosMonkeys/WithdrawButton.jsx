@@ -26,13 +26,13 @@ const WithdrawButton = ({ data }) => {
       if (txResult.success === true) {
         toast('success', 'Transaction Confirmd', '', response.hash)
       } else {
-        toast('error', 'oh no', txResult.success, response.hash)
+        toast('error', '', txResult.success, response.hash)
       }
     } catch (error) {
       if (error === 'The user rejected the request') {
-        toast('error', 'oh no', 'The user rejected the request')
+        toast('error', 'The user rejected the request', '')
       } else {
-        toast('error', 'oh no', error)
+        toast('error', error, '')
       }
     }
     setIsLoading(false)

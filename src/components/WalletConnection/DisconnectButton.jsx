@@ -18,7 +18,7 @@ export default function DisconnectButton() {
       localStorage.setItem('isWalletConnected', false)
       window.location.reload()
     } catch (ex) {
-      toast('error', 'oh no', ex)
+      toast('error', '', ex)
     }
   }
 

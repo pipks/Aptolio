@@ -16,7 +16,7 @@ const Index = ({ text }) => {
       localStorage.setItem('isWalletConnected', true)
       localStorage.setItem('connectedWallet', wallet)
     } catch (ex) {
-      toast('error', 'oh no', ex)
+      toast('error', '', ex)
     }
   }
 

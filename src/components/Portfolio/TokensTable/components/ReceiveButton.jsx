@@ -17,7 +17,7 @@ const SendButton = ({ data }) => {
       navigator.clipboard.writeText(account.address)
       toast('success', 'Copied', `Wallet Address: ${shortAddress(account.address, 6)}`)
     } catch {
-      toast('error', 'oh no', `WTF MAN`)
+      toast('error', '', `WTF MAN`)
     }
   }
 
