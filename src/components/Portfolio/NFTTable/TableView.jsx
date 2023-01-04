@@ -13,7 +13,7 @@ const TableView = ({ data }) => {
               <th scope='col' className='border-b border-darkBorder px-6 py-3'>
                 NAME
               </th>
-              <th scope='col' className='border-b border-darkBorder px-6 py-3'>
+              <th scope='col' className='border-b border-darkBorder px-6 py-3 whitespace-nowrap'>
                 LISTED ON TOPAZ
               </th>
               <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>

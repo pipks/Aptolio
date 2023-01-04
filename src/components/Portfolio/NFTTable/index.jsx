@@ -13,14 +13,14 @@ const Index = ({ data, isChecking }) => {
   return (
     <div>
       <Card title='NFTs' variant='collapsible'>
-        <div className='p-3'>
+        <div className={`${gridView ? 'p-3' : ''}`}>
           {Object.keys(data).length > 0 ? (
             <div>
               {data.status === 200 ? (
                 <div className={`${isChecking ? 'max-h-[500px] overflow-y-auto rounded-lg' : ''}`}>
                   {data.data.data.length > 0 ? (
                     <div>
-                      <div className='flex items-center justify-between'>
+                      <div className={`${gridView ? '' : 'p-3'} flex items-center justify-between`}>
                         <Typography>Total NFTs: {data.data.data.length}</Typography>
                         <div className='flex items-center gap-1'>
                           <BiListUl onClick={() => setGridView(false)} className='text-white text-2xl cursor-pointer' />
