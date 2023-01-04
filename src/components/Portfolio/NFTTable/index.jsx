@@ -9,7 +9,6 @@ import { HiOutlineViewGrid } from 'react-icons/hi'
 import TableView from './TableView'
 
 const Index = ({ data, isChecking }) => {
-  console.log(isChecking)
   const [gridView, setGridView] = useState(true)
   return (
     <div>
