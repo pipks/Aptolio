@@ -32,23 +32,23 @@ const Index = ({ walletAddress }) => {
   return (
     <div>
       <Card title='Bruh Bears - Taverns' variant='collapsible'>
-        <div className='p-2'>
+        <div className={`${gridView ? 'px-2 mt-2' : ''}`}>
           {Object.keys(data).length > 0 ? (
             <div>
               {data.status === 200 ? (
                 <div>
                   {data.staked ? (
                     <div>
-                      <div className='flex items-center justify-between'>
+                      <div className={`${gridView ? '' : 'px-2 mt-2'} flex items-center justify-between`}>
                         <Typography>Total Staked: {data.data.length}</Typography>
                         <div className='flex items-center gap-1'>
                           <BiListUl onClick={() => setGridView(false)} className='text-white text-2xl cursor-pointer' />
                           <HiOutlineViewGrid onClick={() => setGridView(true)} className='text-white text-xl cursor-pointer' />
                         </div>
                       </div>
-                      <div className='border-[1px] border-darkBorder mt-2 mb-2'></div>
+                      <div className='border-[1px] border-darkBorder mt-2 '></div>
                       {gridView ? (
-                        <div className='max-h-[400px] overflow-y-auto rounded-lg'>
+                        <div className='max-h-[400px] overflow-y-auto rounded-lg py-2'>
                           <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-2'>
                             {data.data.map((x, index) => (
                               <Card key={index}>

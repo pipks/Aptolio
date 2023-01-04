@@ -35,8 +35,6 @@ export const getUserStakedHandle = async (address) => {
 export const getUserStakedAptoads = async (address) => {
   const getToads = await getUserToads(address)
   const getHandle = await getUserStakedHandle(address)
-  console.log('getToads', getToads)
-  console.log('getHandle', getHandle)
 
   var stakedToads = []
 
@@ -65,13 +63,10 @@ export const getUserStakedAptoads = async (address) => {
                       },
                     },
                   }
-
                   const data = await axios
                     .request(options)
                     .then((response) => response)
                     .catch((error) => error.response)
-
-                  console.log(data)
 
                   if (data.status !== 404) {
                     stakedToads.push(data.data)

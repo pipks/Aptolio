@@ -12,7 +12,6 @@ import WithdrawButton from './WithdrawButton'
 const Index = ({ walletAddress }) => {
   const [gridView, setGridView] = useState(true)
   const [data, setData] = useState([])
-  console.log(data)
 
   const calculateStakedTime = (timestamp) => {
     const currentDate = moment()
@@ -65,7 +64,7 @@ const Index = ({ walletAddress }) => {
               {!data.hasOwnProperty('status') ? (
                 <div className='max-h-[400px] overflow-y-auto'>
                   <div className={`${gridView ? '' : 'p-2'} flex items-center justify-between`}>
-                    <div className='flex items-center gap-5'>
+                    <div className='flex flex-col md:flex-row '>
                       <Typography>Total Earned: {calculateTotalTokens()} FLY</Typography>
                       <Typography>Total Staked: {data.length}</Typography>
                     </div>
