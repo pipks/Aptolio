@@ -64,7 +64,7 @@ const Index = ({ walletAddress }) => {
               {!data.hasOwnProperty('status') ? (
                 <div className='max-h-[400px] overflow-y-auto'>
                   <div className={`${gridView ? '' : 'p-2'} flex items-center justify-between`}>
-                    <div className='flex flex-col md:flex-row '>
+                    <div className='flex flex-col md:flex-row md:gap-3 '>
                       <Typography>Total Earned: {calculateTotalTokens()} FLY</Typography>
                       <Typography>Total Staked: {data.length}</Typography>
                     </div>
