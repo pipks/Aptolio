@@ -37,7 +37,7 @@ const TableView = ({ data }) => {
                   <Typography className='font-light'>{x.is_listed ? 'Listed' : 'Unlisted'}</Typography>
                 </th>
                 <th className='border-b border-darkBorder px-6 py-4'>
-                  <SendButton data={x} />
+                  <SendButton data={x} disabled={x.is_listed ? true : false} />
                 </th>
               </tr>
             ))}
