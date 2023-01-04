@@ -4,6 +4,7 @@ import { Tab } from '@headlessui/react'
 import Alert from 'components/Alerts'
 import AptosMonkeysJungle from 'components/EcosystemProjects/AptosMonkeys'
 import BruhBearsTaverns from 'components/EcosystemProjects/BruhBears'
+import AptoadsStaking from 'components/EcosystemProjects/Aptoads'
 import TotalBalance from 'components/Portfolio/TotalBalance'
 import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Portfolio'
 import ConnectButton from 'components/WalletConnection/ConnectButton'
@@ -69,7 +70,10 @@ const Index = () => {
                 <Tab.Panels className='mt-2'>
                   <Tab.Panel>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
-                      <AptosMonkeysJungle walletAddress={account.address} />
+                      <div className='flex flex-col gap-2'>
+                        <AptosMonkeysJungle walletAddress={account.address} />
+                        <AptoadsStaking walletAddress={account.address} />
+                      </div>
                       <BruhBearsTaverns walletAddress={account.address} />
                     </div>
                   </Tab.Panel>
@@ -77,7 +81,7 @@ const Index = () => {
                     <TokenTable tokensBalance={coinBalances} />
                   </Tab.Panel>
                   <Tab.Panel>
-                    <NFTTable data={nftBalances}/>
+                    <NFTTable data={nftBalances} />
                   </Tab.Panel>
                   <Tab.Panel>
                     <Transactions walletAddress={account.address} />
