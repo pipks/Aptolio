@@ -9,7 +9,7 @@ import SendButton from './components/SendButton'
 import { getTokenLogo } from './Helper'
 import MobileView from './MobileView'
 
-const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
+const Index = ({ tokensBalance, isChecking }) => {
   const [zeroBalanceTokens, setZeroBalanceTokens] = useState(false)
   const [newTokenBalance, setNewTokenBalnace] = useState([])
 
@@ -40,7 +40,7 @@ const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
 
   return (
     <div>
-      {!isChecking && (
+      {isChecking === true ? null : (
         <div>
           {Object.keys(newTokenBalance).length > 0 && (
             <div>
@@ -79,7 +79,7 @@ const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
                             <th scope='col' className='border-b border-darkBorder px-6 py-3'>
                               Coin Type
                             </th>
-                            {!isChecking && <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>}
+                            {isChecking === true ? null : <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>}
                           </tr>
                         </thead>
                         <tbody>
@@ -109,7 +109,7 @@ const Index = ({ tokensBalance, isChecking, isConnectedWallet }) => {
                                   </div>
                                 </div>
                               </th>
-                              {!isChecking && (
+                              {isChecking === true ? null : (
                                 <th className='border-b border-darkBorder px-6 py-4'>
                                   <div className='flex flex-row gap-2'>
                                     <SendButton data={x} disabled={x.amount === 0 ? true : false} />
