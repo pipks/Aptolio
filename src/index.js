@@ -5,13 +5,13 @@ import App from './App';
 import { MartianWallet } from '@martianwallet/aptos-wallet-adapter';
 import { PetraWallet } from 'petra-plugin-wallet-adapter';
 import { RiseWallet } from '@rise-wallet/wallet-adapter';
-import { TrustWallet } from '@trustwallet/aptos-wallet-adapter';
+import { PontemWallet } from '@pontem/wallet-adapter-plugin';
 import { AptosWalletAdapterProvider } from '@aptos-labs/wallet-adapter-react';
 
 const wallets = [
   new MartianWallet(),
   new PetraWallet(),
-  new TrustWallet(),
+  new PontemWallet(),
   new RiseWallet(),
 ];
 

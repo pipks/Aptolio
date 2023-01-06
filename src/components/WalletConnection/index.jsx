@@ -19,8 +19,10 @@ export default function Modal() {
           connect(wallets[0].name)
         } else if (connectedWallet === 'Petra') {
           connect(wallets[1].name)
-        } else {
+        } else if (connectedWallet === 'Pontem') {
           connect(wallets[2].name)
+        } else {
+          connect(wallets[3].name)
         }
       } catch (ex) {
         toast('error', '', ex)
