@@ -6,6 +6,7 @@
     "@aptos-labs/wallet-adapter-react": "^0.2.0",
     "@headlessui/react": "^1.7.7",
     "@martianwallet/aptos-wallet-adapter": "^0.0.2",
+    "@pontem/wallet-adapter-plugin": "^0.1.4",
     "@rise-wallet/wallet-adapter": "^0.1.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
