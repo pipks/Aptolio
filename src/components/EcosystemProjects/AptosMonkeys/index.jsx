@@ -77,7 +77,7 @@ const Index = ({ walletAddress }) => {
                                       STAKED AT {moment(x.start_time / 1000).format('DD/MM/YYYY HH:mm')}
                                     </Typography>
                                   </div>
-                                  <WithdrawButton data={x} />
+                                  <WithdrawButton data={x} earnedSeedz={Number(calculateStakedTime(x.start_time) * 0.04).toFixed(2)} timeStaked={calculateStakedTime(x.start_time)} stakedAt={moment(x.start_time / 1000).format('DD/MM/YYYY HH:mm')} />
                                 </div>
                               </Card>
                             ))}

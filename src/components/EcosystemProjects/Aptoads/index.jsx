@@ -96,7 +96,7 @@ const Index = ({ walletAddress }) => {
                             <Typography className='text-xs mt-1' color='text-gray-400'>
                               STAKED AT {moment(Number(x.token_stake_data.initial_lockup_timestamp) * 1000).format('DD/MM/YYYY HH:mm')}
                             </Typography>
-                            <WithdrawButton data={x.token.id.token_data_id.name} />
+                            <WithdrawButton data={x.token.id.token_data_id.name} earnedFly={calculatePendingToken(Number(x.token_stake_data.initial_lockup_timestamp))} daysStaked={calculateStakedTime(Number(x.token_stake_data.initial_lockup_timestamp))} stakedAt={moment(Number(x.token_stake_data.initial_lockup_timestamp) * 1000).format('DD/MM/YYYY HH:mm')} />
                           </div>
                         </Card>
                       ))}
