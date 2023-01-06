@@ -20,7 +20,7 @@ const Index = () => {
   return (
     <div>
       <div className='flex flex-col items-center justify-center'>
-        <Typography className='text-3xl md:text-5xl font-bold'>Aptos Wallet Tracker</Typography>
+        <Typography className='text-3xl md:text-5xl font-bold'>Aptos Portfolio Tracker</Typography>
         <Typography className='text-xl md:text-3xl font-normal text-center mt-5'>Connect a wallet or simply search for a wallet address</Typography>
       </div>
       <div className='flex items-center justify-center mt-5'>
