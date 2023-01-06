@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { getFloorPrice } from 'utils/APIs/TopazAPI'
+import { getCoinData } from 'utils/APIs/CoinGeckoAPI'
 
 export const checkJungle = async (walletAddress) => {
   var monkeysList = []
@@ -46,5 +48,22 @@ export const checkJungle = async (walletAddress) => {
       statusText: getData.data.error_code === 'resource_not_found' ? 'User has no staked Aptos Monkeys' : getData.data.error_code,
       data: stakedMonkeys,
     }
+  }
+}
+
+export const getUserStakedMonkeysUSD = async (address) => {
+  const getMonkeysFP = await getFloorPrice('0xf932dcb9835e681b21d2f411ef99f4f5e577e6ac299eebee2272a39fb348f702::Aptos Monkeys')
+  const aptFloor = Number(getMonkeysFP.data.data.floor) / 10 ** 8
+  const getAPTPrice = await getCoinData('aptos')
+  const aptPrice = getAPTPrice.data.market_data.current_price.usd
+  const getStakedMonkeys = await checkJungle(address)
+
+  if (getStakedMonkeys.status === 200 && getStakedMonkeys.staked === true) {
+    const numberOfMonkeys = getStakedMonkeys.data.length
+    const AptValue = aptFloor * numberOfMonkeys
+    const usdValue = AptValue * aptPrice
+    return usdValue
+  } else {
+    return 0
   }
 }

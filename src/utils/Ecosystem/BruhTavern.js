@@ -1,7 +1,9 @@
-import { MAINNET_NODE_URL } from 'config'
 import { AptosClient } from 'aptos'
 import axios from 'axios'
+import { MAINNET_NODE_URL } from 'config'
 import moment from 'moment'
+import { getCoinData } from 'utils/APIs/CoinGeckoAPI'
+import { getFloorPrice } from 'utils/APIs/TopazAPI'
 
 const aptosClient = new AptosClient(MAINNET_NODE_URL, { WITH_CREDENTIALS: false })
 
@@ -63,5 +65,22 @@ export const checkTavern = async (address) => {
     } else {
       return { status: stakedBruhs.status, statusCode: 'warning', staked: false, statusText: stakedBruhs.data.error_code === 'table_item_not_found' ? 'The user has no staked bruh bears' : stakedBruhs.data.error_code }
     }
+  }
+}
+
+export const getUserStakedBearsUSD = async (address) => {
+  const getBearsFP = await getFloorPrice('0x43ec2cb158e3569842d537740fd53403e992b9e7349cc5d3dfaa5aff8faaef2::Bruh Bears')
+  const aptFloor = Number(getBearsFP.data.data.floor) / 10 ** 8
+  const getAPTPrice = await getCoinData('aptos')
+  const aptPrice = getAPTPrice.data.market_data.current_price.usd
+  const getStakedBears = await checkTavern(address)
+
+  if (getStakedBears.status === 200 && getStakedBears.staked === true) {
+    const numberOfBears = getStakedBears.data.length
+    const AptValue = aptFloor * numberOfBears
+    const usdValue = AptValue * aptPrice
+    return usdValue
+  } else {
+    return 0
   }
 }

@@ -50,7 +50,7 @@ const Index = () => {
       {connected === true ? (
         <div>
           <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2'>
-            <TotalBalance aptBalance={aptBalance} nftBalances={nftBalances} tokensBalance={coinBalances} />
+            <TotalBalance walletAddress={account.address} aptBalance={aptBalance} nftBalances={nftBalances} tokensBalance={coinBalances} />
             <StatisticCard title='APT Balance' data={aptBalance} isLoading={isLoading} />
             <StatisticCard title='Tokens' data={coinBalances} isLoading={isLoading} />
             <StatisticCard title='NFTs' data={nftBalances} isLoading={isLoading} />

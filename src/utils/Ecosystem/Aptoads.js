@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { getCoinData } from 'utils/APIs/CoinGeckoAPI'
+import { getFloorPrice } from 'utils/APIs/TopazAPI'
 
 const INDEXER = 'https://indexer.mainnet.aptoslabs.com/v1/graphql'
 
@@ -87,5 +89,22 @@ export const getUserStakedAptoads = async (address) => {
     } else {
       return { status: 404, statusId: 'error', statusText: 'API connectionFailed! try again!' }
     }
+  }
+}
+
+export const getUserStakedAptoadsUSD = async (address) => {
+  const getToadsFP = await getFloorPrice('0x74b6b765f6710a0c24888643babfe337241ad1888a55e33ed86f389fe3f13f52::Aptos Toad Overload')
+  const aptFloor = Number(getToadsFP.data.data.floor) / 10 ** 8
+  const getAPTPrice = await getCoinData('aptos')
+  const aptPrice = getAPTPrice.data.market_data.current_price.usd
+  const getStakedToads = await getUserStakedAptoads(address)
+
+  if (!getStakedToads.hasOwnProperty('status')) {
+    const numberOfToads = getStakedToads.length
+    const AptValue = aptFloor * numberOfToads
+    const usdValue = AptValue * aptPrice
+    return usdValue
+  } else {
+    return 0
   }
 }

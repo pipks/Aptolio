@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react'
 import Card from 'components/Cards/Card'
 import LoadingPulse from 'components/LoadingPulse'
 import Typography from 'components/Typography'
+import { useEffect, useState } from 'react'
 import { BiDollar } from 'react-icons/bi'
 import { convertAptToUSD, getTokensPrice } from 'utils/APIs/CoinGeckoAPI'
 import { getNFTsUsdValue } from 'utils/APIs/TopazAPI'
+import { getUserStakedAptoadsUSD } from 'utils/Ecosystem/Aptoads'
+import { getUserStakedMonkeysUSD } from 'utils/Ecosystem/AptosMonkeys'
+import { getUserStakedBearsUSD } from 'utils/Ecosystem/BruhTavern'
 
-const Index = ({ aptBalance, nftBalances, tokensBalance }) => {
-  const [isLoading, setIsLoading] = useState(true)
+const Index = ({ walletAddress, aptBalance, nftBalances, tokensBalance }) => {
+  const [isLoading, setIsLoading] = useState(Boolean)
   const [totalUsd, setTotalUsd] = useState(0)
 
   const getPrices = async () => {
@@ -16,7 +19,11 @@ const Index = ({ aptBalance, nftBalances, tokensBalance }) => {
     const aptUSD = await convertAptToUSD(aptBalance)
     const nftsUSD = await getNFTsUsdValue(nftBalances)
     const tokensUSD = await getTokensPrice(tokensBalance)
-    const usdValue = nftsUSD + tokensUSD + aptUSD
+
+    const getStakedToadsUSD = await getUserStakedAptoadsUSD(walletAddress)
+    const getStakedMonkeysUSD = await getUserStakedMonkeysUSD(walletAddress)
+    const getStakedBearsUSD = await getUserStakedBearsUSD(walletAddress)
+    const usdValue = nftsUSD + tokensUSD + aptUSD + getStakedToadsUSD + getStakedMonkeysUSD + getStakedBearsUSD
     setTotalUsd(usdValue)
 
     setIsLoading(false)
