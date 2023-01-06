@@ -1,6 +1,5 @@
-import Avatar from 'components/Avatar'
 import Card from 'components/Cards/Card'
-import { getNFTImage } from 'utils/Helpers/NFTHelpers'
+import NFTImage from './NFTImage'
 import SendButton from './SendButton'
 
 const NFTCard = ({ data, isChecking }) => {
@@ -10,7 +9,7 @@ const NFTCard = ({ data, isChecking }) => {
         <Card>
           <div className='p-2 duration-200 hover:bg-darkBorder rounded-lg'>
             <div className='w-full'>
-              <Avatar src={data.preview_uri !== null ? getNFTImage(data.preview_uri) : getNFTImage(data.token_uri)} alt='test' className='rounded-lg object-cover' />
+              <NFTImage nftData={data} type='card' />
             </div>
             <div className='mt-2'>
               <p className='text-gray-400 text-sm'>{data.collection_name}</p>

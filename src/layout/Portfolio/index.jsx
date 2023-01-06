@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
 import { useWallet } from '@aptos-labs/wallet-adapter-react'
 import { Tab } from '@headlessui/react'
 import Alert from 'components/Alerts'
+import AptoadsStaking from 'components/EcosystemProjects/Aptoads'
 import AptosMonkeysJungle from 'components/EcosystemProjects/AptosMonkeys'
 import BruhBearsTaverns from 'components/EcosystemProjects/BruhBears'
-import AptoadsStaking from 'components/EcosystemProjects/Aptoads'
-import TotalBalance from 'components/Portfolio/TotalBalance'
 import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Portfolio'
+import TotalBalance from 'components/Portfolio/TotalBalance'
 import ConnectButton from 'components/WalletConnection/ConnectButton'
+import { useEffect, useState } from 'react'
 import { getWalletAPTBalance, getWalletNFTsBalance, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
@@ -21,7 +21,6 @@ const Index = () => {
   const classNames = (...classes) => {
     return classes.filter(Boolean).join(' ')
   }
-
   const getUserData = async () => {
     setIsLoading(true)
     setAptBalance([])

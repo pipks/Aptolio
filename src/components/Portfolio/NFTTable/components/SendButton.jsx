@@ -5,13 +5,13 @@ import AddressBookButton from 'components/AddresBookButton'
 import Button from 'components/Button'
 import Input from 'components/Input'
 import Modal from 'components/Modal'
+import NFTImage from './NFTImage'
 import AddressResult from 'components/Portfolio/TokensTable/components/AddressResult'
 import { checkAddress } from 'components/Portfolio/TokensTable/Helper'
 import Typography from 'components/Typography'
 import { MAINNET_NODE_URL } from 'config'
 import { useToast } from 'hooks/useToast'
 import { shortAddress } from 'utils/Helpers'
-import { getNFTImage } from 'utils/Helpers/NFTHelpers'
 
 const SendButton = ({ data, ...rest }) => {
   const { signAndSubmitTransaction } = useWallet()
@@ -64,7 +64,7 @@ const SendButton = ({ data, ...rest }) => {
         <div className='p-2'>
           <div className='flex flex-col gap-2 mb-2'>
             <div className='flex items-center justify-center'>
-              <img src={data.preview_uri !== null ? getNFTImage(data.preview_uri) : getNFTImage(data.token_uri)} alt={data.token_name} className='rounded-lg w-full sm:w-[250px]' />
+              <NFTImage nftData={data} type='sending' />
             </div>
             <div className='text-center'>
               <Typography className='uppercase'>{data.token_name}</Typography>

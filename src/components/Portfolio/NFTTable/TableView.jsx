@@ -1,7 +1,7 @@
 import React from 'react'
 import Typography from 'components/Typography'
-import { getNFTImage } from 'utils/Helpers/NFTHelpers'
 import SendButton from './components/SendButton'
+import NFTImage from './components/NFTImage'
 
 const TableView = ({ data }) => {
   return (
@@ -24,7 +24,7 @@ const TableView = ({ data }) => {
               <tr key={Index} className='w-full cursor-pointer hover:bg-darkBorder'>
                 <th className='border-b border-darkBorder px-6 py-4'>
                   <div className='flex items-center gap-2'>
-                    <img src={x.preview_uri !== null ? getNFTImage(x.preview_uri) : getNFTImage(x.token_uri)} alt='test' className='rounded-lg w-[46px] h-[46px] ' />
+                    <NFTImage nftData={x} type='table' />
                     <div className='flex flex-col'>
                       <Typography className='font-light whitespace-nowrap'>{x.token_name}</Typography>
                       <Typography className='font-light text-sm' color='text-gray-500'>
