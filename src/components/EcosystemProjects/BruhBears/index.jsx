@@ -95,7 +95,9 @@ const Index = ({ walletAddress }) => {
               )}
             </div>
           ) : (
-            <LoadingPulse />
+            <div className='mb-2'>
+              <LoadingPulse />
+            </div>
           )}
         </div>
       </Card>
