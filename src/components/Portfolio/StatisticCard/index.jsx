@@ -23,9 +23,9 @@ const index = ({ title, data, isLoading }) => {
                           {data.status === 200 ? (
                             <div>
                               {data.data.data.current_coin_balances.length > 0 ? (
-                                <Typography className='text-2xl'>{Number(data.data.data.current_coin_balances[0].amount / 10 ** 8).toLocaleString('en-US')} APT</Typography>
+                                <Typography className='text-2xl'>{Number(data.data.data.current_coin_balances[0].amount / 10 ** 8).toLocaleString('en-US')}</Typography>
                               ) : (
-                                <Typography className='text-2xl'>0 APT</Typography>
+                                <Typography className='text-2xl'>0</Typography>
                               )}
                             </div>
                           ) : (
