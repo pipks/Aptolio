@@ -7,7 +7,6 @@ import { BsImages, BsReceiptCutoff } from 'react-icons/bs'
 import { RxTokens } from 'react-icons/rx'
 
 const index = ({ title, data, isLoading }) => {
-  console.log(title === 'NFTs' ? data : null)
   return (
     <div>
       <Card>

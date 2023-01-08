@@ -2,6 +2,7 @@ import React from 'react'
 import Typography from 'components/Typography'
 import SendButton from './components/SendButton'
 import NFTImage from './components/NFTImage'
+import AddressComponent from 'components/AddressComponent'
 
 const TableView = ({ data }) => {
   return (
@@ -14,13 +15,13 @@ const TableView = ({ data }) => {
                 NAME
               </th>
               <th scope='col' className='border-b border-darkBorder px-6 py-3 whitespace-nowrap'>
-                LISTED ON TOPAZ
+                CREATOR ADDRESS
               </th>
               <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>
             </tr>
           </thead>
           <tbody>
-            {data.data.data.map((x, Index) => (
+            {data.data.data.current_token_ownerships.map((x, Index) => (
               <tr key={Index} className='w-full cursor-pointer hover:bg-darkBorder'>
                 <th className='border-b border-darkBorder px-6 py-4'>
                   <div className='flex items-center gap-2'>
@@ -28,18 +29,18 @@ const TableView = ({ data }) => {
                       <NFTImage nftData={x} type='table' />
                     </div>
                     <div className='flex flex-col'>
-                      <Typography className='font-light whitespace-nowrap'>{x.token_name}</Typography>
+                      <Typography className='font-light whitespace-nowrap'>{x.current_token_data.name}</Typography>
                       <Typography className='font-light text-sm' color='text-gray-500'>
-                        {x.collection_name}
+                        {x.current_token_data.collection_name}
                       </Typography>
                     </div>
                   </div>
                 </th>
                 <th className='border-b border-darkBorder px-6 py-4'>
-                  <Typography className='font-light'>{x.is_listed ? 'Listed' : 'Unlisted'}</Typography>
+                  <AddressComponent address={x.current_token_data.creator_address} type='account' short={true} showOpen={true} showCopy={true} />
                 </th>
                 <th className='border-b border-darkBorder px-6 py-4'>
-                  <SendButton data={x} disabled={x.is_listed ? true : false} />
+                  <SendButton data={x} />
                 </th>
               </tr>
             ))}
