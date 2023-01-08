@@ -1,17 +1,9 @@
 import axios from 'axios'
 import BigNumber from 'bignumber.js'
+import { INDEXER } from 'config'
 
-const INDEXER = 'https://indexer.mainnet.aptoslabs.com/v1/graphql'
-
-export const checkIfAddressExists = async (address) => {
+export const getAccountResources = async (address) => {
   const json = await axios(`https://fullnode.mainnet.aptoslabs.com/v1/accounts/${address}/resources`)
-    .then((response) => response)
-    .catch((error) => error.response)
-  return json
-}
-
-export const check0x3Resource = async (address) => {
-  const json = await axios(`https://fullnode.mainnet.aptoslabs.com/v1/accounts/${address}/resource/0x3::token::TokenStore`)
     .then((response) => response)
     .catch((error) => error.response)
   return json
@@ -92,10 +84,37 @@ export const getWalletTokensBalance = async (walletAddress, greaterThen) => {
   return json
 }
 
-export const getWalletNFTsBalance = async (walletAddress) => {
-  const json = await axios(`https://api-v1.topaz.so/api/profile-data?owner=${walletAddress}`)
-    .then((response) => response)
-    .catch((error) => error.response)
+export const getWalletNfts = async (walletAddress) => {
+  const data = JSON.stringify({
+    query: `query CurrentTokens($owner_address: String, $offset: Int) {
+      current_token_ownerships(
+        where: {owner_address: {_eq: $owner_address}, amount: {_gt: "0"}, table_type: {_eq: "0x3::token::TokenStore"}}
+        order_by: {last_transaction_version: desc}
+        offset: $offset
+      ) {
+        current_token_data {
+          metadata_uri
+          description
+          creator_address
+          collection_name
+          name
+          supply
+          last_transaction_timestamp
+          last_transaction_version
+          royalty_points_numerator
+          royalty_points_denominator
+          royalty_mutable
+          default_properties
+        }
+        property_version
+        amount
+        table_type
+      }
+    }`,
+    variables: { owner_address: walletAddress, offset: 0 },
+  })
+
+  const json = await axios.post(INDEXER, data).catch((error) => error.response)
   return json
 }
 
@@ -148,7 +167,7 @@ export const getWalletTransactions = async (walletAddress) => {
   return json
 }
 
-export const getUserTransactionsVersions = async (walletAddress, limit, offset) => {
+export const getWalletTransactionsVersions = async (walletAddress, limit, offset) => {
   const data = JSON.stringify({
     query: `query UserTransactions($address: String, $limit: Int, $offset: Int) {
       move_resources_aggregate(
@@ -183,7 +202,7 @@ export const getTransactionByVersion = async (version) => {
 }
 
 export const getUserTransactions = async (walletAddress, limit, offset) => {
-  const txVersions = await getUserTransactionsVersions(walletAddress, limit, offset)
+  const txVersions = await getWalletTransactionsVersions(walletAddress, limit, offset)
   var mazafakas = []
   if (Object.keys(txVersions).length > 0 && txVersions.status === 200) {
     if (txVersions.data.data.move_resources.length > 0) {
@@ -202,18 +221,82 @@ export const getUserTransactions = async (walletAddress, limit, offset) => {
   return mazafakas
 }
 
+export const getUserSpentInFees = async (walletAddress, totalTransactions) => {
+  var txs = []
+  var offset = 0
+  do {
+    const data = await getUserTransactions(walletAddress, 100, offset)
+    if (data.length > 0) {
+      data.forEach((x) => {
+        if (x.sender === walletAddress) {
+          const result = new BigNumber(x.gas_used).div(new BigNumber(10).pow(8)).multipliedBy(new BigNumber(100)).toString()
+          txs.push(Number(result))
+        }
+      })
+    }
+    offset += 100
+  } while (offset !== totalTransactions)
+
+  let sum = txs.reduce(function (a, b) {
+    return a + b
+  })
+
+  return sum
+}
+
+export const checkWalletTokenBalance = async (walletAddress, coinType) => {
+  const data = JSON.stringify({
+    query: `query checkTokenBalance($walletAddress: String, $coinType: String) {
+      current_coin_balances(
+        where: {owner_address: {_eq: $walletAddress}, coin_type: {_eq: $coinType}}
+      ) {
+        amount
+      }
+    }`,
+    variables: { walletAddress: walletAddress, coinType: coinType },
+  })
+
+  const json = await axios.post(INDEXER, data).catch((error) => error.response)
+  return { isError: !json.status === 200, balance: Object.keys(json.data.data.current_coin_balances).length > 0 ? json.data.data.current_coin_balances[0].amount : 0 }
+}
+
+export const checkAddressResource = async (address, resource) => {
+  const json = await axios(`https://fullnode.mainnet.aptoslabs.com/v1/accounts/${address}/resource/0x1::coin::CoinStore<${resource}>`)
+    .then((response) => response)
+    .catch((error) => error.response)
+  if (json.status === 200 && !json.data.hasOwnProperty('error_code')) {
+    return { isError: false, balance: json.data.data.coin.value }
+  } else {
+    return { isError: true, balance: 0 }
+  }
+}
+
+export const checkAddressExists = async (address) => {
+  const json = await axios(`https://fullnode.mainnet.aptoslabs.com/v1/accounts/${address}/resources`)
+    .then((response) => response)
+    .catch((error) => error.response)
+  return json.status === 200 && !json.data.hasOwnProperty('error_code') && json.data[0].type === '0x1::account::Account'
+}
+
+export const checkTokenStore = async (address) => {
+  const json = await axios(`https://fullnode.mainnet.aptoslabs.com/v1/accounts/${address}/resource/0x3::token::TokenStore`)
+    .then((response) => response)
+    .catch((error) => error.response)
+  return json.status === 200 && json.data.type === '0x3::token::TokenStore'
+}
+
 export const convertNameToAddress = async (name) => {
   const json = await axios(`https://www.aptosnames.com/api/mainnet/v1/address/${String(name).replace('.apt', '')}`)
     .then((response) => response)
     .catch((error) => error.response)
-  return json
+  return { status: json.status === 200, address: json.status === 200 ? json.data.address : null }
 }
 
 export const convertAddressToName = async (address) => {
   const json = await axios(`https://www.aptosnames.com/api/mainnet/v1/name/${address}`)
     .then((response) => response)
     .catch((error) => error.response)
-  return json
+  return { status: json.status === 200, name: json.status === 200 ? json.data.name : null }
 }
 
 export const searchTokensBySymbol = async (symbol) => {
@@ -238,43 +321,4 @@ export const searchTokensBySymbol = async (symbol) => {
 
   const json = await axios.post(INDEXER, data).catch((error) => error.response)
   return json
-}
-
-export const checkWalletSpecificTokenBalance = async (walletAddress, coinType) => {
-  const data = JSON.stringify({
-    query: `query checkTokenBalance($walletAddress: String, $coinType: String) {
-      current_coin_balances(
-        where: {owner_address: {_eq: $walletAddress}, coin_type: {_eq: $coinType}}
-      ) {
-        amount
-      }
-    }`,
-    variables: { walletAddress: walletAddress, coinType: coinType },
-  })
-
-  const json = await axios.post(INDEXER, data).catch((error) => error.response)
-  return json
-}
-
-export const getUserSpentInFees = async (walletAddress, totalTransactions) => {
-  var txs = []
-  var offset = 0
-  do {
-    const data = await getUserTransactions(walletAddress, 100, offset)
-    if (data.length > 0) {
-      data.forEach((x) => {
-        if (x.sender === walletAddress) {
-          const result = new BigNumber(x.gas_used).div(new BigNumber(10).pow(8)).multipliedBy(new BigNumber(100)).toString()
-          txs.push(Number(result))
-        }
-      })
-    }
-    offset += 100
-  } while (offset !== totalTransactions)
-
-  let sum = txs.reduce(function (a, b) {
-    return a + b
-  })
-
-  return sum
 }

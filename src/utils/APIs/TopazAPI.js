@@ -20,20 +20,16 @@ export const getNFTsUsdValue = async (nfts) => {
   var usd = 0
   if (Object.keys(nfts).length > 0) {
     if (nfts.status === 200) {
-      if (nfts.data.error === null) {
-        if (nfts.data.status === 200) {
-          if (Object.keys(nfts.data.data).length > 0) {
-            await Promise.all(
-              nfts.data.data.map(async (x) => {
-                const data = await getFloorPrice(x.collection_id)
-                if (data.status === 200) {
-                  const fp = data.data.data.floor / 10 ** 8
-                  nftsFp.push(fp)
-                }
-              })
-            )
-          }
-        }
+      if (Object.keys(nfts.data.data.current_token_ownerships).length > 0) {
+        await Promise.all(
+          nfts.data.data.current_token_ownerships.map(async (x) => {
+            const data = await getFloorPrice(`${x.current_token_data.creator_address}::${x.current_token_data.collection_name}`)
+            if (data.status === 200) {
+              const fp = data.data.data.floor / 10 ** 8
+              nftsFp.push(fp)
+            }
+          })
+        )
       }
     }
   }
@@ -47,4 +43,11 @@ export const getNFTsUsdValue = async (nfts) => {
   }
 
   return usd > 0 ? usd * aptPrice : 0
+}
+
+export const getWalletNFTsBalance = async (walletAddress) => {
+  const json = await axios(`https://api-v1.topaz.so/api/profile-data?owner=${walletAddress}`)
+    .then((response) => response)
+    .catch((error) => error.response)
+  return json
 }

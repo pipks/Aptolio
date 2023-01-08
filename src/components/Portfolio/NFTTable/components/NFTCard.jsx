@@ -12,11 +12,10 @@ const NFTCard = ({ data, isChecking }) => {
               <NFTImage nftData={data} type='card' />
             </div>
             <div className='mt-2'>
-              <p className='text-gray-400 text-sm'>{data.collection_name}</p>
-              <p className='text-gray-100 text-md'>{data.token_name}</p>
+              <p className='text-gray-400 text-sm'>{data.current_token_data.collection_name}</p>
+              <p className='text-gray-100 text-md'>{data.current_token_data.name}</p>
             </div>
-            <p className='text-gray-400 text-sm'>{data.is_listed ? 'Listed' : 'Unlisted'}</p>
-            {isChecking === undefined && <SendButton disabled={data.is_listed ? true : false} data={data} />}
+            {isChecking === undefined && <SendButton data={data} />}
           </div>
         </Card>
       </div>
