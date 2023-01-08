@@ -90,13 +90,13 @@ const Index = ({ walletAddress }) => {
                       )}
                     </div>
                   ) : (
-                    <div>
+                    <div className='mb-2'>
                       <Alert variant={data.statusCode} text={data.statusText} />
                     </div>
                   )}
                 </div>
               ) : (
-                <div>
+                <div className='mb-2'>
                   <Alert variant={data.statusCode} text={data.statusText} />
                 </div>
               )}
