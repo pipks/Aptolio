@@ -2,7 +2,7 @@ import AddressSearchBar from 'components/AddressSearchBar'
 import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Portfolio'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { getWalletAPTBalance, getWalletNFTsBalance, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
+import { getWalletAPTBalance, getWalletNfts, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
   const location = useLocation()
@@ -25,7 +25,7 @@ const Index = () => {
       const getWalletAPT = await getWalletAPTBalance(walletAddress)
       const getTxsCount = await getWalletTransactionsCount(walletAddress)
       const getTokens = await getWalletTokensBalance(walletAddress)
-      const getNFTs = await getWalletNFTsBalance(walletAddress)
+      const getNFTs = await getWalletNfts(walletAddress)
       setUserAPTBalance(getWalletAPT)
       setUserTXsCount(getTxsCount)
       setUserTokens(getTokens)

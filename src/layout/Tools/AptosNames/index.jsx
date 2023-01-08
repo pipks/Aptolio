@@ -18,9 +18,9 @@ const Index = () => {
     if (data !== '') {
       setIsLoading(true)
       setWalletData([])
-      if (String(data).includes('.apt')) {
+      if (String(data).endsWith('.apt')) {
         const getAddress = await convertNameToAddress(data)
-        if (getAddress.status === 200 && getAddress.data.hasOwnProperty('address')) {
+        if (getAddress.status === true && getAddress.hasOwnProperty('address')) {
           setWalletData(getAddress)
           setIsLoading(false)
         } else {
@@ -28,7 +28,7 @@ const Index = () => {
         }
       } else if (String(data).length > 60) {
         const getName = await convertAddressToName(data)
-        if (getName.status === 200 && getName.data.hasOwnProperty('name')) {
+        if (getName.status === true && getName.hasOwnProperty('name')) {
           setWalletData(getName)
           setIsLoading(false)
         } else {
@@ -57,18 +57,18 @@ const Index = () => {
                 {Object.keys(walletData).length > 0 && (
                   <div>
                     <div className='border-[1px] border-darkBorder mt-2'></div>
-                    {walletData.status === 200 ? (
+                    {walletData.status ? (
                       <div className='mt-2'>
-                        {walletData.data.hasOwnProperty('address') && (
+                        {walletData.hasOwnProperty('address') && (
                           <div className='flex items-center gap-1'>
                             <Typography>Wallet Address:</Typography>
-                            <AddressComponent address={walletData.data.address} type='account' showCopy={true} showOpen={true} short={true} />
+                            <AddressComponent address={walletData.address} type='account' showCopy={true} showOpen={true} short={true} />
                           </div>
                         )}
-                        {walletData.data.hasOwnProperty('name') && (
+                        {walletData.hasOwnProperty('name') && (
                           <div className='flex items-center gap-1'>
                             <Typography>Name:</Typography>
-                            <Typography className='hover:underline'>{walletData.data.name}.apt</Typography>
+                            <Typography className='hover:underline'>{walletData.name}.apt</Typography>
                           </div>
                         )}
                       </div>

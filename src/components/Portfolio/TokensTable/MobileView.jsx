@@ -51,19 +51,19 @@ const Index = ({ data, isChecking }) => {
                   </table>
                 </div>
               ) : (
-                <div className='p-3'>
-                  <Alert variant='warning' text='You have no tokens' />
+                <div className='p-2'>
+                  <Alert variant='info' text='You have no tokens' />
                 </div>
               )}
             </div>
           ) : (
-            <div className='p-3'>
+            <div className='p-2'>
               <Alert variant='error' text='API connection failed! try again!' />
             </div>
           )}
         </div>
       ) : (
-        <div className='p-3'>
+        <div className='p-2'>
           <LoadingPulse />
         </div>
       )}

@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { getCoinData } from 'utils/APIs/CoinGeckoAPI'
 import { getFloorPrice } from 'utils/APIs/TopazAPI'
-
-const INDEXER = 'https://indexer.mainnet.aptoslabs.com/v1/graphql'
+import { INDEXER } from 'config'
 
 export const getUserToads = async (address) => {
   const data = JSON.stringify({
@@ -77,14 +76,14 @@ export const getUserStakedAptoads = async (address) => {
               )
               return stakedToads
             } else {
-              return { status: 200, statusId: 'info', statusText: 'You dont have staked Toads. 1' }
+              return { status: 200, statusId: 'info', statusText: 'User has no staked Toads. 1' }
             }
           } else {
             return { status: 404, statusId: 'error', statusText: 'API connectionFailed! try again!' }
           }
         }
       } else {
-        return { status: 200, statusId: 'info', statusText: 'You dont have staked Toads.' }
+        return { status: 200, statusId: 'info', statusText: 'User has no staked Toads.' }
       }
     } else {
       return { status: 404, statusId: 'error', statusText: 'API connectionFailed! try again!' }

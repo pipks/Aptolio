@@ -12,8 +12,8 @@ const Index = () => {
     if (walletAddress !== '') {
       if (String(walletAddress).endsWith('.apt')) {
         const getAddress = await convertNameToAddress(walletAddress)
-        if (getAddress.status === 200 && getAddress.data.hasOwnProperty('address')) {
-          window.location = `/address/${getAddress.data.address}`
+        if (getAddress.status === true && getAddress.hasOwnProperty('address')) {
+          window.location = `/address/${getAddress.address}`
         } else {
           toast('error', 'Not Found', 'Invalid or not registered')
         }

@@ -60,10 +60,10 @@ export const checkTavern = async (address) => {
         })
         return { status: 200, staked: true, statusText: '', data: stakedData }
       } else {
-        return { status: stakedBruhs.status, statusCode: 'warning', staked: false, statusText: stakedBruhs.data.error_code === 'table_item_not_found' ? 'The user has no staked bruh bears' : stakedBruhs.data.error_code }
+        return { status: stakedBruhs.status, statusCode: 'info', staked: false, statusText: stakedBruhs.data.error_code === 'table_item_not_found' ? 'User has no staked Bruh Bears' : stakedBruhs.data.error_code }
       }
     } else {
-      return { status: stakedBruhs.status, statusCode: 'warning', staked: false, statusText: stakedBruhs.data.error_code === 'table_item_not_found' ? 'The user has no staked bruh bears' : stakedBruhs.data.error_code }
+      return { status: stakedBruhs.status, statusCode: 'info', staked: false, statusText: stakedBruhs.data.error_code === 'table_item_not_found' ? 'User has no staked Bruh Bears' : stakedBruhs.data.error_code }
     }
   }
 }

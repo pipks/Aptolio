@@ -1,7 +1,8 @@
 import { AiFillCheckCircle, AiFillCloseCircle, AiFillWarning } from 'react-icons/ai'
+import { getExplorerURL, shortAddress } from 'utils/Helpers'
 import { MdInfo } from 'react-icons/md'
 
-const index = ({ variant, text, balance }) => {
+const index = ({ variant, text, type, balance }) => {
   return (
     <div>
       {variant === 'info' ? (
@@ -22,9 +23,11 @@ const index = ({ variant, text, balance }) => {
           <span className='sr-only'>success</span>
           <div className='flex flex-col'>
             <div>
-              <p className='text-lightText text-sm w-full font-light text-green-400'>{text}</p>
+              <a href={getExplorerURL('account', text)} target='_blank' rel='noreferrer' className='underline text-lightText text-sm w-full font-light text-green-400'>
+                {shortAddress(text, 6)}
+              </a>
             </div>
-            {balance && <div>{balance > 0 ? <p className='text-lightText text-sm w-full font-light text-green-400'>Balance: {balance}</p> : <p className='text-lightText text-sm w-full font-light text-green-400'>Balance: 0</p>}</div>}
+            {type !== 'nft' && <p className='text-lightText text-sm w-full font-light text-green-400'>Balance: {balance}</p>}
           </div>
         </div>
       ) : null}
@@ -36,7 +39,6 @@ const index = ({ variant, text, balance }) => {
             <div>
               <p className='text-lightText text-sm w-full font-light text-yellow-400'>{text}</p>
             </div>
-            {balance && <div>{balance > 0 ? <p className='text-lightText text-sm w-full font-light text-yellow-400'>Balance: {balance}</p> : <p className='text-lightText text-sm w-full font-light text-yellow-400'>Balance: 0</p>}</div>}
           </div>
         </div>
       ) : null}

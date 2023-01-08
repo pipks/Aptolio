@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useWallet } from '@aptos-labs/wallet-adapter-react'
 import { AptosClient } from 'aptos'
 import BigNumber from 'bignumber.js'
@@ -10,8 +9,9 @@ import Modal from 'components/Modal'
 import Typography from 'components/Typography'
 import { MAINNET_NODE_URL } from 'config'
 import { useToast } from 'hooks/useToast'
-import { shortAddress } from 'utils/Helpers'
-import { checkAddress, getTokenLogo } from '../Helper'
+import { useState } from 'react'
+import { checkAddress, shortAddress, isValidAddress } from 'utils/Helpers'
+import { getTokenLogo } from '../Helper'
 import AddressResult from './AddressResult'
 
 const SendButton = ({ data, ...rest }) => {
@@ -42,11 +42,9 @@ const SendButton = ({ data, ...rest }) => {
   const handleCheckAddress = async () => {
     setAddressData([])
     const walletAddress = document.getElementById('receiverAddress').value
-    if (walletAddress !== '') {
+    if (isValidAddress(walletAddress) || String(walletAddress).endsWith('.apt')) {
       const getData = await checkAddress(walletAddress, data)
       setAddressData(getData)
-    } else {
-      toast('error', 'Enter APTOS wallet address or .apt name')
     }
   }
 
@@ -58,7 +56,7 @@ const SendButton = ({ data, ...rest }) => {
       type: 'entry_function_payload',
       function: '0x1::coin::transfer',
       type_arguments: [data.coin_info.coin_type],
-      arguments: [addressData.address, result.c[0]],
+      arguments: [addressData.walletAddress, result.c[0]],
     }
     try {
       const response = await signAndSubmitTransaction(payload)
@@ -108,21 +106,22 @@ const SendButton = ({ data, ...rest }) => {
               <div>
                 {addressData.status === 'error' && (
                   <div>
-                    {addressData.hasOwnProperty('tokenBalance') ? <AddressResult variant={addressData.status} text={addressData.error} balance={addressData.tokenBalance} /> : <AddressResult variant={addressData.status} text={addressData.error} />}
+                    <AddressResult variant={addressData.status} text={addressData.error} />
                   </div>
                 )}
                 {addressData.status === 'success' && (
                   <div>
-                    {addressData.hasOwnProperty('tokenBalance') ? (
-                      <AddressResult variant={addressData.status} text={shortAddress(addressData.address, 6)} balance={addressData.tokenBalance} />
-                    ) : (
-                      <AddressResult variant={addressData.status} text={shortAddress(addressData.address, 6)} />
-                    )}
+                    <AddressResult variant={addressData.status} text={addressData.walletAddress} balance={addressData.tokenBalance} />
+                  </div>
+                )}
+                {addressData.status === 'warning' && (
+                  <div>
+                    <AddressResult variant={addressData.status} text={addressData.error} />
                   </div>
                 )}
               </div>
             )}
-            <Button disabled={addressData.status === 'success' && Number(sendTokenAmount) > 0 ? false : true} onClick={() => sendTransactions()}>
+            <Button disabled={(addressData.status === 'success' || addressData.status === 'warning') && Number(sendTokenAmount) > 0 ? false : true} onClick={() => sendTransactions()}>
               SEND
             </Button>
           </div>

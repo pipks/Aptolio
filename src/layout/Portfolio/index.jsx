@@ -8,7 +8,7 @@ import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Po
 import TotalBalance from 'components/Portfolio/TotalBalance'
 import ConnectButton from 'components/WalletConnection/ConnectButton'
 import { useEffect, useState } from 'react'
-import { getWalletAPTBalance, getWalletNFTsBalance, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
+import { getWalletAPTBalance, getWalletTokensBalance, getWalletTransactionsCount, getWalletNfts } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
   const { account, connected } = useWallet()
@@ -28,7 +28,7 @@ const Index = () => {
     setNftBalances([])
     const getAptBalance = await getWalletAPTBalance(account.address)
     const getCoinBalance = await getWalletTokensBalance(account.address)
-    const getNFTsBalance = await getWalletNFTsBalance(account.address)
+    const getNFTsBalance = await getWalletNfts(account.address)
     const getTxsCount = await getWalletTransactionsCount(account.address)
     setAptBalance(getAptBalance)
     setCoinBalances(getCoinBalance)
