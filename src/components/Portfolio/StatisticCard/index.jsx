@@ -7,6 +7,7 @@ import { BsImages, BsReceiptCutoff } from 'react-icons/bs'
 import { RxTokens } from 'react-icons/rx'
 
 const index = ({ title, data, isLoading }) => {
+  console.log(title === 'NFTs' ? data : null)
   return (
     <div>
       <Card>
@@ -72,7 +73,7 @@ const index = ({ title, data, isLoading }) => {
                         <div>
                           {data.status === 200 ? (
                             <div>
-                              <Typography className='text-2xl'>{Object.keys(data.data.data).length}</Typography>
+                              <Typography className='text-2xl'>{Object.keys(data.data.data.current_token_ownerships).length}</Typography>
                             </div>
                           ) : (
                             <Alert variant='error' text='API connection failed! try again!' />
