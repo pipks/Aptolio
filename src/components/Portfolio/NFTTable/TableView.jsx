@@ -21,7 +21,7 @@ const TableView = ({ data, isChecking }) => {
             </tr>
           </thead>
           <tbody>
-            {data.data.data.current_token_ownerships.map((x, Index) => (
+            {data.map((x, Index) => (
               <tr key={Index} className='w-full cursor-pointer hover:bg-darkBorder'>
                 <th className='border-b border-darkBorder px-6 py-4'>
                   <div className='flex items-center gap-2'>

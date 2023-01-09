@@ -8,7 +8,7 @@ import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Po
 import TotalBalance from 'components/Portfolio/TotalBalance'
 import ConnectButton from 'components/WalletConnection/ConnectButton'
 import { useEffect, useState } from 'react'
-import { getWalletAPTBalance, getWalletTokensBalance, getWalletTransactionsCount, getWalletNfts } from 'utils/APIs/AptosAPI'
+import { getWalletAPTBalance, getWalletNftBalance, getWalletNFTsCount, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
   const { account, connected } = useWallet()
@@ -17,6 +17,7 @@ const Index = () => {
   const [coinBalances, setCoinBalances] = useState([])
   const [nftBalances, setNftBalances] = useState([])
   const [txsCount, setTxsCount] = useState([])
+  const [nftsCount, setNftsCount] = useState([])
 
   const classNames = (...classes) => {
     return classes.filter(Boolean).join(' ')
@@ -26,14 +27,17 @@ const Index = () => {
     setAptBalance([])
     setCoinBalances([])
     setNftBalances([])
+
+    const getNftsCount = await getWalletNFTsCount(account.address)
     const getAptBalance = await getWalletAPTBalance(account.address)
     const getCoinBalance = await getWalletTokensBalance(account.address)
-    const getNFTsBalance = await getWalletNfts(account.address)
+    const getNFTsBalance = await getWalletNftBalance(account.address, 100, 0, getNftsCount?.data?.data?.current_token_ownerships_aggregate?.aggregate?.count)
     const getTxsCount = await getWalletTransactionsCount(account.address)
     setAptBalance(getAptBalance)
     setCoinBalances(getCoinBalance)
     setNftBalances(getNFTsBalance)
     setTxsCount(getTxsCount)
+    setNftsCount(getNftsCount)
     setIsLoading(false)
   }
 
@@ -52,7 +56,7 @@ const Index = () => {
             <TotalBalance walletAddress={account.address} aptBalance={aptBalance} nftBalances={nftBalances} tokensBalance={coinBalances} />
             <StatisticCard title='APT Balance' data={aptBalance} isLoading={isLoading} />
             <StatisticCard title='Tokens' data={coinBalances} isLoading={isLoading} />
-            <StatisticCard title='NFTs' data={nftBalances} isLoading={isLoading} />
+            <StatisticCard title='NFTs' data={nftsCount} isLoading={isLoading} />
             <StatisticCard title='Transactions' data={txsCount} isLoading={isLoading} />
           </div>
           <div className='mt-2'>

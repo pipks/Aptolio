@@ -72,7 +72,7 @@ const index = ({ title, data, isLoading }) => {
                         <div>
                           {data.status === 200 ? (
                             <div>
-                              <Typography className='text-2xl'>{Object.keys(data.data.data.current_token_ownerships).length}</Typography>
+                              <Typography className='text-2xl'>{data?.data?.data?.current_token_ownerships_aggregate?.aggregate?.count}</Typography>
                             </div>
                           ) : (
                             <Alert variant='error' text='API connection failed! try again!' />

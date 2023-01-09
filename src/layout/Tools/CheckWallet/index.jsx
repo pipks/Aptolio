@@ -2,7 +2,7 @@ import AddressSearchBar from 'components/AddressSearchBar'
 import { NFTTable, StatisticCard, TokenTable, Transactions } from 'components/Portfolio'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { getWalletAPTBalance, getWalletNfts, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
+import { getWalletAPTBalance, getWalletNftBalance, getWalletNFTsCount, getWalletTokensBalance, getWalletTransactionsCount } from 'utils/APIs/AptosAPI'
 
 const Index = () => {
   const location = useLocation()
@@ -10,9 +10,10 @@ const Index = () => {
   const walletAddress = pathname.split('/').slice(1)[1]
   const [isLoading, setIsLoading] = useState(true)
   const [userAPTBalance, setUserAPTBalance] = useState([])
-  const [userTXsCount, setUserTXsCount] = useState([])
   const [userTokens, setUserTokens] = useState([])
   const [userNFTs, setUserNFTs] = useState([])
+  const [userTXsCount, setUserTXsCount] = useState([])
+  const [userNftsCount, setUserNFtsCount] = useState([])
 
   const getWalletData = async () => {
     if (walletAddress !== undefined) {
@@ -22,14 +23,16 @@ const Index = () => {
       setUserTXsCount([])
       setUserTokens([])
       setUserNFTs([])
+      const getNftsCount = await getWalletNFTsCount(walletAddress)
       const getWalletAPT = await getWalletAPTBalance(walletAddress)
       const getTxsCount = await getWalletTransactionsCount(walletAddress)
       const getTokens = await getWalletTokensBalance(walletAddress)
-      const getNFTs = await getWalletNfts(walletAddress)
+      const getNFTs = await getWalletNftBalance(walletAddress, 100, 0, getNftsCount?.data?.data?.current_token_ownerships_aggregate?.aggregate?.count)
       setUserAPTBalance(getWalletAPT)
-      setUserTXsCount(getTxsCount)
       setUserTokens(getTokens)
       setUserNFTs(getNFTs)
+      setUserTXsCount(getTxsCount)
+      setUserNFtsCount(getNftsCount)
       setIsLoading(false)
     }
   }
@@ -49,7 +52,7 @@ const Index = () => {
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols3 lg:grid-cols-4 gap-2'>
             <StatisticCard title='APT Balance' data={userAPTBalance} isLoading={isLoading} />
             <StatisticCard title='Tokens' data={userTokens} isLoading={isLoading} />
-            <StatisticCard title='NFTs' data={userNFTs} isLoading={isLoading} />
+            <StatisticCard title='NFTs' data={userNftsCount} isLoading={isLoading} />
             <StatisticCard title='Transactions' data={userTXsCount} isLoading={isLoading} />
           </div>
           <div>

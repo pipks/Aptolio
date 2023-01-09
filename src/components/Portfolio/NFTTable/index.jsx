@@ -16,41 +16,35 @@ const Index = ({ data, isChecking }) => {
         <div className={`${gridView ? 'p-3' : ''}`}>
           {Object.keys(data).length > 0 ? (
             <div>
-              {data.status === 200 ? (
+              {!data.hasOwnProperty('status') ? (
                 <div className={`${isChecking ? 'max-h-[500px] overflow-y-auto rounded-lg' : ''}`}>
-                  {data.data.data.current_token_ownerships.length > 0 ? (
-                    <div>
-                      <div className={`${gridView ? '' : 'p-3'} flex items-center justify-between`}>
-                        <Typography>Total NFTs: {data.data.data.current_token_ownerships.length}</Typography>
-                        <div className='flex items-center gap-1'>
-                          <BiListUl onClick={() => setGridView(false)} className='text-white text-2xl cursor-pointer' />
-                          <HiOutlineViewGrid onClick={() => setGridView(true)} className='text-white text-xl cursor-pointer' />
-                        </div>
+                  <div>
+                    <div className={`${gridView ? '' : 'p-3'} flex items-center justify-between`}>
+                      <Typography>Total NFTs: {data.length}</Typography>
+                      <div className='flex items-center gap-1'>
+                        <BiListUl onClick={() => setGridView(false)} className='text-white text-2xl cursor-pointer' />
+                        <HiOutlineViewGrid onClick={() => setGridView(true)} className='text-white text-xl cursor-pointer' />
                       </div>
-                      <div className='border-[1px] border-darkBorder mt-2 mb-2'></div>
-                      {gridView ? (
-                        <div className={`${isChecking ? 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-2' : 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2'}`}>
-                          {data.data.data.current_token_ownerships.map((x, index) => (
-                            <div key={index}>
-                              <NFTCard data={x} isChecking={isChecking} />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div>
-                          <TableView data={data} isChecking={isChecking} />
-                        </div>
-                      )}
                     </div>
-                  ) : (
-                    <div>
-                      <Alert variant='info' text='You have no NFTs' />
-                    </div>
-                  )}
+                    <div className='border-[1px] border-darkBorder mt-2 mb-2'></div>
+                    {gridView ? (
+                      <div className={`${isChecking ? 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-2' : 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2'}`}>
+                        {data.map((x, index) => (
+                          <div key={index}>
+                            <NFTCard data={x} isChecking={isChecking} />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div>
+                        <TableView data={data} isChecking={isChecking} />
+                      </div>
+                    )}
+                  </div>
                 </div>
               ) : (
                 <div>
-                  <Alert variant='error' text='API connection failed! try again!' />
+                  <Alert variant={data.statusCode} text={data.errorText} />
                 </div>
               )}
             </div>

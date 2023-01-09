@@ -98,4 +98,22 @@ export const getNFTImage = async (url) => {
       return await fetchNFTImage(url)
     }
   }
+
+  if (String(url).endsWith('.png')) {
+    return url
+  }
+
+  if (String(url).endsWith('.gif')) {
+    return url
+  }
+
+  if (String(url).endsWith('.jpg')) {
+    return url
+  }
+
+  if (String(url).endsWith('.jpeg')) {
+    return url
+  }
+
+  return QuestionMark
 }
