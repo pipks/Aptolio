@@ -89,7 +89,7 @@ export const getWalletNfts = async (walletAddress) => {
     query: `query CurrentTokens($owner_address: String, $offset: Int) {
       current_token_ownerships(
         where: {owner_address: {_eq: $owner_address}, amount: {_gt: "0"}, table_type: {_eq: "0x3::token::TokenStore"}}
-        order_by: {last_transaction_version: desc}
+        order_by: {current_token_data: {collection_name: asc}}
         offset: $offset
       ) {
         current_token_data {
