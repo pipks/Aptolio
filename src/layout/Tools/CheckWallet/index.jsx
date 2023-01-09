@@ -55,7 +55,7 @@ const Index = () => {
           <div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2 mt-2'>
               <TokenTable tokensBalance={userTokens} isChecking={true} />
-              <NFTTable isChecking={true} data={userNFTs} />
+              <NFTTable data={userNFTs} isChecking={true} />
             </div>
             <div className='mt-2'>
               <Transactions walletAddress={walletAddress} />

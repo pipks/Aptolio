@@ -17,7 +17,7 @@ const TableView = ({ data, isChecking }) => {
               <th scope='col' className='border-b border-darkBorder px-6 py-3 whitespace-nowrap'>
                 CREATOR ADDRESS
               </th>
-              {isChecking === false ? null : <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>}
+              {isChecking === true ? null : <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>}
             </tr>
           </thead>
           <tbody>
@@ -39,7 +39,7 @@ const TableView = ({ data, isChecking }) => {
                 <th className='border-b border-darkBorder px-6 py-4'>
                   <AddressComponent address={x.current_token_data.creator_address} type='account' short={true} showOpen={true} showCopy={true} />
                 </th>
-                {isChecking === false ? null : (
+                {isChecking === true ? null : (
                   <th className='border-b border-darkBorder px-6 py-4'>
                     <SendButton data={x} />
                   </th>
