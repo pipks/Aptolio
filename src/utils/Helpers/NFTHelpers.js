@@ -99,6 +99,38 @@ export const getNFTImage = async (url) => {
     }
   }
 
+  if (String(url).startsWith('https://static.bluemove.net/')) {
+    if (String(url).endsWith('.webp')) return url
+    if (String(url).endsWith('.png')) return url
+    if (String(url).endsWith('.jpg')) return url
+    if (String(url).endsWith('.gif')) return url
+    if (String(url).endsWith('.json')) return await fetchNFTImage(url)
+  }
+
+  if (String(url).startsWith('https://bluemovecdn')) {
+    if (String(url).endsWith('.webp')) return url
+    if (String(url).endsWith('.png')) return url
+    if (String(url).endsWith('.jpg')) return url
+    if (String(url).endsWith('.gif')) return url
+    if (String(url).endsWith('.json')) return await fetchNFTImage(url)
+  }
+
+  if (String(url).startsWith('https://cdn.bluemove')) {
+    if (String(url).endsWith('.webp')) return url
+    if (String(url).endsWith('.png')) return url
+    if (String(url).endsWith('.jpg')) return url
+    if (String(url).endsWith('.gif')) return url
+    if (String(url).endsWith('.json')) return await fetchNFTImage(url)
+  }
+
+  if (String(url).startsWith('https://ipfs.bluemove')) {
+    if (String(url).endsWith('.webp')) return url
+    if (String(url).endsWith('.png')) return url
+    if (String(url).endsWith('.jpg')) return url
+    if (String(url).endsWith('.gif')) return url
+    if (String(url).endsWith('.json')) return await fetchNFTImage(url)
+  }
+
   if (String(url).endsWith('.png')) {
     return url
   }
