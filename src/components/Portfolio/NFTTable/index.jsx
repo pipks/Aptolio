@@ -38,7 +38,7 @@ const Index = ({ data, isChecking }) => {
                         </div>
                       ) : (
                         <div>
-                          <TableView data={data} />
+                          <TableView data={data} isChecking={isChecking} />
                         </div>
                       )}
                     </div>

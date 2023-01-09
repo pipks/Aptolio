@@ -4,7 +4,7 @@ import SendButton from './components/SendButton'
 import NFTImage from './components/NFTImage'
 import AddressComponent from 'components/AddressComponent'
 
-const TableView = ({ data }) => {
+const TableView = ({ data, isChecking }) => {
   return (
     <div>
       <div className='overflow-y-auto'>
@@ -17,7 +17,7 @@ const TableView = ({ data }) => {
               <th scope='col' className='border-b border-darkBorder px-6 py-3 whitespace-nowrap'>
                 CREATOR ADDRESS
               </th>
-              <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>
+              {isChecking === false ? null : <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>}
             </tr>
           </thead>
           <tbody>
@@ -39,9 +39,11 @@ const TableView = ({ data }) => {
                 <th className='border-b border-darkBorder px-6 py-4'>
                   <AddressComponent address={x.current_token_data.creator_address} type='account' short={true} showOpen={true} showCopy={true} />
                 </th>
-                <th className='border-b border-darkBorder px-6 py-4'>
-                  <SendButton data={x} />
-                </th>
+                {isChecking === false ? null : (
+                  <th className='border-b border-darkBorder px-6 py-4'>
+                    <SendButton data={x} />
+                  </th>
+                )}
               </tr>
             ))}
           </tbody>
