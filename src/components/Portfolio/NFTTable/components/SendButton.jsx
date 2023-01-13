@@ -56,7 +56,7 @@ const SendButton = ({ data, ...rest }) => {
   }
 
   return (
-    <div className='mt-1'>
+    <div>
       <Button {...rest} className='font-light' onClick={() => setOpen(!open)}>
         SEND
       </Button>

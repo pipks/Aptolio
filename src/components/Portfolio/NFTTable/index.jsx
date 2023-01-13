@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { BiListUl } from 'react-icons/bi'
 import { HiOutlineViewGrid } from 'react-icons/hi'
 import NFTCard from './components/NFTCard'
-import TableView from './TableView'
+import TableView from './components/NFTTable'
 
 const Index = ({ data, isChecking }) => {
   const [gridView, setGridView] = useState(true)
@@ -28,12 +28,8 @@ const Index = ({ data, isChecking }) => {
                     </div>
                     <div className='border-[1px] border-darkBorder mt-2 mb-2'></div>
                     {gridView ? (
-                      <div className={`${isChecking ? 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-2' : 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2'}`}>
-                        {data.map((x, index) => (
-                          <div key={index}>
-                            <NFTCard data={x} isChecking={isChecking} />
-                          </div>
-                        ))}
+                      <div>
+                        <NFTCard data={data} isChecking={isChecking} />
                       </div>
                     ) : (
                       <div>

@@ -1,14 +1,25 @@
 import Card from 'components/Cards/Card'
-import NFTImage from './NFTImage'
-import SendButton from './SendButton'
+import { useState } from 'react'
+import { getNftDetails } from 'utils/Helpers/NFTHelpers'
+import NFTImage from '../NFTImage'
+import NFTModal from '../NFTModal'
+import SendButton from '../SendButton'
 
 const NFTCard = ({ data, isChecking }) => {
+  const [open, setOpen] = useState(false)
+  const [nftAttributes, setNftAttributes] = useState([])
+
+  const openModal = async () => {
+    setOpen(!open)
+    const getTest = await getNftDetails(data.current_token_data.metadata_uri)
+    setNftAttributes(getTest)
+  }
   return (
     <div>
       <div className='flex'>
         <Card>
           <div className='p-2 duration-200 hover:bg-darkBorder rounded-lg'>
-            <div className='w-full'>
+            <div onClick={() => openModal()} className='w-full cursor-pointer'>
               <NFTImage nftData={data} type='card' />
             </div>
             <div className='mt-2'>
@@ -19,6 +30,7 @@ const NFTCard = ({ data, isChecking }) => {
           </div>
         </Card>
       </div>
+      <NFTModal data={data} nftAttributes={nftAttributes} isChecking={isChecking} modalOpen={open} modalClose={() => setOpen(!open)} />
     </div>
   )
 }

@@ -22,6 +22,7 @@ const NFTImage = ({ nftData, type }) => {
     <div>
       {type === 'table' && <img onError={addDefaultSrc} src={nftImage} alt={nftData.current_token_data.name} className='rounded-lg w-[46px] h-[46px] ' />}
       {type === 'card' && <img onError={addDefaultSrc} src={nftImage} alt={nftData.current_token_data.name} className='rounded-lg object-cover' />}
+      {type === 'details' && <img onError={addDefaultSrc} src={nftImage} alt={nftData.current_token_data.name} className='rounded-lg w-full h-full' />}
       {type === 'sending' && <img onError={addDefaultSrc} src={nftImage} alt={nftData.current_token_data.name} className='rounded-lg w-full sm:w-[250px]' />}
     </div>
   )

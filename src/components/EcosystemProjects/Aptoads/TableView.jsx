@@ -1,4 +1,3 @@
-import React from 'react'
 import Typography from 'components/Typography'
 import moment from 'moment'
 import WithdrawButton from './WithdrawButton'

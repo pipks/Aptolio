@@ -1,7 +1,7 @@
 import React, { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-const Index = ({ title, open, children, close, hideHeader }) => {
+const Index = ({ title, open, children, close, hideHeader, width }) => {
   const cancelButtonRef = useRef(null)
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -9,7 +9,7 @@ const Index = ({ title, open, children, close, hideHeader }) => {
         <Transition.Child as={Fragment} enter='ease-out duration-300' enterFrom='opacity-0' enterTo='opacity-100' leave='ease-in duration-200' leaveFrom='opacity-100' leaveTo='opacity-0'>
           <div className='fixed inset-0 bg-darkCard bg-opacity-75 transition-opacity' />
         </Transition.Child>
-        <div className='fixed z-10 inset-0'>
+        <div className='fixed z-10 inset-0 overflow-y-auto'>
           <div className='flex items-center sm:items-center justify-center min-h-full p-4 text-center sm:p-0'>
             <Transition.Child
               as={Fragment}
@@ -19,7 +19,7 @@ const Index = ({ title, open, children, close, hideHeader }) => {
               leave='ease-in duration-200'
               leaveFrom='opacity-100 translate-y-0 sm:scale-100'
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
-              <Dialog.Panel className='w-full md:w-[450px] relative rounded-xl text-left overflow-hidden transform transition-all sm:my-8 border-[1px] border-darkBorder '>
+              <Dialog.Panel className={`${width ? width : 'w-full md:w-[450px]'} relative rounded-xl text-left overflow-hidden transform transition-all sm:my-8 border-[1px] border-darkBorder`}>
                 <div className='relative bg-darkCard'>
                   {!hideHeader && (
                     <div>

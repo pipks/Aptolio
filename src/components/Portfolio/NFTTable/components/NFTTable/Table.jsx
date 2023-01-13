@@ -1,10 +1,24 @@
-import React from 'react'
-import Typography from 'components/Typography'
-import SendButton from './components/SendButton'
-import NFTImage from './components/NFTImage'
 import AddressComponent from 'components/AddressComponent'
+import Typography from 'components/Typography'
+import { useState } from 'react'
+import { getNftDetails } from 'utils/Helpers/NFTHelpers'
+import NFTImage from '../NFTImage'
+import NFTModal from '../NFTModal'
 
 const TableView = ({ data, isChecking }) => {
+  const [open, setOpen] = useState(false)
+  const [nftAttributes, setNftAttributes] = useState([])
+  const [selected, setSelected] = useState([])
+
+  const openModal = async (selectedNft) => {
+    setSelected([])
+    setNftAttributes([])
+    setOpen(!open)
+    const getTest = await getNftDetails(selectedNft.current_token_data.metadata_uri)
+    setSelected(selectedNft)
+    setNftAttributes(getTest)
+  }
+
   return (
     <div>
       <div className='overflow-y-auto'>
@@ -17,12 +31,11 @@ const TableView = ({ data, isChecking }) => {
               <th scope='col' className='border-b border-darkBorder px-6 py-3 whitespace-nowrap'>
                 CREATOR ADDRESS
               </th>
-              {isChecking === true ? null : <th scope='col' className='border-b border-darkBorder px-6 py-3'></th>}
             </tr>
           </thead>
           <tbody>
-            {data.map((x, Index) => (
-              <tr key={Index} className='w-full cursor-pointer hover:bg-darkBorder'>
+            {data.map((x) => (
+              <tr onClick={() => openModal(x)} key={x.current_token_data.name} className='w-full cursor-pointer hover:bg-darkBorder'>
                 <th className='border-b border-darkBorder px-6 py-4'>
                   <div className='flex items-center gap-2'>
                     <div className='flex-shrink-0'>
@@ -39,16 +52,12 @@ const TableView = ({ data, isChecking }) => {
                 <th className='border-b border-darkBorder px-6 py-4'>
                   <AddressComponent address={x.current_token_data.creator_address} type='account' short={true} showOpen={true} showCopy={true} />
                 </th>
-                {isChecking === true ? null : (
-                  <th className='border-b border-darkBorder px-6 py-4'>
-                    <SendButton data={x} />
-                  </th>
-                )}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {Object.keys(nftAttributes).length === 0 && Object.keys(selected).length === 0 ? null : <NFTModal data={selected} nftAttributes={nftAttributes} isChecking={isChecking} modalOpen={open} modalClose={() => setOpen(!open)} />}
     </div>
   )
 }
